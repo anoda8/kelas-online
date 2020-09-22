@@ -2,13 +2,11 @@
     <div class="row">
         <div class="col-md-12">
             @if (session()->has('message'))
-                <hr/>
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
             @endif
             @if (session()->has('error'))
-                <hr/>
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>

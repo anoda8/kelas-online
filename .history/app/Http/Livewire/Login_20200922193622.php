@@ -31,7 +31,7 @@ class Login extends Component
         if(Auth::attempt(['email' => $this->email, 'password' => $this->password])){
             session()->flash('message', "You are Login successful.");
             $user = User::find(Auth::id());
-            return redirect()->to('/'.$user->roles[0]->name);
+            return redirect()->to('/'.$user->roles->name);
         }else{
             session()->flash('error', 'email and password are wrong.');
         }

@@ -24,19 +24,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
 
 });
-
-Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {
-
-});
-
-Route::group(['prefix' => 'guru', 'middleware' => ['role:guru']], function() {
-
-});
-
-Route::group(['prefix' => 'siswa', 'middleware' => ['role:siswa']], function() {
-
-});
-
-Route::group(['prefix' => 'ortu', 'middleware' => ['role:ortu']], function() {
-
-});

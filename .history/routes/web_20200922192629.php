@@ -22,21 +22,6 @@ Auth::routes(['register'=> false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
-
-});
-
-Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {
-
-});
-
-Route::group(['prefix' => 'guru', 'middleware' => ['role:guru']], function() {
-
-});
-
-Route::group(['prefix' => 'siswa', 'middleware' => ['role:siswa']], function() {
-
-});
-
-Route::group(['prefix' => 'ortu', 'middleware' => ['role:ortu']], function() {
-
+    Route::get('/', 'AdminController@welcome');
+    Route::get('/manage', ['middleware' => ['permission:manage-admins'], 'uses' => 'AdminController@manageAdmins']);
 });

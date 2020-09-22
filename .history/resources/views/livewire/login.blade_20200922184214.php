@@ -8,7 +8,6 @@
                 </div>
             @endif
             @if (session()->has('error'))
-                <hr/>
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
