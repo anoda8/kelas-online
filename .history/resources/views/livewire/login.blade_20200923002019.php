@@ -34,9 +34,9 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="bold">Kata Sandi :</label>
-                    <select name="thajaran" id="thajaran" wire:change="thajaran" class="form-control">
+                    <select name="thajaran" id="thajaran" wire:model="thajaran" class="form-control">
                         @foreach ($thajaran as $th)
-                            <option value="{{ $th['kode_th'] }}">{{ $th['ket'] }}</option>
+                            <option value="{{ $th['kode'] }}">{{ $th['ket'] }}</option>
                         @endforeach
                     </select>
                 </div>

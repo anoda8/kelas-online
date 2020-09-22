@@ -12,7 +12,6 @@ class Login extends Component
 
     public function render()
     {
-        $this->thajaran = [['kode_th' => "20211", 'ket' => "Tahun Pelajaran 2020/2021 Semester 1"],['kode_th' => "20212", 'ket' => "Tahun Pelajaran 2020/2021 Semester 2"],];
         return view('livewire.login');
     }
 
@@ -36,12 +35,6 @@ class Login extends Component
         }else{
             session()->flash('error', 'email and password are wrong.');
         }
-    }
-
-    public function changeTh($thajaran)
-    {
-        $this->thajaran = $thajaran;
-        dd($this->thajaran);
     }
 
 }

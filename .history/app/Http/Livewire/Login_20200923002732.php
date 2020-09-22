@@ -38,10 +38,9 @@ class Login extends Component
         }
     }
 
-    public function changeTh($thajaran)
+    public function changeTh()
     {
-        $this->thajaran = $thajaran;
-        dd($this->thajaran);
+        # code...
     }
 
 }
