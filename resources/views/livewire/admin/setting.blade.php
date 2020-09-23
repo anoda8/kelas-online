@@ -6,7 +6,7 @@
                     <i class="pe-7s-car icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>{{ $judul ?? "" }}
+                <div>Pengaturan
                     <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
                     </div>
                 </div>
@@ -65,6 +65,6 @@
         </div>
     </div>
     <input type="text" id="" wire:model="coba">
-    {{ $coba }}
     <button wire:click="diklik">Tombol</button>
+    {{ dd(url()) }}
 </div>

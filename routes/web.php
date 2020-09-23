@@ -23,7 +23,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
-    Route::get('/', App\Http\Livewire\Admin\Dashboard::class);
+    Route::get('/', App\Http\Livewire\Admin\Dashboard::class)->name('admin.beranda');
+    Route::get('/setting', App\Http\Livewire\Admin\Setting::class)->name('admin.setting');
 });
 
 Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {
