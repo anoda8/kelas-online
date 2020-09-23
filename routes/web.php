@@ -21,8 +21,9 @@ Auth::routes(['register'=> false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
 
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
+    Route::get('/', App\Http\Livewire\Admin\Dashboard::class);
 });
 
 Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {

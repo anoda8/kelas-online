@@ -42,4 +42,6 @@ class LoginController extends Controller
     {
         return view('livewire.home');
     }
+
+
 }

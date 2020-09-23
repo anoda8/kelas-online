@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\ThAjaran;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -9,10 +10,11 @@ use Livewire\Component;
 class Login extends Component
 {
     public $users, $email, $password, $name, $thajaran;
+    public $thterpilih = '0';
 
     public function render()
     {
-        $this->thajaran = [['kode_th' => "20211", 'ket' => "Tahun Pelajaran 2020/2021 Semester 1"],['kode_th' => "20212", 'ket' => "Tahun Pelajaran 2020/2021 Semester 2"],];
+        $this->thajaran = ThAjaran::all();
         return view('livewire.login');
     }
 
@@ -31,17 +33,11 @@ class Login extends Component
 
         if(Auth::attempt(['email' => $this->email, 'password' => $this->password])){
             session()->flash('message', "You are Login successful.");
+            session(['thajaran' => $this->thterpilih]);
             $user = User::find(Auth::id());
             return redirect()->to('/'.$user->roles[0]->name);
         }else{
             session()->flash('error', 'email and password are wrong.');
         }
     }
-
-    public function changeTh($thajaran)
-    {
-        $this->thajaran = $thajaran;
-        dd($this->thajaran);
-    }
-
 }
