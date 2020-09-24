@@ -1,4 +1,6 @@
 <div>
+    @include('layouts.header')
+    @include('layouts.menu')
     <div class="app-page-title">
         <div class="page-title-wrapper">
             @include('livewire.templates.title', $heading)
@@ -97,14 +99,14 @@
                 </div>
             </div>
         </div>
-
-
     </div>
+    @include('layouts.footer')
     @section('scripts')
     <script type="text/javascript">
         window.livewire.on('thAjaranStore', () => {
             $('#modal-tambah-ajaran').modal('hide');
         });
+        
         document.addEventListener('DOMContentLoaded', ()=>{
             @this.on('thAjaranTriggerDelete', orderId => {
                 Swal.fire({
@@ -124,5 +126,6 @@
         });
     </script>
     @endsection
+
 </div>
 
