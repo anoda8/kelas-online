@@ -25,6 +25,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
     Route::get('/', App\Http\Livewire\Admin\Dashboard::class)->name('admin.beranda');
     Route::get('/setting', App\Http\Livewire\Admin\Setting::class)->name('admin.setting');
+    Route::get('/users/admin', App\Http\Livewire\Admin\Users::class)->name('admin.users.admin');
+    Route::get('/users/guru', App\Http\Livewire\Admin\Users::class)->name('admin.users.guru');
+    Route::get('/users/siswa', App\Http\Livewire\Admin\Users::class)->name('admin.users.siswa');
+    Route::get('/users/ortu', App\Http\Livewire\Admin\Users::class)->name('admin.users.ortu');
 });
 
 Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {

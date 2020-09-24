@@ -7,11 +7,21 @@ use Livewire\Component;
 
 class Setting extends Component
 {
-    public $tambah_tahun, $tambah_semester, $tambah_status;
+    public $tambah_tahun, $tambah_semester, $tambah_status = 0;
     public $list_thajaran;
+
+    public $heading;
+    public function heading()
+    {
+        return [
+            'judul' => "Halaman Pengaturan",
+            'keterangan' => ""
+        ];
+    }
 
     public function mount()
     {
+        $this->heading = $this->heading();
         $this->list_thajaran = ThAjaran::latest()->get();
     }
 
@@ -21,14 +31,14 @@ class Setting extends Component
         return view('livewire.admin.setting', $data);
     }
 
-    public function clearSettingForm()
+    public function thAjaranClearSettingForm()
     {
         $this->tambah_tahun = '';
         $this->tambah_status = 0;
         $this->tambah_semester = '';
     }
 
-    public function store()
+    public function thAjaranStore()
     {
         $this->validatedDate = $this->validate([
             'tambah_tahun' => 'required|numeric',
@@ -52,6 +62,24 @@ class Setting extends Component
 
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil nambah']);
         $this->list_thajaran->prepend($newThAjaran);
-        $this->clearSettingForm();
+        $this->thAjaranClearSettingForm();
+    }
+
+    public function thAjaranAktif($id)
+    {
+        ThAjaran::query()->update(['status' => 0]);
+        $thajaran = ThAjaran::find($id);
+        $thajaran->update(['status' => 1]);
+        $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => $thajaran->keterangan." Aktif"]);
+        $this->mount();
+    }
+
+    public function thAjaranHapus($id)
+    {
+        $thajaran = ThAjaran::find($id);
+        $keterangan = $thajaran->keterangan;
+        $thajaran->delete();
+        $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => $keterangan." dihapus !"]);
+        $this->mount();
     }
 }

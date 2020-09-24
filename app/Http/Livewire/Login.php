@@ -10,11 +10,16 @@ use Livewire\Component;
 class Login extends Component
 {
     public $users, $email, $password, $name, $thajaran;
-    public $thterpilih = '0';
+    public $thterpilih;
+
+    public function mount()
+    {
+        $this->thajaran = ThAjaran::all();
+        $this->thterpilih = $this->thajaran->firstWhere('status', 1)->kode;
+    }
 
     public function render()
     {
-        $this->thajaran = ThAjaran::all();
         return view('livewire.login');
     }
 

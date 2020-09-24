@@ -1,66 +1,11 @@
 <div>
     <div class="app-page-title">
         <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                    </i>
-                </div>
-                <div>Pengaturan
-                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
-                    </div>
-                </div>
-            </div>
+            @include('livewire.templates.title', $heading)
             <div class="page-title-actions">
                 <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                     <i class="fa fa-star"></i>
                 </button>
-                <div class="d-inline-block dropdown">
-                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                        <span class="btn-icon-wrapper pr-2 opacity-7">
-                            <i class="fa fa-business-time fa-w-20"></i>
-                        </span>
-                        Buttons
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="nav-link-icon lnr-inbox"></i>
-                                    <span>
-                                        Inbox
-                                    </span>
-                                    <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="nav-link-icon lnr-book"></i>
-                                    <span>
-                                        Book
-                                    </span>
-                                    <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="nav-link-icon lnr-picture"></i>
-                                    <span>
-                                        Picture
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a disabled href="" class="nav-link disabled">
-                                    <i class="nav-link-icon lnr-file-empty"></i>
-                                    <span>
-                                        File Disabled
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -82,14 +27,22 @@
                                     <th class="text-center">Kode</th>
                                     <th class="text-center">Semester</th>
                                     <th class="text-center">Keterangan</th>
+                                    <th class="text-center">
+                                        Hapus
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list_thajaran as $thajaran)
-                                <tr style="cursor:pointer;background-color: {{ $thajaran->status == 1 ? "lightgreen" : "" }}">
+                                <tr style="background-color: {{ $thajaran->status == 1 ? "lightgreen" : "" }}">
                                     <td scope="row">{{ $thajaran->kode }}</td>
                                     <td class="text-center">{{ $thajaran->semester }}</td>
-                                    <td>{{ $thajaran->keterangan }}</td>
+                                    <td>
+                                        <a href="#" style="cursor:pointer;" wire:click.prevent="thAjaranAktif({{ $thajaran->id }})">{{ $thajaran->keterangan }}</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('thAjaranTriggerDelete', {{ $thajaran->id }})"><i class="fas fa-trash fa-sm"></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -109,9 +62,14 @@
                 </div>
                 <div class="pt-3 card-body">
                     <div class="form-group">
-                        <label for="tahun">Tahun</label>
-                        <div>
-                            <input type="text" wire:model.lazy="tambah_tahun" class="form-control">
+                        <div class="form-group">
+                            <label for="tahun">Tahun</label>
+                            <select class="form-control" wire:model.lazy="tambah_tahun" id="tahun">
+                                <option value="">== Pilih Tahun ==</option>
+                                @for ($i = 2020; $i <= 2030; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                            </select>
                             @error('tambah_tahun') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                     </div>
@@ -134,7 +92,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <button class="btn btn-success btn-sm" wire:click.prevent="store()">Tambah</button>
+                        <button class="btn btn-success btn-sm" wire:click.prevent="thAjaranStore()">Tambah</button>
                     </div>
                 </div>
             </div>
@@ -147,9 +105,23 @@
         window.livewire.on('thAjaranStore', () => {
             $('#modal-tambah-ajaran').modal('hide');
         });
-        // document.addEventListener('DOMContentLoaded', ()=>{
-        //     @this.on('triggerDelete');
-        // });
+        document.addEventListener('DOMContentLoaded', ()=>{
+            @this.on('thAjaranTriggerDelete', orderId => {
+                Swal.fire({
+                    title: 'Konfirmasi Hapus',
+                    text: 'Apakah anda yakin akan menghapusnya ?',
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: 'var(--success)',
+                    cancelButtonColor: 'var(--primary)',
+                    confirmButtonText: 'Hapus !'
+                }).then((result) => {
+                    if(result.value){
+                        @this.call('thAjaranHapus', orderId);
+                    }
+                });
+            });
+        });
     </script>
     @endsection
 </div>

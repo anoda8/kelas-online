@@ -168,10 +168,6 @@
                                         <i class="metismenu-icon fas fa-tachometer-alt"></i>
                                         Beranda
                                     </a>
-                                    <a href="index.html">
-                                        <i class="metismenu-icon fas fa-users"></i>
-                                        Profil
-                                    </a>
                                     <a href="{{ route('admin.setting') }}" class="{{ request()->path() == "admin/setting" ? "mm-active" : ""}}">
                                         <i class="metismenu-icon fas fa-cog"></i>
                                         Pengaturan
@@ -179,58 +175,30 @@
                                 </li>
                                 <li class="app-sidebar__heading">DATABASE</li>
                                 <li>
-                                    <a href="#">
+                                    <a href="#" class="{{ request()->segment(2) == "users" ? "mm-active" : ""}}">
                                         <i class="metismenu-icon pe-7s-diamond"></i>
-                                        Elements
+                                        Pengguna
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="elements-buttons-standard.html">
-                                                <i class="metismenu-icon"></i>
-                                                Buttons
+                                            <a href="{{route('admin.users.admin')}}" class="{{ request()->path() == "admin/users/admin" ? "mm-active" : ""}}">
+                                                <i class="metismenu-icon"></i>Administrator
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('admin.users.guru')}}" class="{{ request()->path() == "admin/users/guru" ? "mm-active" : ""}}">
+                                                <i class="metismenu-icon"></i>Guru
                                             </a>
                                         </li>
                                         <li>
                                             <a href="elements-dropdowns.html">
-                                                <i class="metismenu-icon">
-                                                </i>Dropdowns
+                                                <i class="metismenu-icon"></i>Siswa
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="elements-icons.html">
-                                                <i class="metismenu-icon">
-                                                </i>Icons
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="elements-badges-labels.html">
-                                                <i class="metismenu-icon">
-                                                </i>Badges
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="elements-cards.html">
-                                                <i class="metismenu-icon">
-                                                </i>Cards
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="elements-list-group.html">
-                                                <i class="metismenu-icon">
-                                                </i>List Groups
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="elements-navigation.html">
-                                                <i class="metismenu-icon">
-                                                </i>Navigation Menus
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="elements-utilities.html">
-                                                <i class="metismenu-icon">
-                                                </i>Utilities
+                                            <a href="elements-dropdowns.html">
+                                                <i class="metismenu-icon"></i>Wali Murid
                                             </a>
                                         </li>
                                     </ul>
@@ -238,7 +206,7 @@
                                 <li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-car"></i>
-                                        Components
+                                        Pembelajaran
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
