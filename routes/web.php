@@ -29,6 +29,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
     Route::get('/users/guru', App\Http\Livewire\Admin\Users::class)->name('admin.users.guru');
     Route::get('/users/siswa', App\Http\Livewire\Admin\Users::class)->name('admin.users.siswa');
     Route::get('/users/ortu', App\Http\Livewire\Admin\Users::class)->name('admin.users.ortu');
+    Route::get('/users/export/{level}', [App\Http\Livewire\Admin\Users::class, 'export']);
+
+    Route::get('/biodata/guru', App\Http\Livewire\Admin\Guru::class)->name('admin.biodata.guru');
 });
 
 Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {

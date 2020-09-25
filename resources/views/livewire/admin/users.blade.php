@@ -20,12 +20,9 @@
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
                         @if (($level == 'guru') || ($level == 'siswa'))
-                        <button type="button" class="btn btn-warning btn-sm" wire:click="$emit('showAddForm')" />
-                            <i class="fas fa-upload"></i> Import
-                        </button>
-                        <button type="button" class="btn btn-success btn-sm" wire:click="$emit('showAddForm')" />
+                        <a type="button" class="btn btn-success btn-sm" href="/admin/users/export/{{ $level }}" />
                             <i class="fas fa-download"></i> Export
-                        </button>
+                        </a>
                         @endif
                         <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
                             <i class="fas fa-plus"></i> Tambah

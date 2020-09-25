@@ -77,74 +77,47 @@
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-car"></i>
-                                    Pembelajaran
+                                    Biodata
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{route('admin.biodata.guru')}}" class="{{ request()->path() == "admin/biodata/guru" ? "mm-active" : ""}}">
+                                            <i class="metismenu-icon">
+                                            </i>Guru
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components-accordions.html">
+                                            <i class="metismenu-icon">
+                                            </i>Siswa
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-car"></i>
+                                    Pembelajarn
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
                                     <li>
                                         <a href="components-tabs.html">
                                             <i class="metismenu-icon">
-                                            </i>Tabs
+                                            </i>Jurusan
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components-tabs.html">
+                                            <i class="metismenu-icon">
+                                            </i>Kelas
                                         </a>
                                     </li>
                                     <li>
                                         <a href="components-accordions.html">
                                             <i class="metismenu-icon">
-                                            </i>Accordions
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-notifications.html">
-                                            <i class="metismenu-icon">
-                                            </i>Notifications
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-modals.html">
-                                            <i class="metismenu-icon">
-                                            </i>Modals
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-progress-bar.html">
-                                            <i class="metismenu-icon">
-                                            </i>Progress Bar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-tooltips-popovers.html">
-                                            <i class="metismenu-icon">
-                                            </i>Tooltips &amp; Popovers
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-carousel.html">
-                                            <i class="metismenu-icon">
-                                            </i>Carousel
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-calendar.html">
-                                            <i class="metismenu-icon">
-                                            </i>Calendar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-pagination.html">
-                                            <i class="metismenu-icon">
-                                            </i>Pagination
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-scrollable-elements.html">
-                                            <i class="metismenu-icon">
-                                            </i>Scrollable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-maps.html">
-                                            <i class="metismenu-icon">
-                                            </i>Maps
+                                            </i>Mapel
                                         </a>
                                     </li>
                                 </ul>

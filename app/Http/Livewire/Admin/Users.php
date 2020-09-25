@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class Users extends Component
 {
@@ -109,6 +112,11 @@ class Users extends Component
         $this->password = '';
         $this->repass = '';
         $this->modeEdit = false;
+    }
+
+    public function export($level)
+    {
+         return Excel::download(new UsersExport($level), $level.'.xlsx');
     }
 
 
