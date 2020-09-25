@@ -11,7 +11,7 @@ class Users extends Component
 {
     use WithPagination;
 
-    public $level, $nama, $username, $password, $repass, $userId, $perpage = 2;
+    public $level, $nama, $username, $password, $repass, $userId, $perpage = 10;
     public $modeEdit = false;
 
     public $heading;
@@ -66,13 +66,18 @@ class Users extends Component
             'repass' => 'sometimes|required_with:password|same:password'
         ]);
 
-        $user = User::updateOrCreate([
-            'email' => $this->username
-        ],[
+        $data = [
             'name' => $this->nama,
             'email' => $this->username,
-            'password' => Hash::make($this->password)
-        ]);
+        ];
+
+        if($this->password != null){
+            $data['password'] = Hash::make($this->password);
+        }
+
+        $user = User::updateOrCreate([
+            'email' => $this->username
+        ],$data);
 
         $this->emit('closeModalUser');
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil mengubah '.$user->name]);

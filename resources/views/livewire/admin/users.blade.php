@@ -19,6 +19,14 @@
                         Tabel {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
+                        @if (($level == 'guru') || ($level == 'siswa'))
+                        <button type="button" class="btn btn-warning btn-sm" wire:click="$emit('showAddForm')" />
+                            <i class="fas fa-upload"></i> Import
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm" wire:click="$emit('showAddForm')" />
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        @endif
                         <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
                             <i class="fas fa-plus"></i> Tambah
                         </button>

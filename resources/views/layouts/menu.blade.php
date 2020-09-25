@@ -63,15 +63,15 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="elements-dropdowns.html">
+                                        <a href="{{route('admin.users.siswa')}}" class="{{ request()->path() == "admin/users/siswa" ? "mm-active" : ""}}">
                                             <i class="metismenu-icon"></i>Siswa
                                         </a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="elements-dropdowns.html">
                                             <i class="metismenu-icon"></i>Wali Murid
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </li>
                             <li>
