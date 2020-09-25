@@ -50,9 +50,7 @@ class Guru extends Component
             'password' => Hash::make($this->nip)
         ]);
 
-        if(!$this->modeEdit){
-            $user->attachRole('guru');
-        }
+        $user->attachRole('guru');
 
         $guru = ModelsGuru::updateOrCreate([
             'nik' => $this->nik
@@ -62,6 +60,7 @@ class Guru extends Component
             'nik' => $this->nik,
             'user_id' => $user->id
         ]);
+
 
         $this->emit('closeAddForm');
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menambahkan '.$this->nama]);

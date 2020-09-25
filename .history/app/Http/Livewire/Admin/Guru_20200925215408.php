@@ -12,7 +12,7 @@ class Guru extends Component
     public $user_id, $nama, $nik, $nip;
     public $modeEdit = false;
     public $buatUser = 'checked';
-    public $loginUser = 'nip';
+    public $loginUser;
 
     public $heading;
     public function heading()
@@ -26,6 +26,7 @@ class Guru extends Component
     public function mount(){
         $this->level = request()->segment(3);
         $this->heading = $this->heading();
+        $this->loginUser = 'nip';
     }
 
     public function render()
@@ -42,58 +43,39 @@ class Guru extends Component
             'nik' => 'required'
         ]);
 
-        $user = User::updateOrCreate([
-            'email' => $this->nip
-        ],[
-            'name' => $this->nama,
-            'email' => $this->nip,
-            'password' => Hash::make($this->nip)
-        ]);
-
-        if(!$this->modeEdit){
-            $user->attachRole('guru');
-        }
-
         $guru = ModelsGuru::updateOrCreate([
             'nik' => $this->nik
         ],[
             'nama' => $this->nama,
             'nip' => $this->nip,
-            'nik' => $this->nik,
-            'user_id' => $user->id
+            'nik' => $this->nik
         ]);
 
+        $this->updateCreateUser();
         $this->emit('closeAddForm');
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menambahkan '.$this->nama]);
         $this->celarForm();
     }
-
-    public function edit($id)
-    {
-        $guru = ModelsGuru::find($id);
-        $this->nama = $guru->nama;
-        $this->nik = $guru->nik;
-        $this->nip = $guru->nip;
-        $this->modeEdit = true;
-    }
-
-    public function hapus($id)
-    {
-        $guru = ModelsGuru::find($id);
-        $user = User::find($guru->user_id);
-        $nama = $guru->nama;
-        $guru->delete();
-        $user->delete();
-        $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => "Guru ".$nama." berhasil dihapus"]);
-    }
-
 
     public function celarForm()
     {
         $this->nama = '';
         $this->nik = '';
         $this->nip = '';
-        $this->modeEdit = false;
+    }
+
+    public function updateCreateUser()
+    {
+        $user = User::updateOrCreate([
+            $this->loginUser = $this->$this->loginUser
+        ],[
+            'nama' => $this->nama,
+            'email' => $this->nip,
+            'password' => Hash::make($this->$this->loginUser)
+        ]);
+
+        $user->attachRole('guru');
+        return $user;
     }
 
 }

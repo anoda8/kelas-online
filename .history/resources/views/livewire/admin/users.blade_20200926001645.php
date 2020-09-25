@@ -19,11 +19,12 @@
                         Tabel {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
+                        @if (($level == 'guru') || ($level == 'siswa'))
                         <a type="button" class="btn btn-success btn-sm" href="/admin/users/export/{{ $level }}" />
                             <i class="fas fa-download"></i> Export
                         </a>
-
-                        @if ($level == 'admin')
+                        @endif
+                        @if ($level = 'admin')
                         <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
                             <i class="fas fa-plus"></i> Tambah
                         </button>
@@ -41,7 +42,7 @@
                                 <th class="text-center">Username</th>
                                 <th class="text-center">Dibuat Tanggal</th>
                                 <th class="text-center">Login Terakhir</th>
-                                <th class="text-center">{{ $level == 'admin' ? "Edit" : "Reset" }}</th>
+                                <th class="text-center">Edit</th>
                                 <th class="text-center">Hapus</th>
                             </tr>
                         </thead>
@@ -54,11 +55,7 @@
                                 <td class="text-center">{{ $user->created_at }}</td>
                                 <td class="text-center">{{ $user->created_at }}</td>
                                 <td class="text-center">
-                                    @if ($level == 'admin')
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
-                                    @else
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-sync fa-sm"></i></a>
-                                    @endif
+                                    <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
                                 </td>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('userTriggerDelete', {{ $user->id }})"><i class="fas fa-trash fa-sm"></i></a>

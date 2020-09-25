@@ -47,15 +47,13 @@
                             <tbody>
                                 @foreach ($gurus as $index => $guru)
                                 <tr>
-                                    <td class="text-center">{{ $index+1 }}</td>
+                                    <td>{{ $index+1 }}</td>
                                     <td>{{ $guru->nama }}</td>
                                     <td class="text-center">{{ $guru->nik }}</td>
                                     <td class="text-center">{{ $guru->nip }}</td>
                                     <td class="text-center">{{ $guru->created_at }}</td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('triggerEdit', {{ $guru->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
-                                    </td>
-                                    <td class="text-center">
+                                    <td></td>
+                                    <td>
                                         <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('triggerDelete', {{ $guru->id }})"><i class="fas fa-trash fa-sm"></i></a>
                                     </td>
                                 </tr>
@@ -112,12 +110,6 @@ window.livewire.on('closeAddForm', () => {
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerEdit', orderId => {
-        @this.call('edit', orderId);
-        $('#modal-guru').modal('toggle');
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('showAddForm', () => {
         // @this.call('clearFormUser');
         $('#modal-guru').modal('toggle');
@@ -135,7 +127,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             confirmButtonText: 'Hapus !'
         }).then((result) => {
             if(result.value){
-                @this.call('hapus', orderId);
+                @this.call('userDelete', orderId);
             }
         });
     });

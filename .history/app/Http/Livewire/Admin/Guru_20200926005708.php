@@ -50,9 +50,7 @@ class Guru extends Component
             'password' => Hash::make($this->nip)
         ]);
 
-        if(!$this->modeEdit){
-            $user->attachRole('guru');
-        }
+        $user->attachRole('guru');
 
         $guru = ModelsGuru::updateOrCreate([
             'nik' => $this->nik
@@ -63,23 +61,15 @@ class Guru extends Component
             'user_id' => $user->id
         ]);
 
+
         $this->emit('closeAddForm');
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menambahkan '.$this->nama]);
         $this->celarForm();
     }
 
-    public function edit($id)
-    {
-        $guru = ModelsGuru::find($id);
-        $this->nama = $guru->nama;
-        $this->nik = $guru->nik;
-        $this->nip = $guru->nip;
-        $this->modeEdit = true;
-    }
-
     public function hapus($id)
     {
-        $guru = ModelsGuru::find($id);
+        $guru = Guru::find($id);
         $user = User::find($guru->user_id);
         $nama = $guru->nama;
         $guru->delete();
@@ -87,13 +77,11 @@ class Guru extends Component
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => "Guru ".$nama." berhasil dihapus"]);
     }
 
-
     public function celarForm()
     {
         $this->nama = '';
         $this->nik = '';
         $this->nip = '';
-        $this->modeEdit = false;
     }
 
 }

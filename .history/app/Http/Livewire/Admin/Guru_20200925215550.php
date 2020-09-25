@@ -12,7 +12,7 @@ class Guru extends Component
     public $user_id, $nama, $nik, $nip;
     public $modeEdit = false;
     public $buatUser = 'checked';
-    public $loginUser = 'nip';
+    public $loginUser;
 
     public $heading;
     public function heading()
@@ -26,6 +26,7 @@ class Guru extends Component
     public function mount(){
         $this->level = request()->segment(3);
         $this->heading = $this->heading();
+        $this->loginUser = 'nip';
     }
 
     public function render()
@@ -43,16 +44,14 @@ class Guru extends Component
         ]);
 
         $user = User::updateOrCreate([
-            'email' => $this->nip
+            $this->loginUser = $this->$this->loginUser
         ],[
-            'name' => $this->nama,
+            'nama' => $this->nama,
             'email' => $this->nip,
-            'password' => Hash::make($this->nip)
+            'password' => Hash::make($this->$this->loginUser)
         ]);
 
-        if(!$this->modeEdit){
-            $user->attachRole('guru');
-        }
+        $user->attachRole('guru');
 
         $guru = ModelsGuru::updateOrCreate([
             'nik' => $this->nik
@@ -63,37 +62,23 @@ class Guru extends Component
             'user_id' => $user->id
         ]);
 
+
         $this->emit('closeAddForm');
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menambahkan '.$this->nama]);
         $this->celarForm();
     }
-
-    public function edit($id)
-    {
-        $guru = ModelsGuru::find($id);
-        $this->nama = $guru->nama;
-        $this->nik = $guru->nik;
-        $this->nip = $guru->nip;
-        $this->modeEdit = true;
-    }
-
-    public function hapus($id)
-    {
-        $guru = ModelsGuru::find($id);
-        $user = User::find($guru->user_id);
-        $nama = $guru->nama;
-        $guru->delete();
-        $user->delete();
-        $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => "Guru ".$nama." berhasil dihapus"]);
-    }
-
 
     public function celarForm()
     {
         $this->nama = '';
         $this->nik = '';
         $this->nip = '';
-        $this->modeEdit = false;
+    }
+
+    public function updateCreateUser()
+    {
+
+        return $user;
     }
 
 }

@@ -19,11 +19,8 @@
                         Tabel {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
-                        <a type="button" class="btn btn-warning btn-sm" href="/admin/users/export/" />
-                            <i class="fas fa-download"></i> Impor
-                        </a>
                         <a type="button" class="btn btn-success btn-sm" href="/admin/users/export/" />
-                            <i class="fas fa-download"></i> Ekspor
+                            <i class="fas fa-download"></i> Export
                         </a>
                         <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
                             <i class="fas fa-plus"></i> Tambah
@@ -37,8 +34,8 @@
                                 <tr>
                                     <th class="text-center">No</th>
                                     <th class="text-center">Nama</th>
-                                    <th class="text-center">NIK</th>
                                     <th class="text-center">NIP</th>
+                                    <th class="text-center">NIK</th>
                                     <th class="text-center">Dibuat Tanggal</th>
                                     <th class="text-center">Edit</th>
                                     <th class="text-center">Hapus</th>
@@ -47,17 +44,13 @@
                             <tbody>
                                 @foreach ($gurus as $index => $guru)
                                 <tr>
-                                    <td class="text-center">{{ $index+1 }}</td>
+                                    <td></td>
                                     <td>{{ $guru->nama }}</td>
-                                    <td class="text-center">{{ $guru->nik }}</td>
-                                    <td class="text-center">{{ $guru->nip }}</td>
-                                    <td class="text-center">{{ $guru->created_at }}</td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('triggerEdit', {{ $guru->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('triggerDelete', {{ $guru->id }})"><i class="fas fa-trash fa-sm"></i></a>
-                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -105,39 +98,10 @@
 </div>
 @section('scripts')
 <script>
-window.livewire.on('closeAddForm', () => {
-    $('#modal-guru').modal('hide');
-    $('.modal-backdrop').each(function(){
-        $(this).remove();
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerEdit', orderId => {
-        @this.call('edit', orderId);
-        $('#modal-guru').modal('toggle');
-    });
-});
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('showAddForm', () => {
         // @this.call('clearFormUser');
         $('#modal-guru').modal('toggle');
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerDelete', orderId => {
-        Swal.fire({
-            title: 'Konfirmasi Hapus',
-            text: 'Apakah anda yakin akan menghapusnya ?',
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Hapus !'
-        }).then((result) => {
-            if(result.value){
-                @this.call('hapus', orderId);
-            }
-        });
     });
 });
 </script>

@@ -52,7 +52,7 @@
                                     <td class="text-center">{{ $guru->nik }}</td>
                                     <td class="text-center">{{ $guru->nip }}</td>
                                     <td class="text-center">{{ $guru->created_at }}</td>
-                                    <td class="text-center">
+                                    <td>
                                         <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('triggerEdit', {{ $guru->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
                                     </td>
                                     <td class="text-center">
@@ -109,12 +109,6 @@ window.livewire.on('closeAddForm', () => {
     $('#modal-guru').modal('hide');
     $('.modal-backdrop').each(function(){
         $(this).remove();
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerEdit', orderId => {
-        @this.call('edit', orderId);
-        $('#modal-guru').modal('toggle');
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{

@@ -50,9 +50,7 @@ class Guru extends Component
             'password' => Hash::make($this->nip)
         ]);
 
-        if(!$this->modeEdit){
-            $user->attachRole('guru');
-        }
+        $user->attachRole('guru');
 
         $guru = ModelsGuru::updateOrCreate([
             'nik' => $this->nik

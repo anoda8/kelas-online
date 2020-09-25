@@ -54,11 +54,7 @@
                                 <td class="text-center">{{ $user->created_at }}</td>
                                 <td class="text-center">{{ $user->created_at }}</td>
                                 <td class="text-center">
-                                    @if ($level == 'admin')
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
-                                    @else
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-sync fa-sm"></i></a>
-                                    @endif
+                                    <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
                                 </td>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('userTriggerDelete', {{ $user->id }})"><i class="fas fa-trash fa-sm"></i></a>

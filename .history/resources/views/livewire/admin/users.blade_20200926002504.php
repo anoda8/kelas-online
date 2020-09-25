@@ -57,7 +57,7 @@
                                     @if ($level == 'admin')
                                         <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
                                     @else
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-sync fa-sm"></i></a>
+                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('userTriggerEdit', {{ $user->id }})"><i class="fas fa-refresh fa-sm"></i></a>
                                     @endif
                                 </td>
                                 <td class="text-center">

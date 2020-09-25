@@ -47,14 +47,12 @@
                             <tbody>
                                 @foreach ($gurus as $index => $guru)
                                 <tr>
-                                    <td class="text-center">{{ $index+1 }}</td>
+                                    <td>{{ $index+1 }}</td>
                                     <td>{{ $guru->nama }}</td>
                                     <td class="text-center">{{ $guru->nik }}</td>
                                     <td class="text-center">{{ $guru->nip }}</td>
                                     <td class="text-center">{{ $guru->created_at }}</td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('triggerEdit', {{ $guru->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
-                                    </td>
+                                    <td></td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('triggerDelete', {{ $guru->id }})"><i class="fas fa-trash fa-sm"></i></a>
                                     </td>
@@ -109,12 +107,6 @@ window.livewire.on('closeAddForm', () => {
     $('#modal-guru').modal('hide');
     $('.modal-backdrop').each(function(){
         $(this).remove();
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerEdit', orderId => {
-        @this.call('edit', orderId);
-        $('#modal-guru').modal('toggle');
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
