@@ -30,11 +30,6 @@
                     </div>
                 </div>
                 <div class="pt-3 card-body">
-                    <div class="row">
-                        <div class="col-md-12" style="text-align: center;">
-                            {{ $kelases->links('layouts.pagination-links') }}
-                        </div>
-                    </div>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>

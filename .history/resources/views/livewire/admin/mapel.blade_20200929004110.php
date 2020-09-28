@@ -48,7 +48,7 @@
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td>{{ $mapel->nama }}</td>
                                 <td class="text-center">{{ $mapel->guru->nama ?? "-" }}</td>
-                                <td class="text-center">{{ $mapel->author->name ?? "-" }}</td>
+                                <td class="text-center">{{ $mapel->author->name }}</td>
                                 <td class="text-center">{{ $mapel->created_at }}</td>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('triggerDelete', {{ $mapel->id }})"><i class="fas fa-trash fa-sm"></i></a>

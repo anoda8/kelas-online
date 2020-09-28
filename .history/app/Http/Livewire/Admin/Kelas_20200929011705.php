@@ -10,13 +10,11 @@ use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Kelas extends Component
 {
     use WithFileUploads;
-    use WithPagination;
 
     public $nama, $jurusan, $author;
 

@@ -29,9 +29,6 @@ class Users extends Component
     public function mount(){
         $this->level = request()->segment(3);
         $this->heading = $this->heading();
-        if($this->level == 'siswa'){
-            $this->perpage = 100;
-        }
     }
 
     public function render()

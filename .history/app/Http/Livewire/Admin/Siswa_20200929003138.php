@@ -21,7 +21,7 @@ class Siswa extends Component
     public $modeEdit = false;
     public $fileimport;
     public $katakunci;
-    public $perpage = 100;
+    public $perpage = 0;
 
     public $heading;
     public function heading()

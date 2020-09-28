@@ -57,7 +57,7 @@
                             <tbody>
                                 @foreach ($siswas as $index => $siswa)
                                 <tr>
-                                    <td class="text-center">{{ ($index + 1) + (($siswas->currentPage() - 1) * $siswas->perPage()) }}</td>
+                                    <td class="text-center">{{ $index + 1 }}</td>
                                     <td class="text-center">{{ $siswa->nis }}</td>
                                     <td>{{ $siswa->nama }}</td>
                                     <td class="text-center">{{ $siswa->kelas->nama ?? "-" }}</td>

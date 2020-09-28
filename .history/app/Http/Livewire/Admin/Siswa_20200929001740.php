@@ -9,19 +9,17 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Siswa extends Component
 {
     use WithFileUploads;
-    use WithPagination;
 
     public $user_id, $kelas_id, $nama, $nis, $jenkel, $tgl_lahir;
     public $modeEdit = false;
     public $fileimport;
     public $katakunci;
-    public $perpage = 100;
+    public $perpage = 30;
 
     public $heading;
     public function heading()

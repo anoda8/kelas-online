@@ -13,39 +13,37 @@ class SiswaImport implements ToCollection
     /**
     * @param Collection $collection
     */
+    private $data;
+
     public function collection(Collection $rows)
     {
         foreach($rows as $row){
-
             if($row[0] != "Nama"){
-
-                $nis = preg_replace('/\s+/', '', $row[1]);
-
+                $username = $row[1];
                 $user = User::updateOrCreate([
-                    'email' => $nis
+                    'email' => $username
                 ],[
                     'name' => $row[0],
-                    'email' => $nis,
-                    'password' => Hash::make($nis)
+                    'email' => $username,
+                    'password' => Hash::make($username)
                 ]);
 
                 if($user->roles != 'siswa'){
                     $user->attachRole('siswa');
                 }
 
-                Siswa::updateOrCreate([
-                    'nis' => $row[1]
-                ], [
+                $data = [
                     'nama' => $row[0],
                     'nis' => $row[1],
                     'jenkel' => $row[2],
                     'tgl_lahir' => $row[3],
                     'user_id' => $user->id,
                     'kelas_id' => 0
-                ]);
-
-                $user = null;
+                ];
             }
         }
+        Siswa::updateOrCreate([
+            'nis' => $row[1]
+        ], $data);
     }
 }

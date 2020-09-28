@@ -16,17 +16,14 @@ class SiswaImport implements ToCollection
     public function collection(Collection $rows)
     {
         foreach($rows as $row){
-
             if($row[0] != "Nama"){
-
-                $nis = preg_replace('/\s+/', '', $row[1]);
-
+                $username = $row[1];
                 $user = User::updateOrCreate([
-                    'email' => $nis
+                    'email' => $username
                 ],[
                     'name' => $row[0],
-                    'email' => $nis,
-                    'password' => Hash::make($nis)
+                    'email' => $username,
+                    'password' => Hash::make($username)
                 ]);
 
                 if($user->roles != 'siswa'){
@@ -43,8 +40,6 @@ class SiswaImport implements ToCollection
                     'user_id' => $user->id,
                     'kelas_id' => 0
                 ]);
-
-                $user = null;
             }
         }
     }

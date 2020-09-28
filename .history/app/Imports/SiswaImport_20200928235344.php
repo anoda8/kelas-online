@@ -16,9 +16,7 @@ class SiswaImport implements ToCollection
     public function collection(Collection $rows)
     {
         foreach($rows as $row){
-
             if($row[0] != "Nama"){
-
                 $nis = preg_replace('/\s+/', '', $row[1]);
 
                 $user = User::updateOrCreate([
@@ -43,8 +41,6 @@ class SiswaImport implements ToCollection
                     'user_id' => $user->id,
                     'kelas_id' => 0
                 ]);
-
-                $user = null;
             }
         }
     }

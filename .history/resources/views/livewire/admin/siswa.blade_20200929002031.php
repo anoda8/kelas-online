@@ -38,7 +38,7 @@
                 <div class="pt-3 card-body">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center;">
-                            {{ $siswas->links('layouts.pagination-links') }}
+                            {{ $users->links('layouts.pagination-links') }}
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -57,7 +57,7 @@
                             <tbody>
                                 @foreach ($siswas as $index => $siswa)
                                 <tr>
-                                    <td class="text-center">{{ ($index + 1) + (($siswas->currentPage() - 1) * $siswas->perPage()) }}</td>
+                                    <td class="text-center">{{ $index + 1 }}</td>
                                     <td class="text-center">{{ $siswa->nis }}</td>
                                     <td>{{ $siswa->nama }}</td>
                                     <td class="text-center">{{ $siswa->kelas->nama ?? "-" }}</td>

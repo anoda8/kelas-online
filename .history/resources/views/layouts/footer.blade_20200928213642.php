@@ -12,7 +12,7 @@
             </div>
         </div>
         </div>
-        <div id="loading-text" class="text-danger" wire:loading style="display:none;position:fixed; z-index:999999;top:calc(50% - 7px);right:calc(50% - 45px);">
+        <div id="loading-text" class="text-danger" wire:loading style="display:none;position:fixed; z-index:100000;top:calc(50% - 7px);right:calc(50% - 45px);">
             Memuat data...
         </div>
     </div>

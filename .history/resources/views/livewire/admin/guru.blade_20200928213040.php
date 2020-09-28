@@ -36,37 +36,32 @@
                     </div>
                 </div>
                 <div class="pt-3 card-body">
-                    <div class="row">
-                        <div class="col-md-12" style="text-align: center;">
-                            {{ $siswas->links('layouts.pagination-links') }}
-                        </div>
-                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">No</th>
-                                    <th class="text-center">NIS</th>
                                     <th class="text-center">Nama</th>
-                                    <th class="text-center">Kelas</th>
-                                    <th class="text-center">Tanggal Lahir</th>
+                                    <th class="text-center">NIK</th>
+                                    <th class="text-center">NIP</th>
+                                    <th class="text-center">Dibuat Tanggal</th>
                                     <th class="text-center">Edit</th>
                                     <th class="text-center">Hapus</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($siswas as $index => $siswa)
+                                @foreach ($gurus as $index => $guru)
                                 <tr>
-                                    <td class="text-center">{{ ($index + 1) + (($siswas->currentPage() - 1) * $siswas->perPage()) }}</td>
-                                    <td class="text-center">{{ $siswa->nis }}</td>
-                                    <td>{{ $siswa->nama }}</td>
-                                    <td class="text-center">{{ $siswa->kelas->nama ?? "-" }}</td>
-                                    <td class="text-center">{{ $siswa->tgl_lahir }}</td>
+                                    <td class="text-center">{{ $index+1 }}</td>
+                                    <td>{{ $guru->nama }}</td>
+                                    <td class="text-center">{{ $guru->nik }}</td>
+                                    <td class="text-center">{{ $guru->nip }}</td>
+                                    <td class="text-center">{{ $guru->created_at }}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('triggerEdit', {{ $siswa->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
+                                        <a href="#" class="btn btn-info btn-sm" wire:click.prevent="$emit('triggerEdit', {{ $guru->id }})"><i class="fas fa-pencil-alt fa-sm"></i></a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('triggerDelete', {{ $siswa->id }})"><i class="fas fa-trash fa-sm"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('triggerDelete', {{ $guru->id }})"><i class="fas fa-trash fa-sm"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -78,39 +73,31 @@
         </div>
     </div>
     @include('layouts.footer')
-    <div class="modal fade" wire:ignore.self id="modal-siswa" tabindex="-1" role="dialog" aria-labelledby="modalGuru" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" wire:ignore.self id="modal-guru" tabindex="-1" role="dialog" aria-labelledby="modalGuru" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Form {{ $this->heading['judul'] }}</h5>
+                    <h5 class="modal-title">Form Guru</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Nama Lengkap</label>
-                        <input type="text" class="form-control" wire:model.lazy="nama">
-                        @error('nama') <span class="text-danger error">{{ $message }}</span>@enderror
+                      <label for="namaLengkap">Nama Lengkap</label>
+                      <input type="text" wire:model.lazy="nama" id="namaLengkap" class="form-control" placeholder="">
+                      @error('nama') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                     <div class="form-group">
-                       <label for="">NIS</label>
-                       <input type="text" class="form-control" wire:model.lazy="nis">
-                       @error('nis') <span class="text-danger error">{{ $message }}</span>@enderror
+                        <label for="namaLengkap">NIP (Nomor Induk Pegawai)</label>
+                        <input type="text" wire:model.lazy="nip" id="namaLengkap" class="form-control" placeholder="">
+                        @error('nip') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Jenis Kelamin</label>
-                        <select class="form-control" style="width:100%;" wire:model.lazy="jenkel">
-                            <option value="">== Pilih Jenis Kelamin ==</option>
-                            <option value="L">Laki-Laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                        @error('jenkel') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tanggal Lahir</label>
-                        <input type="date" class="form-control" wire:model.lazy="tgl_lahir">
-                        @error('tgl_lahir') <span class="text-danger error">{{ $message }}</span>@enderror
+                        <label for="namaLengkap">NIK (Nomor Induk Kependudukan)</label>
+                        <input type="text" wire:model.lazy="nik" id="namaLengkap" class="form-control" placeholder="">
+                        @error('nik') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -120,7 +107,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" wire:ignore.self id="import-siswa" tabindex="-1" role="dialog" aria-labelledby="modalGuru" aria-hidden="true">
+    <div class="modal fade" wire:ignore.self id="import-guru" tabindex="-1" role="dialog" aria-labelledby="modalGuru" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -145,38 +132,40 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="button" wire:click.prevent="import" class="btn btn-sm btn-primary">Impor</button>
                 </div>
+
             </div>
         </div>
     </div>
+    @include('layouts.footer')
 </div>
 @section('scripts')
 <script>
 window.livewire.on('closeAddForm', () => {
-    $('#modal-siswa').modal('hide');
+    $('#modal-guru').modal('hide');
     $('.modal-backdrop').each(function(){
         $(this).remove();
     });
 });
 window.livewire.on('closeImportForm', () => {
-    $('#import-siswa').modal('hide');
+    $('#import-guru').modal('hide');
     $('.modal-backdrop').each(function(){
         $(this).remove();
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('showAddForm', () => {
-        $('#modal-siswa').modal('toggle');
+    @this.on('triggerEdit', orderId => {
+        @this.call('edit', orderId);
+        $('#modal-guru').modal('toggle');
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('showImportForm', () => {
-        $('#import-siswa').modal('toggle');
+        $('#import-guru').modal('toggle');
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerEdit', orderId => {
-        @this.call('edit', orderId);
-        $('#modal-siswa').modal('toggle');
+    @this.on('showAddForm', () => {
+        $('#modal-guru').modal('toggle');
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{

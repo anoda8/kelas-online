@@ -38,7 +38,7 @@
                 <div class="pt-3 card-body">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center;">
-                            {{ $siswas->links('layouts.pagination-links') }}
+                            {{-- {{ $siswas->links('layouts.pagination-links') }} --}}
                         </div>
                     </div>
                     <div class="table-responsive">

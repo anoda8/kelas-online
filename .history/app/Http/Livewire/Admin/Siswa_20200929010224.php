@@ -77,9 +77,9 @@ class Siswa extends Component
             'kelas_id' => '0'
         ]);
 
-        $this->emit('closeAddForm');
-        $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menambahkan '.$this->nama]);
-        $this->clearForm();
+        // $this->emit('closeAddForm');
+        // $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menambahkan '.$this->nama]);
+        // $this->clearForm();
     }
 
     public function edit($id)

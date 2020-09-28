@@ -10,13 +10,11 @@ use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Kelas extends Component
 {
     use WithFileUploads;
-    use WithPagination;
 
     public $nama, $jurusan, $author;
 
@@ -43,7 +41,7 @@ class Kelas extends Component
     public function render()
     {
         $jurusans = Jurusan::all();
-        $kelases = ModelsKelas::with(['jurusan', 'author', 'siswa'])->paginate($this->perpage);
+        $kelases = ModelsKelas::with(['jurusan', 'author', 'siswa'])->get();
         $detailSiswa = $cariSiswa = [];
 
         if($this->detailKelasId != null){
