@@ -33,18 +33,31 @@
                 <div class="pt-3 card-body">
                     <div class="row">
                         <div class="col-md-7">
-                            <div class="form-group">
+                            <div class="form-group" wire:ignore>
                               <label for=""></label>
-                              <select class="form-control" name="" id="">
-                                <option></option>
-                                <option></option>
-                                <option></option>
+                              <select class="form-control pilih-mapel" wire:model="mapel">
+                                <option value="1">Satu</option>
+                                <option value="2">Dua</option>
+                                <option value="3">Tiga</option>
                               </select>
                             </div>
+                            {{ $mapel }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('layouts.footer')
 </div>
+@section('scripts')
+<script>
+$(document).ready(function () {
+    $(".pilih-mapel").select2();
+    $(".pilih-mapel").on('change', function(e){
+        @this.set('mapel', e.target.value);
+        // $(".pilih-mapel").select2();
+    })
+});
+</script>
+@endsection
