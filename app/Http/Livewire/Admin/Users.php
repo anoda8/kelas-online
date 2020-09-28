@@ -71,15 +71,15 @@ class Users extends Component
 
         $data = [
             'name' => $this->nama,
-            'email' => $this->username,
+            'email' => preg_replace('/\s+/', '', $this->username)
         ];
 
-        if($this->password != null){
+        if($this->modeEdit == false){
             $data['password'] = Hash::make($this->password);
         }
 
         $user = User::updateOrCreate([
-            'email' => $this->username
+            'email' => $this->username,
         ],$data);
 
         $this->emit('closeModalUser');
