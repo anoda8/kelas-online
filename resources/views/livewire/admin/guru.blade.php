@@ -36,6 +36,11 @@
                     </div>
                 </div>
                 <div class="pt-3 card-body">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center;">
+                            {{ $gurus->links('layouts.pagination-links') }}
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped">
                             <thead>
@@ -52,7 +57,7 @@
                             <tbody>
                                 @foreach ($gurus as $index => $guru)
                                 <tr>
-                                    <td class="text-center">{{ $index+1 }}</td>
+                                    <td class="text-center">{{ ($index + 1) + (($gurus->currentPage() - 1) * $gurus->perPage()) }}</td>
                                     <td>{{ $guru->nama }}</td>
                                     <td class="text-center">{{ $guru->nik }}</td>
                                     <td class="text-center">{{ $guru->nip }}</td>

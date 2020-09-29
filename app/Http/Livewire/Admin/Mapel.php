@@ -10,14 +10,17 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Mapel extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $guru, $author_id, $nama;
     public $fileimport;
+    public $perpage = 10;
 
     public $heading;
     public function heading()
@@ -35,7 +38,7 @@ class Mapel extends Component
 
     public function render()
     {
-        $mapels = ModelsMapel::with(['guru', 'author'])->get();
+        $mapels = ModelsMapel::with(['guru', 'author'])->paginate($this->perpage);
         $gurus = Guru::all();
         return view('livewire.admin.mapel', [
             'mapels' => $mapels, 'gurus' => $gurus

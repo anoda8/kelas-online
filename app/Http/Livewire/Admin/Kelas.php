@@ -23,6 +23,7 @@ class Kelas extends Component
     public $detailKelasNama, $detailKelasId = null;
     public $cariNama = null, $cariNis = null;
     public $perpage = 10;
+    public $katakunciDetail = '';
 
     public $fileimport;
 
@@ -47,7 +48,7 @@ class Kelas extends Component
         $detailSiswa = $cariSiswa = [];
 
         if($this->detailKelasId != null){
-            $detailSiswa = Siswa::where('kelas_id', $this->detailKelasId)->orderBy('updated_at', 'DESC')->get();
+            $detailSiswa = Siswa::where('kelas_id', $this->detailKelasId)->where('nama', 'like', "%".$this->katakunciDetail."%")->orderBy('nama', 'ASC')->get();
         }
 
         if(($this->cariNama != null) || ($this->cariNis != null)){
@@ -119,7 +120,8 @@ class Kelas extends Component
     public function exportsiswa($kelasid)
     {
         $tgl = date('Y-m-d H-i-s');
-        return Excel::download(new KelasSiswaExport($kelasid), 'siswa_'.$tgl.'.xlsx');
+        $kelas = ModelsKelas::find($kelasid)->nama;
+        return Excel::download(new KelasSiswaExport($kelasid), 'siswa_'.$kelas.'-'.$tgl.'.xlsx');
     }
 
     public function import()
@@ -132,6 +134,7 @@ class Kelas extends Component
         $this->fileimport->storeAs('import_temp', $namafile);
         Excel::import(new KelasSiswaImport($this->detailKelasId), storage_path('app/import_temp/'.$namafile));
         $this->emit('closeImportForm');
+        $this->fileimport = null;
         $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => "Guru mengimport file"]);
     }
 }

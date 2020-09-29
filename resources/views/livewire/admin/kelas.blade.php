@@ -50,7 +50,7 @@
                         <tbody>
                             @foreach ($kelases as $index => $kelas)
                             <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td class="text-center">{{ ($index + 1) + (($kelases->currentPage() - 1) * $kelases->perPage()) }}</td>
                                 <td class="text-center">{{ $kelas->nama }}</td>
                                 <td class="text-center">{{ $kelas->jurusan->tingkat }} - {{ $kelas->jurusan->singkat }}</td>
                                 <td class="text-center">{{ $kelas->author->name }}</td>
@@ -114,7 +114,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group form-inline">
+                            <div class="form-group form-inline input-group-sm">
                               <label for="">Cari Siswa</label>
                               <input type="text" class="ml-3 form-control" wire:model="cariNama" placeholder="Nama Siswa">
                               <input type="text" class="ml-3 form-control" wire:model="cariNis" placeholder="NIS">
@@ -136,15 +136,16 @@
                                 <button class="btn btn-warning ml-4" wire:click.prevent="import">Impor</button>
                             </div>
 
-                            @error('fileimport') <span class="error">{{ $message }}</span> @enderror
+                            @error('fileimport') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group form-inline">
+                            <div class="form-group form-inline input-group-sm">
                                 <h5 class="modal-title ml-7">Daftar Siswa Kelas {{ $detailKelasNama ?? "-" }}</h5><br>
                                 <a class="btn btn-success btn-sm ml-5" href="/admin/data/kelas/export/{{ $detailKelasId }}"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;&nbsp;Expor</a>
+                                <input type="text" class="form-control ml-5" wire:model="katakunciDetail" placeholder="Cari nama">
                             </div>
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>

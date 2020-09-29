@@ -34,14 +34,25 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group" wire:ignore>
-                              <label for=""></label>
-                              <select class="form-control pilih-mapel" wire:model="mapel">
-                                <option value="1">Satu</option>
-                                <option value="2">Dua</option>
-                                <option value="3">Tiga</option>
-                              </select>
+                                <label for=""></label>
+                                <select class="form-control pilih-mapel" wire:model="mapel">
+                                    @foreach ($mapels as $mapel)
+                                        <option value="{{ $mapel->id }}" wire:click="pilihMapel({{ $mapel->id }}, {{ $mapel->nama }}, {{ $mapel->guru->nama }})">{{ $mapel->nama }} - {{ $mapel->guru->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            {{ $mapel }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @foreach ($kelases as $kelas)
+                                <button class="btn btn-dark ml-2 mr-2 mb-2 mt-2">{{ $kelas->nama }}</button>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ $mapel_terpilih['nama'] }} => {{ $mapel_terpilih['guru'] }}
                         </div>
                     </div>
                 </div>

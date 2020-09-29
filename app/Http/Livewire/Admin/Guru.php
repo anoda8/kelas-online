@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Guru extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $user_id, $nama, $nik, $nip;
     public $modeEdit = false;
@@ -21,6 +23,7 @@ class Guru extends Component
     public $loginUser = 'nip';
     public $katakunci;
     public $fileimport;
+    public $perpage = 20;
 
     public $heading;
     public function heading()
@@ -40,7 +43,7 @@ class Guru extends Component
     {
         $katakunci = '%'.$this->katakunci.'%';
         return view('livewire.admin.guru', [
-            'gurus' => ModelsGuru::where('nama', 'like', $katakunci)->with('user')->get()
+            'gurus' => ModelsGuru::where('nama', 'like', $katakunci)->with('user')->paginate($this->perpage)
         ]);
     }
 

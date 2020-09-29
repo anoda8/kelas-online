@@ -31,6 +31,11 @@
                     </div>
                 </div>
                 <div class="pt-3 card-body">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center;">
+                            {{ $mapels->links('layouts.pagination-links') }}
+                        </div>
+                    </div>
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
@@ -45,9 +50,9 @@
                         <tbody>
                             @foreach ($mapels as $index => $mapel)
                             <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td class="text-center">{{ ($index + 1) + (($mapels->currentPage() - 1) * $mapels->perPage()) }}</td>
                                 <td>{{ $mapel->nama }}</td>
-                                <td class="text-center">{{ $mapel->guru->nama ?? "-" }}</td>
+                                <td>{{ $mapel->guru->nama ?? "-" }}</td>
                                 <td class="text-center">{{ $mapel->author->name ?? "-" }}</td>
                                 <td class="text-center">{{ $mapel->created_at }}</td>
                                 <td class="text-center">
