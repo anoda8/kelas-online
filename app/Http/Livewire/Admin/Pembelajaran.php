@@ -9,11 +9,8 @@ use Livewire\Component;
 class Pembelajaran extends Component
 {
     public $mapel, $kelas;
-    public $mapel_terpilih = [
-        'id' => '',
-        'nama' => '',
-        'guru' => ''
-    ];
+    public $mapelTerpilihId, $mapelTerpilihNama, $mapelTerpilihGuru;
+    public $kelasid = [0];
 
     public $heading;
     public function heading()
@@ -38,11 +35,27 @@ class Pembelajaran extends Component
         ]);
     }
 
-    public function pilihMapel($id, $mapel, $guru)
+    public function pilihMapel($id)
     {
-        $this->mapel_terpilih['id'] = $id;
-        $this->mapel_terpilih['mapel'] = $mapel;
-        $this->mapel_terpilih['guru'] = $guru;
-        dd($this->mapel_terpilih);
+        $mapel = Mapel::where('id', $id)->with(['guru'])->get()->first();
+        $this->mapelTerpilihId  = $id;
+        $this->mapelTerpilihGuru = $mapel->guru->nama;
+        $this->mapelTerpilihNama = $mapel->nama;
+    }
+
+    public function collectKelas($id)
+    {
+        if(array_search($id, $this->kelasid, true)){
+            array_splice($this->kelasid, array_search($id, $this->kelasid ), 1);
+        }else{
+            array_push($this->kelasid, $id);
+        }
+    }
+
+    public function simpan()
+    {
+        if(count($this->kelasid) > 0){
+
+        }
     }
 }

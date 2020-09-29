@@ -34,10 +34,10 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group" wire:ignore>
-                                <label for=""></label>
+                                <label for="" style="font-weight: bold;">Mata Pelajaran</label>
                                 <select class="form-control pilih-mapel" wire:model="mapel">
                                     @foreach ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}" wire:click="pilihMapel({{ $mapel->id }}, {{ $mapel->nama }}, {{ $mapel->guru->nama }})">{{ $mapel->nama }} - {{ $mapel->guru->nama }}</option>
+                                        <option value="{{ $mapel->id }}" wire:click="pilihMapel({{ $mapel->id }})">{{ $mapel->nama }} - {{ $mapel->guru->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -45,16 +45,23 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <label for="" style="font-weight: bold;">Diajarkan Di Kelas</label><br>
                             @foreach ($kelases as $kelas)
-                                <button class="btn btn-dark ml-2 mr-2 mb-2 mt-2">{{ $kelas->nama }}</button>
+                                <button class="btn {{ array_search($kelas->id, $kelasid, true) ? "btn-danger" : "btn-dark" }} ml-2 mr-2 mb-2 mt-2" wire:click="collectKelas({{ $kelas->id }})">{{ $kelas->nama }}</button>
                             @endforeach
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ $mapel_terpilih['nama'] }} => {{ $mapel_terpilih['guru'] }}
-                        </div>
-                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" wire:click="simpan()"><i class="fas fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb-5 card">
+                <div class="card-header-tab card-header">
                 </div>
             </div>
         </div>
@@ -66,8 +73,7 @@
 $(document).ready(function () {
     $(".pilih-mapel").select2();
     $(".pilih-mapel").on('change', function(e){
-        @this.set('mapel', e.target.value);
-        // $(".pilih-mapel").select2();
+        @this.call('pilihMapel', e.target.value);
     })
 });
 </script>
