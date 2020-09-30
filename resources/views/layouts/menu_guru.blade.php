@@ -35,33 +35,20 @@
                 <ul class="vertical-nav-menu">
                     <li class="app-sidebar__heading">Teras</li>
                     <li>
-                        <a href="{{ route('admin.beranda') }}" class="{{ request()->path() == "admin" ? "mm-active" : ""}}">
+                        <a href="{{ route('guru.beranda') }}" class="{{ request()->path() == "guru" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-tachometer-alt"></i>
                             Beranda
                         </a>
-                        <a href="{{ route('admin.setting') }}" class="{{ request()->path() == "admin/setting" ? "mm-active" : ""}}">
-                            <i class="metismenu-icon fas fa-cog"></i>
-                            Pengaturan
-                        </a>
-                    </li>
-                    <li class="app-sidebar__heading">MONITORING</li>
-                    <li>
                         <a href="#">
                             <i class="metismenu-icon fas fa-bullhorn"></i>
                             Pengumuman
                         </a>
-                        <a href="#">
-                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
-                            Pembelajaran
-                        </a>
-                        <a href="#">
-                            <i class="metismenu-icon fas fa-tasks"></i>
-                            Tugas
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                        </a>
-                        <a href="#">
-                            <i class="metismenu-icon fas fa-pen-alt"></i>
-                            Ulangan
+                    </li>
+                    <li class="app-sidebar__heading">PEMBLAJARAN</li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-users"></i>
+                            Kelas Online
                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
                     </li>
