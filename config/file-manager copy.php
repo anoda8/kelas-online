@@ -17,8 +17,7 @@ return [
      *
      * Default - ConfigACLRepository (see rules in - aclRules)
      */
-    // 'aclRepository' => ConfigACLRepository::class,
-    'aclRepository' => \App\Http\UsersACLRepository::class,
+    'aclRepository' => ConfigACLRepository::class,
 
     //********* Default configuration for DefaultConfigRepository **************
 
@@ -84,14 +83,14 @@ return [
      *
      * null - no restrictions
      */
-    'maxUploadFileSize' => 50000,
+    'maxUploadFileSize' => null,
 
     /**
      * File upload - Allow these file types
      *
      * [] - no restrictions
      */
-    'allowFileTypes' => ['jpg', 'png', 'gif', 'jpeg'],
+    'allowFileTypes' => [],
 
     /**
      * Show / Hide system files and folders
@@ -111,7 +110,7 @@ return [
      *
      * default - false(OFF)
      */
-    'acl' => true,
+    'acl' => false,
 
     /**
      * Hide files and folders from file-manager if user doesn't have access
@@ -127,7 +126,7 @@ return [
      *
      * whitelist - Deny anything(access - 0 - deny), that not allowed by the ACL rules list
      */
-    'aclStrategy' => 'whitelist',
+    'aclStrategy' => 'blacklist',
 
     /**
      * ACL Rules cache

@@ -68,17 +68,22 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                <label for="">Judul Materi</label>
-                                <input type="text" class="form-control" wire:model.lazy="materi">
+                                    <label for="">Judul Materi</label>
+                                    <input type="text" class="form-control" wire:model.lazy="materi">
                                 </div>
                                 @error('materi') <span class="text-danger error">{{ $message }}</span>@enderror
                                 <div class="form-group">
-                                <label for="">Isi Materi</label>
-                                <div wire:ignore>
-                                <textarea class="form-control" id="isimateri" wire:model.lazy="isimateri" rows="7"></textarea>
-                                </div>
+                                    <label for="">Isi Materi</label>
+                                    <div wire:ignore>
+                                        <textarea class="form-control" id="isimateri" wire:model.lazy="isimateri" rows="7"></textarea>
+                                    </div>
                                 </div>
                                 @error('isimateri') <span class="text-danger error">{{ $message }}</span>@enderror
+                                <div class="form-group">
+                                    <label for="">Link Youtube</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <label for="">Lampirkan File</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -87,12 +92,10 @@
                                         <input type="file" wire:model="fileimport" class="custom-file-input">
                                         <label class="custom-file-label" for="inputGroupFile01">{{ $fileimport ? $fileimport->getClientOriginalName() : "Pilih Dokumen" }}</label>
                                     </div>
-
                                 </div>
-                                <small id="helpId" class="form-text text-muted">(PDF, Excel, Word, PowerPoint)/(Gambar: jpg, png, jpeg)</small>
+                                <small id="helpId" class="form-text text-muted">(PDF, Excel, Word, PowerPoint)</small>
                             </div>
                         </div>
-
                     </div>
                     <div class="card-footer">
                         <div class="btn-actions-pane-right text-capitalize">
