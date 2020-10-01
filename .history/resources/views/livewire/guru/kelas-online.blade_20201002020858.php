@@ -109,17 +109,15 @@
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-sm mr-2" placeholder="Cari materi" wire:model="kataKunciMateri">
                                 <select class="form-control form-control-sm mr-2">
-                                    <option value="">Cari mapel</option>
                                     @foreach ($mapels as $mapel)
                                         <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
                                     @endforeach
                                 </select>
-                                <select class="form-control form-control-sm mr-2">
-                                    <option value="">Cari kelas</option>
+                                {{-- <select class="form-control form-control-sm mr-2">
                                     @foreach ($mapels as $mapel)
                                         <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
                             </div>
                         </div>
                     </div>

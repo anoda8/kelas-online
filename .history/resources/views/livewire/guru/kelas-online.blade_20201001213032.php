@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="mb-2 card">
+            <div class="mb-3 card">
                 <div class="card-header-tab card-header">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                         Tambah {{ $this->heading['judul'] }}
@@ -46,7 +46,7 @@
                                     <select class="form-control" wire:model="kelasid">
                                         <option value="" selected>== Pilih Kelas ==</option>
                                         @foreach ($pembelajaran as $pembl)
-                                            <option value="{{ $pembl->kelas->id }}">{{ $pembl->kelas->nama }}</option>
+                                            <option>{{ $pembl->kelas->nama }}</option>
                                         @endforeach
                                     </select>
                                     @error('kelasid') <span class="text-danger error">{{ $message }}</span>@enderror
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label for="">Isi Materi</label>
                                     <div wire:ignore>
-                                        <textarea class="form-control" id="isimateri" name="isimateri" wire:model.lazy="isimateri" rows="7"></textarea>
+                                        <textarea class="form-control" id="isimateri" wire:model.lazy="isimateri" rows="7"></textarea>
                                     </div>
                                 </div>
                                 @error('isimateri') <span class="text-danger error">{{ $message }}</span>@enderror
@@ -107,19 +107,8 @@
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                         <div class="form-inline">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm mr-2" placeholder="Cari materi" wire:model="kataKunciMateri">
-                                <select class="form-control form-control-sm mr-2">
-                                    <option value="">Cari mapel</option>
-                                    @foreach ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control form-control-sm mr-2">
-                                    <option value="">Cari kelas</option>
-                                    @foreach ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control form-control-sm mr-2" aria-describedby="helpId" placeholder="">
+                                <input type="text" class="form-control form-control-sm mr-2" aria-describedby="helpId" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -129,20 +118,21 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            @foreach ($kelons as $kelon)
-            <div class="mb-2 card">
+            <div class="mb-5 card">
                 <div class="card-header">
-                    [{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}
+                    Jurnal Penutup dan Jurnal Pembalik
+
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
-                            Mulai Tanggal / Pukul <br>
-                            <span class="font-weight-bold">{{ date("d-m-Y / H:i", strtotime($kelon->wkt_masuk)) }} WIB</span>
+                            Tanggal <br>
+                            <span class="font-weight-bold">12 Maret 2020</span>
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
-                            Sampai Tanggal / Pukul <br>
-                            <span class="font-weight-bold">{{ date("d-m-Y / H:i", strtotime($kelon->wkt_selesai)) }} WIB</span>
+                            Waktu  <br>
+                            <span class="font-weight-bold">07:00 s/d 09:00</span>
+
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Hadir <br>
@@ -155,17 +145,16 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span class="font-weight-bold text-danger">{{ $kelon->kelas->nama }}</span>
+                    <span class="font-weight-bold text-danger">XII MIPA 5</span>
                     <div class="btn-actions-pane-right">
                         <div class="form-inline">
-                            <button class="btn btn-danger ml-2" wire:click="$emit('triggerHapus', {{ $kelon->id }})"><i class="fas fa-trash"></i> Hapus</button>
-                            <button class="btn btn-info ml-2" wire:click="$emit('triggerEdit', {{ $kelon->id }})"><i class="fas fa-pencil-alt"></i> Edit</button>
-                            <button class="btn btn-warning ml-2"><i class="fas fa-print"></i> Laporan</button>
+                            <button class="btn btn-warning ml-2">Detail</button>
+                            <button class="btn btn-warning ml-2">Edit</button>
+                            <button class="btn btn-warning ml-2">Laporan</button>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
     @include('layouts.footer')
@@ -185,51 +174,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('toggleAddForm', () => {
-        @this.call('clearForm');
-        CKEDITOR.instances['isimateri'].setData('');
         $('#collapseTambah').collapse('toggle');
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerEdit', orderId => {
-        @this.call('edit', orderId);
-        $('#collapseTambah').collapse('show');
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerHapus', orderId => {
-        Swal.fire({
-            title: 'Konfirmasi Hapus',
-            text: 'Apakah anda yakin akan menghapusnya ?',
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Hapus !'
-        }).then((result) => {
-            if(result.value){
-                @this.call('hapus', orderId);
-            }
-        });
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('isiMateri', text => {
-        @this.set('isimateri', text);
-        CKEDITOR.instances['isimateri'].setData(text);
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('triggerSimpan', () => {
-        var isimateri = CKEDITOR.instances['isimateri'].getData();
-        @this.set('isimateri', isimateri);
-        @this.call('simpan');
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        $('#collapseTambah').collapse('toggle');
     });
 });
+// window.livewire.on('postCkEditor', () => {
+//     CKEDITOR.instances['isimateri'].on('change', function(e){
+//         @this.set('isimateri', e.editor.getData());
+//     });
+// });
 CKEDITOR.replace( 'isimateri' );
 </script>
 @endsection

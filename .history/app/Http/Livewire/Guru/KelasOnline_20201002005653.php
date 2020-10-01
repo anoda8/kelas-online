@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Guru;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
 use App\Models\Mapel;
 use App\Models\Pembelajaran;
@@ -16,7 +17,6 @@ class KelasOnline extends Component
     public $formopen = false;
     public $dokumen;
     public $editId = null;
-    public $kataKunciMateri;
 
     public $heading;
     public function heading()
@@ -37,8 +37,7 @@ class KelasOnline extends Component
     {
         $mapel = Mapel::where('thajaran', session('thajaran'))->where('guru_id', $this->guruid)->with(['guru'])->get();
         $pembl = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->mapelid)->with(['kelas'])->get();
-        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('materi', 'like', '%'.$this->kataKunciMateri.'%')
-        ->with(['kelas', 'mapel', 'author'])->latest()->get();
+        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->with(['kelas', 'mapel', 'author'])->latest()->get();
         return view('livewire.guru.kelas-online',[
             'mapels' => $mapel, 'pembelajaran' => $pembl, 'kelons' => $kelons
         ]);
@@ -107,13 +106,6 @@ class KelasOnline extends Component
         $this->wktmulai = date("H:i:s", strtotime($kelon->wkt_masuk));
         $this->wktselesai = date("H:i:s", strtotime($kelon->wkt_selesai));
         $this->editId = $kelon->id;
-    }
-
-    public function hapus($id)
-    {
-        $kelon = ModelsKelasOnline::find($id);
-        $kelon->delete();
-        $this->dispatchBrowserEvent('toast', ['icon' => 'success','title' => 'Berhasil menghapus '.$kelon->materi]);
     }
 
     public function clearForm()

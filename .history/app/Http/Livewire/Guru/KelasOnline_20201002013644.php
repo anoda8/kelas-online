@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Guru;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
 use App\Models\Mapel;
 use App\Models\Pembelajaran;
@@ -37,7 +38,7 @@ class KelasOnline extends Component
     {
         $mapel = Mapel::where('thajaran', session('thajaran'))->where('guru_id', $this->guruid)->with(['guru'])->get();
         $pembl = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->mapelid)->with(['kelas'])->get();
-        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('materi', 'like', '%'.$this->kataKunciMateri.'%')
+        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('kataKunciMateri', 'like', '%'.$this->kataKunciMateri.'%')
         ->with(['kelas', 'mapel', 'author'])->latest()->get();
         return view('livewire.guru.kelas-online',[
             'mapels' => $mapel, 'pembelajaran' => $pembl, 'kelons' => $kelons

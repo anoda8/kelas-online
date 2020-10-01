@@ -12,7 +12,7 @@ class KelasOnline extends Model
     protected $table = 'kelasonline';
 
     protected $fillable = [
-        'kelas_id', 'mapel_id', 'materi', 'isi_materi', 'video_path', 'wkt_masuk', 'wkt_selesai', 'author_id'
+        'kelas_id', 'mapel_id', 'materi', 'isi_materi', 'video_path'
     ];
 
     public function kelas()
@@ -23,10 +23,5 @@ class KelasOnline extends Model
     public function mapel()
     {
         return $this->belongsTo('App\Models\Mapel');
-    }
-
-    public function author()
-    {
-        return $this->belongsTo('App\Models\User', 'author_id');
     }
 }

@@ -108,17 +108,8 @@
                         <div class="form-inline">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-sm mr-2" placeholder="Cari materi" wire:model="kataKunciMateri">
-                                <select class="form-control form-control-sm mr-2">
-                                    <option value="">Cari mapel</option>
-                                    @foreach ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control form-control-sm mr-2">
-                                    <option value="">Cari kelas</option>
-                                    @foreach ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                                    @endforeach
+                                <select>
+
                                 </select>
                             </div>
                         </div>
@@ -132,7 +123,7 @@
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
                 <div class="card-header">
-                    [{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}
+                    {{ $kelon->materi }}
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
@@ -226,8 +217,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         var isimateri = CKEDITOR.instances['isimateri'].getData();
         @this.set('isimateri', isimateri);
         @this.call('simpan');
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     });
 });
 CKEDITOR.replace( 'isimateri' );
