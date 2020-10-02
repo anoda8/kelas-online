@@ -16,7 +16,7 @@ class KelasOnline extends Component
     public $formopen = false;
     public $dokumen;
     public $editId = null;
-    public $kataKunciMateri;
+    public $kataKunciMateri = null, $kataKunciMapel, $kataKunciKelas = null;
 
     public $heading;
     public function heading()
@@ -37,10 +37,23 @@ class KelasOnline extends Component
     {
         $mapel = Mapel::where('thajaran', session('thajaran'))->where('guru_id', $this->guruid)->with(['guru'])->get();
         $pembl = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->mapelid)->with(['kelas'])->get();
-        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('materi', 'like', '%'.$this->kataKunciMateri.'%')
-        ->with(['kelas', 'mapel', 'author'])->latest()->get();
+        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->with(['kelas', 'mapel', 'author'])->latest()->get();
+
+        if($this->kataKunciMateri != null){
+            $this->kataKunciKelas = null;
+            $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('materi', 'like', '%'.$this->kataKunciMateri.'%')
+            ->with(['kelas', 'mapel', 'author'])->latest()->get();
+        }
+
+        if($this->kataKunciKelas != null){
+            $this->kataKunciMateri = null;
+            $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('kelas_id', $this->kataKunciKelas)
+            ->with(['kelas', 'mapel', 'author'])->latest()->get();
+        }
+
+        $cariKelas = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->kataKunciMapel)->with(['kelas'])->get();
         return view('livewire.guru.kelas-online',[
-            'mapels' => $mapel, 'pembelajaran' => $pembl, 'kelons' => $kelons
+            'mapels' => $mapel, 'pembelajaran' => $pembl, 'kelons' => $kelons, 'cariKelas' => $cariKelas
         ]);
     }
 

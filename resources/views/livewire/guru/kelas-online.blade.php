@@ -107,19 +107,20 @@
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                         <div class="form-inline">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-sm mr-2" placeholder="Cari materi" wire:model="kataKunciMateri">
-                                <select class="form-control form-control-sm mr-2">
+                                <input type="text" class="form-control form-control-sm mr-2" placeholder="Cari materi" wire:model="kataKunciMateri"> ||
+                                <select class="form-control form-control-sm mr-2 ml-2" wire:model="kataKunciMapel">
                                     <option value="">Cari mapel</option>
                                     @foreach ($mapels as $mapel)
                                         <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
                                     @endforeach
                                 </select>
-                                <select class="form-control form-control-sm mr-2">
+                                <select class="form-control form-control-sm mr-2" wire:model="kataKunciKelas">
                                     <option value="">Cari kelas</option>
-                                    @foreach ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
+                                    @foreach ($cariKelas as $cari)
+                                        <option value="{{ $cari->kelas->id }}">{{ $cari->kelas->nama }}</option>
                                     @endforeach
                                 </select>
+                                {{ $kataKunciKelas }}
                             </div>
                         </div>
                     </div>
@@ -131,8 +132,8 @@
         <div class="col-md-12">
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
-                <div class="card-header">
-                    [{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}
+                <div class="card-header bg-warning text-white" style="cursor:pointer;">
+                    <a href="#" style="text-decoration: none;">[{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}</a>
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
@@ -160,7 +161,6 @@
                         <div class="form-inline">
                             <button class="btn btn-danger ml-2" wire:click="$emit('triggerHapus', {{ $kelon->id }})"><i class="fas fa-trash"></i> Hapus</button>
                             <button class="btn btn-info ml-2" wire:click="$emit('triggerEdit', {{ $kelon->id }})"><i class="fas fa-pencil-alt"></i> Edit</button>
-                            <button class="btn btn-warning ml-2"><i class="fas fa-print"></i> Laporan</button>
                         </div>
                     </div>
                 </div>

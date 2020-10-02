@@ -56,6 +56,7 @@ Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function() {
 Route::group(['prefix' => 'guru', 'middleware' => ['role:guru']], function() {
     Route::get('/', App\Http\Livewire\Guru\Dashboard::class)->name('guru.beranda');
     Route::get('/kelasonline', App\Http\Livewire\Guru\KelasOnline::class)->name('guru.kelasonline');
+    Route::get('/kelasonline/detail', App\Http\Livewire\Guru\DetailKelasOnline::class)->name('guru.kelasonline.detail');
 });
 
 Route::group(['prefix' => 'siswa', 'middleware' => ['role:siswa']], function() {
