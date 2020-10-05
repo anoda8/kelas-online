@@ -17,12 +17,17 @@
                 <div class="card-body">
                     <form class="form-inline">
                         <div class="form-group mr-2">
-                          <select class="form-control">
-                            <option>== Pilih Mapel ==</option>
-                          </select>
+                            <div wire:ignore>
+                            <select class="form-control form-control-sm pilih-mapel" wire:model.lazy="katakunciMapel">
+                                <option>== Pilih Mapel ==</option>
+                                @foreach ($pembelajaran as $pembl)
+                                    <option value="{{ $pembl->mapel->id }}">{{ $pembl->mapel->nama }} - {{ $pembl->mapel->guru->nama }}</option>
+                                @endforeach
+                            </select>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Cari materi" class="form-control" >
+                            <input type="date" placeholder="Cari materi" class="form-control form-control-sm" >
                         </div>
                     </form>
                 </div>
@@ -33,7 +38,7 @@
         <div class="col-md-12">
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
-                <div class="card-header bg-warning text-dark" style="cursor:pointer;" wire:click="$emit('linkDetail', {{ $kelon->id }})">
+                <div class="card-header bg-warning text-dark">
                     [{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}
                 </div>
                 <div class="card-body pt-0">
@@ -60,6 +65,7 @@
                     <span class="font-weight-bold text-danger">{{ $kelon->kelas->nama }}</span>
                     <div class="btn-actions-pane-right">
                         <div class="form-inline">
+                            <button class="btn btn-light" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
                         </div>
                     </div>
                 </div>
@@ -71,6 +77,12 @@
 </div>
 @section('scripts')
 <script>
+$(document).ready(function () {
+    $(".pilih-mapel").select2();
+    $(".pilih-mapel").on('change', function(e){
+        @this.set('katakunciMapel', e.target.value);
+    })
+});
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('linkDetail', kelonId => {
         window.location.href = '/siswa/kelasonline/detail/'+ kelonId;

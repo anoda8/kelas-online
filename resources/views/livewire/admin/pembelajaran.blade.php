@@ -76,6 +76,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center;">
+                            {{ $pembelajarans->links('layouts.pagination-links-simple') }}
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>
@@ -91,7 +96,7 @@
                             <tbody>
                                 @foreach ($pembelajarans as $index => $pembl)
                                 <tr>
-                                    <td class="text-center">{{ $index + 1 }}</td>
+                                    <td class="text-center">{{ ($index + 1) + (($pembelajarans->currentPage() - 1) * $pembelajarans->perPage()) }}</td>
                                     <td>{{ $pembl->mapel->nama }}</td>
                                     <td>{{ $pembl->mapel->guru->nama }}</td>
                                     <td class="text-center">{{ $pembl->kelas->nama }}</td>

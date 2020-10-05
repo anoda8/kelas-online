@@ -19,15 +19,27 @@
                         Tabel {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
-                        <a type="button" class="mr-2 btn btn-warning btn-sm" wire:click="$emit('showImportForm')" />
-                            <i class="fas fa-download"></i> Impor
-                        </a>
-                        <a type="button" class="mr-2 btn btn-success btn-sm" href="{{ '/'.request()->path().'/export' }}" />
-                            <i class="fas fa-download"></i> Ekspor
-                        </a>
-                        <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
-                            <i class="fas fa-plus"></i> Tambah
-                        </button>
+                        <div class="form-inline">
+                            <div class="form-group mr-3 input-group-sm">
+                                <div class="form-group">
+                                    <select class="form-control form-control-sm" wire:model.lazy="katakunciGuru">
+                                        <option value="">== Pilih Guru ==</option>
+                                        @foreach ($gurus as $guru)
+                                            <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <a type="button" class="mr-2 btn btn-warning btn-sm" wire:click="$emit('showImportForm')" />
+                                <i class="fas fa-download"></i> Impor
+                            </a>
+                            <a type="button" class="mr-2 btn btn-success btn-sm" href="{{ '/'.request()->path().'/export' }}" />
+                                <i class="fas fa-download"></i> Ekspor
+                            </a>
+                            <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
+                                <i class="fas fa-plus"></i> Tambah
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="pt-3 card-body">

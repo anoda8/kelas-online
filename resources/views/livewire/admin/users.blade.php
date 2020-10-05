@@ -19,16 +19,19 @@
                         Tabel {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
-                        <a type="button" class="btn btn-success btn-sm" href="/admin/users/export/{{ $level }}" />
-                            <i class="fas fa-download"></i> Export
-                        </a>
-
-                        @if ($level == 'admin')
-                        <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
-                            <i class="fas fa-plus"></i> Tambah
-                        </button>
-                        @endif
-
+                        <div class="form-inline">
+                            <div class="form-group mr-3 input-group-sm">
+                                <input type="text" class="form-control" wire:model="katakunciNama" placeholder="Cari nama">
+                            </div>
+                            <a type="button" class="btn btn-success btn-sm" href="/admin/users/export/{{ $level }}" />
+                                <i class="fas fa-download"></i> Export
+                            </a>
+                            @if ($level == 'admin')
+                            <button type="button" class="btn btn-primary btn-sm" wire:click="$emit('showAddForm')" />
+                                <i class="fas fa-plus"></i> Tambah
+                            </button>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <div class="pt-3 card-body">

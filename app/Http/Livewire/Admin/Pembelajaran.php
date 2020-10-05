@@ -7,13 +7,16 @@ use App\Models\Mapel;
 use App\Models\Pembelajaran as ModelsPembelajaran;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Pembelajaran extends Component
 {
+    use WithPagination;
+
     public $mapel, $kelas;
     public $mapelTerpilihId = null, $mapelTerpilihNama, $mapelTerpilihGuru;
     public $kelasid = [0];
-    public $pembl = null;
+    public $perpage = 10;
 
     public $heading;
     public function heading()
@@ -34,15 +37,15 @@ class Pembelajaran extends Component
         $mapel = Mapel::with(['guru'])->get();
         $kelas = Kelas::with(['jurusan'])->get();
         if($this->mapelTerpilihId != null){
-            $this->pembl = ModelsPembelajaran::where('thajaran', session('thajaran'))
+            $pembl = ModelsPembelajaran::where('thajaran', session('thajaran'))
             ->where('mapel_id', $this->mapelTerpilihId)
-            ->with(['mapel.guru', 'kelas', 'author'])->get();
+            ->with(['mapel.guru', 'kelas', 'author'])->paginate($this->perpage);
         }else{
-            $this->pembl = ModelsPembelajaran::where('thajaran', session('thajaran'))->with(['mapel.guru', 'kelas', 'author'])->get();
+            $pembl = ModelsPembelajaran::where('thajaran', session('thajaran'))->with(['mapel.guru', 'kelas', 'author'])->paginate($this->perpage);
         }
 
         return view('livewire.admin.pembelajaran', [
-            'mapels' => $mapel, 'kelases' => $kelas, 'pembelajarans' => $this->pembl
+            'mapels' => $mapel, 'kelases' => $kelas, 'pembelajarans' => $pembl
         ]);
     }
 
@@ -52,6 +55,7 @@ class Pembelajaran extends Component
         $this->mapelTerpilihId  = $id;
         $this->mapelTerpilihGuru = $mapel->guru->nama;
         $this->mapelTerpilihNama = $mapel->nama;
+        $this->kelasid = [0];
     }
 
     public function collectKelas($id)
@@ -84,6 +88,7 @@ class Pembelajaran extends Component
             }
             // dd($pembl);
         }
+        $this->kelasid = [0];
     }
 
     public function hapus($id)

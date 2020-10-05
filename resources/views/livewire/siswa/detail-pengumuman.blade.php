@@ -38,7 +38,7 @@
                                         @if ($komentar->author_id == auth()->id())
                                         <div class="p-1 mb-2 bg-info text-white rounded clearfix">
                                             <div class="row">
-                                                <div class="col-md-11 col-sm-7 text-right mb-3">
+                                                <div class="col-lg-11 col-md-10 col-sm-7 text-right mb-3">
                                                     <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
                                                     <small class="opacity-6">
                                                         <i class="fa fa-calendar-alt mr-1"></i>
@@ -46,7 +46,7 @@
                                                     </small><br>
                                                     <span class="komentar">{{ $komentar->komentar }}</span>
                                                 </div>
-                                                <div class="col-md-1 col-sm-2">
+                                                <div class="col-lg-1 col-md-2 col-sm-5">
                                                     <div class="avatar-icon avatar-icon-sm rounded pull-right">
                                                         <img src="{{ asset('images/avatars/1.jpg') }}" alt="">
                                                     </div>
@@ -56,21 +56,17 @@
                                         @else
                                         <div class="p-3 mb-2 bg-light text-dark rounded clearfix">
                                             <div class="row">
-                                                <div class="col-md-3 col-sm-3">
+                                                <div class="col-md-1 col-sm-3">
                                                     <div class="avatar-icon avatar-icon-sm rounded pull-left mb-2">
                                                         <img src="{{ asset('images/avatars/1.jpg') }}" alt=""><br>
-
                                                     </div>
                                                 </div>
-                                                <div class="col-md-9 col-sm-5 text-justify">
+                                                <div class="col-md-11 col-sm-5 text-justify">
                                                     <small class="opacity-6">
                                                         <i class="fa fa-calendar-alt mr-1"></i>
                                                         11:01 AM | Yesterday
                                                     </small><br>
-                                                    hai guys bagai mana kali ini kita akan berkata kata apapun yang terjadi kita akan membuat aplikasi ini,
-                                                    kita akan terus membuat ini sampai jadi, kita jual, kita bisa untuk banyak dan buktikan sama semua orang kalau kita bisa
-                                                    hai guys bagai mana kali ini kita akan berkata kata apapun yang terjadi kita akan membuat aplikasi ini,
-                                                    kita akan terus membuat ini sampai jadi, kita jual, kita bisa untuk banyak dan buktikan sama semua orang kalau kita bisa
+                                                    <span class="komentar">{{ $komentar->komentar }}</span>
                                                 </div>
                                             </div>
                                         </div>

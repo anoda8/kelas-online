@@ -96,20 +96,61 @@ CREATE TABLE `kelasonline` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `kelas_id` bigint(20) unsigned NOT NULL,
   `mapel_id` bigint(20) unsigned NOT NULL,
+  `author_id` bigint(20) unsigned NOT NULL,
   `materi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi_materi` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
   `wkt_masuk` datetime NOT NULL,
   `wkt_selesai` datetime NOT NULL,
   `file` text COLLATE utf8mb4_unicode_ci,
+  `video_path` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `kelasonline` WRITE;
 /*!40000 ALTER TABLE `kelasonline` DISABLE KEYS */;
+INSERT INTO `kelasonline` VALUES (5,4,46,67,'Pengukuran','<p>Assalamu&#39;alaikum wr. wb.</p>\n\n<p>Selamat pagi semuanya. Tetap semangat PJJ Daring ON Line dengan SMAGA SMART.</p>\n\n<p>Kita berdoa terlebih dahulu.</p>\n\n<p>Agenda kegiatan kita hari Senin, 10 Agustus 2020 adalah :</p>\n\n<p>1. Membuka Menu Utama Pembelajaran yang berguna sebagai bukti kehadiran di KBM PJJ Daring ON Line dengan SMAGA SMART. Setelah selesai kegiatan, maka secara otomatis akan terrekap dalam&nbsp;<strong>JURNAL PEMBELAJARA</strong>N. Di dalam Jurnal tersebut disajikan data nama siswa yang hadir dan jumlah yang hadir, termasuk data nama siswa yang tidak hadir dan jumlah yang tidak hadir. J<em><strong>ADI SILAHKAN WAJIB MEMBUKA MENU UTAMA PEMBELAJARAN.</strong></em></p>\n\n<p>2. Membaca, melihat dan mendengarkan sajian materi yang disajikan yaitu&nbsp;<strong>Dinamika Rotasi dan Kesetimbangan Benda Tegar di SWAY&nbsp;</strong>yang disajikan berikut ini. Silahkan setelah mengikuti kegiatan kalian catat dalam buku catatan.&nbsp;</p>\n\n<p>Selamat belajar.</p>\n\n<p>Rendah hati tinggi prestasi Smaga Hebat.</p>\n\n<p>Wassalammu&#39;alaikum wr. wb.</p>\n','2020-10-08 19:05:00','2020-10-08 11:05:00',NULL,NULL,'2020-10-01 16:06:15','2020-10-01 19:11:44'),(7,2,46,67,'Angka Penting','<p>Assalamu&#39;alaikum wr. wb.</p>\n\n<p>Selamat pagi semuanya. Tetap semangat PJJ Daring ON Line dengan SMAGA SMART.</p>\n\n<p>Kita berdoa terlebih dahulu.</p>\n\n<p>Agenda kegiatan kita hari&nbsp;<strong><em>Rabu, 12 Agustus 2020</em></strong>&nbsp;adalah :</p>\n\n<p>1. Membuka Menu Utama Pembelajaran yang berguna sebagai bukti kehadiran di KBM PJJ Daring ON Line dengan SMAGA SMART. Setelah selesai kegiatan, maka secara otomatis akan terrekap dalam&nbsp;<strong>JURNAL PEMBELAJARA</strong>N. Di dalam Jurnal tersebut disajikan data nama siswa yang hadir dan jumlah yang hadir, termasuk data nama siswa yang tidak hadir dan jumlah yang tidak hadir.&nbsp;<strong><em>J<strong>ADI SILAHKAN WAJIB MEMBUKA MENU UTAMA PEMBELAJARAN.</strong></em></strong></p>\n\n<p>2. Membaca, melihat dan mendengarkan sajian materi yang disajikan yaitu&nbsp;<strong>Angka penting di SWAY&nbsp;</strong>yang disajikan berikut ini. Silahkan setelah mengikuti kegiatan kalian catat dalam buku catatan.</p>\n\n<p>3. Kerjakan latihan soal angka penting, dan tidak usah dikumpulkan</p>\n\n<p>4. Rabu, 12 Agustus 2020 jam 11.05 pelaksanaan UH Susulan dan remidial</p>\n\n<p>&nbsp;</p>\n\n<p>Selamat belajar.</p>\n\n<p>Rendah hati tinggi prestasi Smaga Hebat.</p>\n\n<p>Wassalammu&#39;alaikum wr. wb.</p>\n','2020-10-05 01:38:00','2020-10-05 01:40:00',NULL,NULL,'2020-10-01 18:39:07','2020-10-01 18:39:07'),(8,1,46,67,'Pengukuran, Angka Penting dan Vektor','<p>Assalamu&#39;alaikum wr. wb.</p>\n\n<p>Selamat pagi semuanya. Tetap semangat PJJ Daring ON Line dengan SMAGA SMART.</p>\n\n<p>Kita berdoa terlebih dahulu.</p>\n\n<p><strong><em>Agenda kegiatan kita hari SENIN, 24 Agustus 2020 adalah :</em></strong></p>\n\n<p>1. Membuka Menu Utama Pembelajaran yang berguna sebagai bukti kehadiran di KBM PJJ Daring ON Line dengan SMAGA SMART. Setelah selesai kegiatan, maka secara otomatis akan terrekap dalam&nbsp;<strong>JURNAL PEMBELAJARA</strong>N. Di dalam Jurnal tersebut disajikan data nama siswa yang hadir dan jumlah yang hadir, termasuk data nama siswa yang tidak hadir dan jumlah yang tidak hadir.&nbsp;<strong><em>J</em></strong><em><strong>ADI SILAHKAN WAJIB MEMBUKA MENU UTAMA PEMBELAJARAN.</strong></em></p>\n\n<p>2. Membaca, melihat dan mendengarkan sajian materi yang disajikan yaitu&nbsp;<strong>Power Point Vektor bias dilihat kembali di WA Group FISIKA X MIPA 2&nbsp;</strong>yang disajikan berikut ini. Silahkan setelah mengikuti kegiatan kalian catat dalam buku catatan.</p>\n\n<p>3. Kerjakan uji kompetensi halaman 31 &ndash; 35 Pilihan Ganda dan Essay, kerjakan di buku catatan. Jawaban dikirim di menu tugas.</p>\n\n<p>Selamat belajar.</p>\n\n<p>Rendah hati tinggi prestasi Smaga Hebat.</p>\n\n<p>Wassalammu&#39;alaikum wr. wb</p>\n','2020-10-03 01:59:00','2020-10-03 02:59:00',NULL,NULL,'2020-10-01 18:59:17','2020-10-03 00:26:20'),(9,3,46,67,'GERAK LURUS BERATURAN DAN GERAK LURUS BERUBAH BERATURAN','<p>Agenda UH X Mipa 3 :</p>\n\n<p>1. KD 3.1 Menerapkan prinsip-prinsip pengukuran besaran fisis, ketepatan, ketelitian dan angka penting, serta notasi ilmiah</p>\n\n<p>Hari Senin , 5 Oktober 2020 jam 11.00 WIB</p>\n\n<p>2. KD&nbsp;3.2 Menerapkan prinsip penjumlahan vektor sebidang (misalnya perpindahan)</p>\n\n<p>Hari Senin , 12&nbsp;Oktober 2020 jam 11.00 WIB</p>\n\n<p>3. KD&nbsp;3.3 Menganalisis besaran-besaran fisis pada gerak lurus dengan kecepatan konstan (tetap) dan gerak lurus dengan percepatan konstan (tetap) berikut penerapannya dalam kehidupan sehari-hari misalnya keselamatan lalu lintas</p>\n\n<p>Hari Senin , 19&nbsp;Oktober 2020 jam 11.00 WIB</p>\n\n<p>4. KD 3.4 Menganalisis gerak parabola dengan menggunakan vektor, berikut makna fisisnya dan penerapannya dalam kehidupan sehari-hari</p>\n\n<p>Hari Senin , 2&nbsp;November&nbsp;2020 jam 11.00 WIB</p>\n\n<p>5. KD 3.5 Menganalisis besaran fisis pada gerak melingkar dengan laju konstan (tetap) dan penerapannya dalam kehidupan sehari-hari</p>\n\n<p>Hari Senin , 18&nbsp;November&nbsp;2020 jam 11.00 WIB</p>\n\n<h2><strong>materi lihat di GCR</strong></h2>\n','2020-10-03 02:01:00','2020-10-03 02:03:00',NULL,NULL,'2020-10-01 19:02:11','2020-10-01 19:02:11'),(10,4,46,67,'GERAK LURUS BERATURAN DAN GERAK LURUS BERUBAH BERATURAN','<p>Agenda UH X Mipa 3 :</p>\n\n<p>1. KD 3.1 Menerapkan prinsip-prinsip pengukuran besaran fisis, ketepatan, ketelitian dan angka penting, serta notasi ilmiah</p>\n\n<p>Hari Senin , 5 Oktober 2020 jam 11.00 WIB</p>\n\n<p>2. KD&nbsp;3.2 Menerapkan prinsip penjumlahan vektor sebidang (misalnya perpindahan)</p>\n\n<p>Hari Senin , 12&nbsp;Oktober 2020 jam 11.00 WIB</p>\n\n<p>3. KD&nbsp;3.3 Menganalisis besaran-besaran fisis pada gerak lurus dengan kecepatan konstan (tetap) dan gerak lurus dengan percepatan konstan (tetap) berikut penerapannya dalam kehidupan sehari-hari misalnya keselamatan lalu lintas</p>\n\n<p>Hari Senin , 19&nbsp;Oktober 2020 jam 11.00 WIB</p>\n\n<p>4. KD 3.4 Menganalisis gerak parabola dengan menggunakan vektor, berikut makna fisisnya dan penerapannya dalam kehidupan sehari-hari</p>\n\n<p>Hari Senin , 2&nbsp;November&nbsp;2020 jam 11.00 WIB</p>\n\n<p>5. KD 3.5 Menganalisis besaran fisis pada gerak melingkar dengan laju konstan (tetap) dan penerapannya dalam kehidupan sehari-hari</p>\n\n<p>Hari Senin , 18&nbsp;November&nbsp;2020 jam 11.00 WIB</p>\n\n<h2><strong>materi lihat di GCR</strong></h2>\n','2020-10-03 02:01:00','2020-10-03 02:03:00',NULL,NULL,'2020-10-03 12:11:40','2020-10-03 12:11:40');
 /*!40000 ALTER TABLE `kelasonline` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `komen_pengumuman`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `komen_pengumuman` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `peng_id` bigint(20) unsigned NOT NULL,
+  `author_id` bigint(20) unsigned NOT NULL,
+  `komentar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `komen_pengumuman` WRITE;
+/*!40000 ALTER TABLE `komen_pengumuman` DISABLE KEYS */;
+INSERT INTO `komen_pengumuman` VALUES (1,6,1053,'fdsfa','2020-10-04 15:12:14','2020-10-04 15:12:14');
+/*!40000 ALTER TABLE `komen_pengumuman` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `komentar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `komentar` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `kelon_id` bigint(20) unsigned NOT NULL,
+  `author_id` bigint(20) unsigned NOT NULL,
+  `komentar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `komentar` WRITE;
+/*!40000 ALTER TABLE `komentar` DISABLE KEYS */;
+INSERT INTO `komentar` VALUES (1,9,67,'Hello guys','2020-10-02 23:42:33','2020-10-02 23:42:33'),(2,9,67,'Ayo anak2 kerjakan tugas diatas','2020-10-02 23:44:24','2020-10-02 23:44:24'),(3,9,67,'coba lagi lah','2020-10-03 00:06:41','2020-10-03 00:06:41'),(4,8,67,'Bismillah ayo mulai','2020-10-03 00:17:18','2020-10-03 00:17:18'),(5,10,67,'ini tugas ya anak2','2020-10-03 14:59:37','2020-10-03 14:59:37');
+/*!40000 ALTER TABLE `komentar` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `mapel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -139,12 +180,12 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2020_09_22_044749_laratrust_setup_tables',1),(5,'2020_09_23_014010_create_thajaran_table',2),(6,'2020_09_23_020516_add_status_to_thajaran_table',2),(7,'2020_09_25_070238_create_guru_table',3),(8,'2020_09_26_082947_create_siswa_table',4),(9,'2020_09_26_160829_create_jurusan_table',5),(10,'2020_09_26_224307_create_mapel_table',6),(12,'2020_09_26_230243_rename_mapel_column',7),(13,'2020_09_27_004848_create_kelas_table',7),(14,'2020_09_27_160813_create_pembelajaran_table',8),(15,'2020_09_29_152941_add_thajaran_to_jurusan_table',9),(16,'2020_09_29_155213_add_thajaran_to_kelas_table',10),(17,'2020_09_29_160944_add_thajaran_to_mapel_table',11),(18,'2020_09_30_040207_create_kelasonline_table',12),(19,'2020_09_30_060801_add_tgl_masuk_to_kelasonline_table',12),(20,'2020_09_30_164248_add_file_to_kelasonline',13);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2020_09_22_044749_laratrust_setup_tables',1),(5,'2020_09_23_014010_create_thajaran_table',2),(6,'2020_09_23_020516_add_status_to_thajaran_table',2),(7,'2020_09_25_070238_create_guru_table',3),(8,'2020_09_26_082947_create_siswa_table',4),(9,'2020_09_26_160829_create_jurusan_table',5),(10,'2020_09_26_224307_create_mapel_table',6),(12,'2020_09_26_230243_rename_mapel_column',7),(13,'2020_09_27_004848_create_kelas_table',7),(14,'2020_09_27_160813_create_pembelajaran_table',8),(15,'2020_09_29_152941_add_thajaran_to_jurusan_table',9),(16,'2020_09_29_155213_add_thajaran_to_kelas_table',10),(17,'2020_09_29_160944_add_thajaran_to_mapel_table',11),(18,'2020_09_30_040207_create_kelasonline_table',12),(19,'2020_09_30_060801_add_tgl_masuk_to_kelasonline_table',12),(20,'2020_09_30_164248_add_file_to_kelasonline',13),(21,'2020_10_01_114032_add_path_video_to_kelasonline_table',14),(22,'2020_10_03_012445_create_komentar_table',15),(23,'2020_10_03_103402_create_pengumuman_table',16),(24,'2020_10_03_232912_create_tugas_table',17),(25,'2020_10_04_212034_create_komen_pengumuman_table',18);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `password_resets`;
@@ -181,6 +222,29 @@ LOCK TABLES `pembelajaran` WRITE;
 /*!40000 ALTER TABLE `pembelajaran` DISABLE KEYS */;
 INSERT INTO `pembelajaran` VALUES (1,46,1,1,'20211','2020-09-30 03:30:28','2020-09-30 03:30:28'),(2,46,2,1,'20211','2020-09-30 03:30:28','2020-09-30 03:30:28'),(3,46,3,1,'20211','2020-09-30 03:30:28','2020-09-30 03:30:28'),(4,46,4,1,'20211','2020-09-30 03:30:28','2020-09-30 03:30:28');
 /*!40000 ALTER TABLE `pembelajaran` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `pengumuman`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pengumuman` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `jurusan_id` bigint(20) unsigned DEFAULT NULL,
+  `kelas_id` bigint(20) unsigned DEFAULT NULL,
+  `author_id` bigint(20) unsigned NOT NULL,
+  `tujuan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isi_pengumuman` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `published_at` datetime NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `pengumuman` WRITE;
+/*!40000 ALTER TABLE `pengumuman` DISABLE KEYS */;
+INSERT INTO `pengumuman` VALUES (4,NULL,5,67,NULL,'Pengumuman Terakhir','<p>Semoba kalian baik2 saja dan tetap sehat wal afiat ya anak anak</p>\n','2020-10-21 17:00:00','2020-10-03 12:05:33','2020-10-03 13:47:36'),(5,NULL,2,67,NULL,'Jangan Nakal Kelas X MIPA 2','<p>Semoba kalian baik2 saja dan tetap sehat wal afiat ya anak anak</p>\n','2020-10-05 17:00:00','2020-10-03 13:16:27','2020-10-03 13:16:27'),(6,NULL,NULL,67,'all','Peringatan Upacara Hari Sumpah Pemuda 28 Oktober 2020','<p>Dimohon untuk datang tepat waktu, membawa perlengkapan upacara, topi, kupluk dan sepatu.</p>\n','2020-10-28 18:37:00','2020-10-04 10:37:58','2020-10-04 10:37:58');
+/*!40000 ALTER TABLE `pengumuman` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `permission_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -317,6 +381,29 @@ LOCK TABLES `thajaran` WRITE;
 /*!40000 ALTER TABLE `thajaran` DISABLE KEYS */;
 INSERT INTO `thajaran` VALUES (3,'20211','Tahun Pelajaran 2020/2021 Semester 1',1,NULL,'2020-09-29 06:52:27',1),(4,'20212','Tahun Pelajaran 2020/2021 Semester 2',2,NULL,'2020-09-29 06:52:27',0);
 /*!40000 ALTER TABLE `thajaran` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tugas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tugas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `mapel_id` bigint(20) unsigned NOT NULL,
+  `kelas_id` bigint(20) unsigned NOT NULL,
+  `author_id` bigint(20) unsigned NOT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `videopath` text COLLATE utf8mb4_unicode_ci,
+  `file` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tugas` WRITE;
+/*!40000 ALTER TABLE `tugas` DISABLE KEYS */;
+INSERT INTO `tugas` VALUES (2,46,2,67,'Pengukuran, Angka Penting, dan Vektor','<p>Kerjakan uji kompetensi halaman 31 &ndash; 35 Pilihan Ganda dan Essay, kerjakan di buku catatan. Jawaban dikirim di menu tugas.</p>\n\n<p>setiap lembar foto diberi nama, kelas, dan nomor absen. ya iyalah</p>\n',NULL,NULL,'2020-10-04 03:12:51','2020-10-04 15:27:21');
+/*!40000 ALTER TABLE `tugas` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

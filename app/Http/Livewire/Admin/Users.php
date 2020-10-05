@@ -16,6 +16,7 @@ class Users extends Component
 
     public $level, $nama, $username, $password, $repass, $userId, $perpage = 10;
     public $modeEdit = false;
+    public $katakunciNama;
 
     public $heading;
     public function heading()
@@ -36,8 +37,10 @@ class Users extends Component
 
     public function render()
     {
+        $users = User::whereHas('roles', function($q){$q->where('name', $this->level);})
+        ->where('name', 'like', "%".$this->katakunciNama."%")->paginate($this->perpage);
         return view('livewire.admin.users', [
-            'users' => User::whereHas('roles', function($q){$q->where('name', $this->level);})->paginate($this->perpage)
+            'users' => $users
         ]);
     }
 

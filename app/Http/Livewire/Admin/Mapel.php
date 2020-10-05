@@ -21,6 +21,7 @@ class Mapel extends Component
     public $guru, $author_id, $nama;
     public $fileimport;
     public $perpage = 10;
+    public $katakunciGuru = null;
 
     public $heading;
     public function heading()
@@ -38,7 +39,14 @@ class Mapel extends Component
 
     public function render()
     {
-        $mapels = ModelsMapel::where('thajaran', session('thajaran'))->with(['guru', 'author'])->paginate($this->perpage);
+        if($this->katakunciGuru != null){
+            $mapels = ModelsMapel::where('thajaran', session('thajaran'))
+            ->where('guru_id', $this->katakunciGuru)
+            ->with(['guru', 'author'])->paginate($this->perpage);
+        }else{
+            $mapels = ModelsMapel::where('thajaran', session('thajaran'))
+            ->with(['guru', 'author'])->paginate($this->perpage);
+        }
         $gurus = Guru::all();
         return view('livewire.admin.mapel', [
             'mapels' => $mapels, 'gurus' => $gurus

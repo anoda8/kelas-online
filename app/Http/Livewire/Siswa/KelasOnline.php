@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Siswa;
 
 use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
+use App\Models\Pembelajaran;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -11,6 +12,7 @@ use Livewire\Component;
 class KelasOnline extends Component
 {
     public $siswa, $kelas;
+    public $katakunciMapel = null;
 
     public $heading;
     public function heading()
@@ -32,8 +34,9 @@ class KelasOnline extends Component
     public function render()
     {
         $kelon = ModelsKelasOnline::where('kelas_id', $this->kelas->id)->with(['kelas', 'mapel', 'author'])->latest()->get();
+        $pembelajaran = Pembelajaran::where('kelas_id', $this->kelas->id)->with(['mapel.guru'])->get();
         return view('livewire.siswa.kelas-online', [
-            'kelons' => $kelon
+            'kelons' => $kelon, 'pembelajaran' => $pembelajaran
         ]);
     }
 }
