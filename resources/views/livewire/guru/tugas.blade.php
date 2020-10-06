@@ -84,6 +84,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm mr-2" placeholder="Cari materi" wire:model="kataKunciJudul"> ||
+                                <select class="form-control form-control-sm mr-2 ml-2" wire:model="kataKunciMapel">
+                                    <option value="">Cari mapel</option>
+                                    @foreach ($mapels as $mapel)
+                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control form-control-sm mr-2" wire:model="kataKunciKelas">
+                                    <option value="">Cari kelas</option>
+                                    @foreach ($cariKelas as $cari)
+                                        <option value="{{ $cari->kelas->id }}">{{ $cari->kelas->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -91,8 +112,8 @@
         <div class="col-md-12">
             @foreach ($tugase as $tugas)
             <div class="mb-2 card">
-                <div class="card-header bg-info text-white" style="cursor:pointer;">
-                    <a href="/guru/tugas/detail/{{ $tugas->id }}" style="text-decoration: none;color:#000;">[{{ $tugas->mapel->nama }}]&nbsp;{{ $tugas->judul }}</a>
+                <div class="card-header bg-info text-white" style="cursor:pointer;" wire:click="$emit('linkDetail', {{ $tugas->id }})">
+                    <span style="text-decoration: none;color:#000;">[{{ $tugas->mapel->nama }}]&nbsp;{{ $tugas->judul }}</span>
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
@@ -125,6 +146,11 @@
 </div>
 @section('scripts')
 <script>
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('linkDetail', tugasId => {
+        window.location.href = '/guru/tugas/detail/'+ tugasId;
+    });
+});
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('toggleAddForm', () => {
         @this.call('clearForm');

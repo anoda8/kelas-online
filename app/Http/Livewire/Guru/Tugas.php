@@ -14,6 +14,7 @@ class Tugas extends Component
 {
     public $guruid, $mapelid, $kelasid, $judTugas, $deskripsi, $dokumen, $videopath;
     public $editId = null;
+    public $kataKunciJudul = null, $kataKunciMapel, $kataKunciKelas = null;
 
     public $heading;
     public function heading()
@@ -35,8 +36,20 @@ class Tugas extends Component
         $mapel = Mapel::where('thajaran', session('thajaran'))->where('guru_id', $this->guruid)->with(['guru'])->get();
         $pembl = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->mapelid)->with(['kelas'])->get();
         $tugas = ModelsTugas::where('author_id', Auth::id())->with(['mapel', 'kelas', 'author'])->get();
+
+        if($this->kataKunciJudul != null){
+            $this->kataKunciKelas = null;
+            $tugas = ModelsTugas::where('author_id', Auth::id())->where('judul', 'like', "%".$this->kataKunciJudul."%")->with(['mapel', 'kelas', 'author'])->get();
+        }
+
+        if($this->kataKunciKelas != null){
+            $this->kataKunciJudul = null;
+            $tugas = ModelsTugas::where('author_id', Auth::id())->where('kelas_id', $this->kataKunciKelas)->with(['mapel', 'kelas', 'author'])->get();
+        }
+
+        $cariKelas = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->kataKunciMapel)->with(['kelas'])->get();
         return view('livewire.guru.tugas',[
-            'mapels' => $mapel, 'pembelajaran' => $pembl, 'tugase' => $tugas
+            'mapels' => $mapel, 'pembelajaran' => $pembl, 'tugase' => $tugas, 'cariKelas' => $cariKelas
         ]);
     }
 
