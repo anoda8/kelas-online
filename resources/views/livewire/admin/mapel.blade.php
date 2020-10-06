@@ -152,12 +152,12 @@ $(document).ready(function () {
         @this.set('katakunciGuru', e.target.value);
     })
 });
-$(document).ready(function () {
-    $(".pilih-guru-tambah").select2();
-    $(".pilih-guru-tambah").on('change', function(e){
-        @this.set('guru', e.target.value);
-    })
-});
+// $(document).ready(function () {
+//     $(".pilih-guru-tambah").select2();
+//     $(".pilih-guru-tambah").on('change', function(e){
+//         @this.set('guru', e.target.value);
+//     })
+// });
 window.livewire.on('closeAddForm', () => {
     $('#modal-mapel').modal('hide');
     $('.modal-backdrop').each(function(){

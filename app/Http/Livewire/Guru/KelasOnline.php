@@ -8,15 +8,19 @@ use App\Models\Mapel;
 use App\Models\Pembelajaran;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class KelasOnline extends Component
 {
+    use WithPagination;
+
     public $mapelid, $kelasid, $materi, $isimateri, $wktmulai, $wktselesai, $tgl_kelon, $videopath;
     public $guruid;
     public $formopen = false;
     public $dokumen;
     public $editId = null;
     public $kataKunciMateri = null, $kataKunciMapel, $kataKunciKelas = null;
+    public $perpage = 10;
 
     public $heading;
     public function heading()
@@ -37,18 +41,18 @@ class KelasOnline extends Component
     {
         $mapel = Mapel::where('thajaran', session('thajaran'))->where('guru_id', $this->guruid)->with(['guru'])->get();
         $pembl = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->mapelid)->with(['kelas'])->get();
-        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->with(['kelas', 'mapel', 'author'])->latest()->get();
+        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
 
         if($this->kataKunciMateri != null){
             $this->kataKunciKelas = null;
             $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('materi', 'like', '%'.$this->kataKunciMateri.'%')
-            ->with(['kelas', 'mapel', 'author'])->latest()->get();
+            ->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
         }
 
         if($this->kataKunciKelas != null){
             $this->kataKunciMateri = null;
             $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('kelas_id', $this->kataKunciKelas)
-            ->with(['kelas', 'mapel', 'author'])->latest()->get();
+            ->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
         }
 
         $cariKelas = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->kataKunciMapel)->with(['kelas'])->get();

@@ -16,7 +16,7 @@
             <div class="mb-2 card">
                 <div class="card-header-tab card-header">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                        Tambah {{ $this->heading['judul'] }}
+                        {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
                         <button class="btn btn-primary" wire:click="$emit('toggleAddForm')"><i class="fas fa-plus"></i> Tambah</button>
@@ -128,11 +128,16 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            {{ $kelons->links('layouts.pagination-links-simple') }}
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
-                <div class="card-header bg-warning text-white" style="cursor:pointer;">
-                    <a href="/guru/kelasonline/detail/{{ $kelon->id }}" style="text-decoration: none;color:#000;">[{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}</a>
+                <div class="card-header bg-warning text-white" style="cursor:pointer;" wire:click="$emit('openDetail', {{ $kelon->id }})">
+                    <span style="text-decoration: none;color:#000;">[{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}</span>
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
@@ -168,6 +173,11 @@
             @endforeach
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            {{ $kelons->links('layouts.pagination-links-simple') }}
+        </div>
+    </div>
     @include('layouts.footer')
 </div>
 @section('scripts')
@@ -181,6 +191,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('closeAddForm', () => {
         $('#collapseTambah').collapse('hide');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('openDetail', detailId => {
+        window.location.href="/guru/kelasonline/detail/"+detailId;
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{

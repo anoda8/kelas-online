@@ -35,4 +35,9 @@ class Tugas extends Model
     {
         return $this->belongsTo('App\Models\User', 'author_id');
     }
+
+    public function respon()
+    {
+        return $this->hasMany('App\Models\ResponTugas');
+    }
 }

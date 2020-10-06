@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="mb-2 card">
-                <div class="card-header-tab card-header bg-warning">
+                <div class="card-header-tab card-header">
                     <div class="col-md-8 col-sm-12">
                         {{ $heading['keterangan'] }}
                     </div>
@@ -31,11 +31,12 @@
                     {!! $kelons->isi_materi !!}
                     <hr>
                     <div class="video-container">
-                        <iframe width="748" height="421" src="https://www.youtube.com/embed/hT_nvWreIhg?list=RDtcHJodG5hX8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {{ $kelons->video_path }}
+                        <iframe width="748" height="421" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <hr>
                     <ul class="list-group">
-                        <li class="list-group-item">Document.xlsx</li>
+                        <li class="list-group-item"></li>
                     </ul>
                 </div>
             </div>
@@ -80,18 +81,15 @@
                                         <div class="col-md-3 col-sm-3">
                                             <div class="avatar-icon avatar-icon-sm rounded pull-left mb-2">
                                                 <img src="{{ asset('images/avatars/1.jpg') }}" alt=""><br>
-
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-5 text-justify">
+                                            <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
                                             <small class="opacity-6">
                                                 <i class="fa fa-calendar-alt mr-1"></i>
                                                 11:01 AM | Yesterday
                                             </small><br>
-                                            hai guys bagai mana kali ini kita akan berkata kata apapun yang terjadi kita akan membuat aplikasi ini,
-                                            kita akan terus membuat ini sampai jadi, kita jual, kita bisa untuk banyak dan buktikan sama semua orang kalau kita bisa
-                                            hai guys bagai mana kali ini kita akan berkata kata apapun yang terjadi kita akan membuat aplikasi ini,
-                                            kita akan terus membuat ini sampai jadi, kita jual, kita bisa untuk banyak dan buktikan sama semua orang kalau kita bisa
+                                            <span class="komentar">{{ $komentar->komentar }}</span>
                                         </div>
                                     </div>
                                 </div>

@@ -30,7 +30,7 @@ class DetailKelasOnline extends Component
     {
         $kelons = KelasOnline::where('id', $this->kelonid)->with(['kelas', 'mapel', 'author'])->get()->first();
         $this->heading = [
-            'judul' => $kelons->kelas->nama." [".$kelons->mapel->nama."]",
+            'judul' => "Kelas Online ".$kelons->kelas->nama." [".$kelons->mapel->nama."]",
             'keterangan' => $kelons->materi
         ];
         $komentare = Komentar::where('kelon_id', $this->kelonid)->orderBy('created_at', 'ASC')->get();
