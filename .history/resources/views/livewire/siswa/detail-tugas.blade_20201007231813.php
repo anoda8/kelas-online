@@ -30,11 +30,11 @@
                     Respon Tugas
                 </div>
                 <div class="card-body">
-                    @if (($respon->count() > 0))
-                        {!! $respon->first()->jawaban !!}
-                        <a href="/{{ $respon->first()->file }}">Download</a>
+                    @if ($respon->count() > 0)
+
+                    @else
+
                     @endif
-                    <hr>
                     <div class="form-group">
                         <label for="">Isi Respon Tugas</label>
                         <div wire:ignore>

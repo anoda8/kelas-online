@@ -61,24 +61,23 @@ class DetailTugas extends Component
             'jawaban' => 'required'
         ]);
 
-        $data = [
-            'tugas_id' => $this->tugasid,
-            'author_id' => Auth::id(),
-            'jawaban' => $this->jawaban,
-            'videopath' => ''
-        ];
-
         if ($this->fileimport) {
             $namafile = strtolower(date("Y-m-d_H-i-s", time()) . "_" . $this->mapel . "." . $this->fileimport->extension());
-            $fullpath = 'storage/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/" . $namafile;
+            $fullpath = 'public/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/" . $namafile;
             $this->fileimport->storeAs('public/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/", $namafile);
-            $data['file'] = $fullpath;
         }
+
 
         ResponTugas::updateOrCreate([
             'tugas_id' => $this->tugasid,
             'author_id' => Auth::id(),
-        ], $data);
+        ], [
+            'tugas_id' => $this->tugasid,
+            'author_id' => Auth::id(),
+            'jawaban' => $this->jawaban,
+            'videopath' => '',
+            'file' => $fullpath
+        ]);
 
         $this->clearForm();
         $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => 'Berhasil menyimpan respon']);

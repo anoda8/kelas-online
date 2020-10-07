@@ -30,18 +30,12 @@
                     Respon Tugas
                 </div>
                 <div class="card-body">
-                    @if (($respon->count() > 0))
-                        {!! $respon->first()->jawaban !!}
-                        <a href="/{{ $respon->first()->file }}">Download</a>
-                    @endif
-                    <hr>
                     <div class="form-group">
                         <label for="">Isi Respon Tugas</label>
                         <div wire:ignore>
                             <textarea class="form-control" id="jawaban" name="jawaban" wire:model.lazy="jawaban" rows="3"></textarea>
                         </div>
                     </div>
-                    @error('jawaban') <span class="error">{{ $message }}</span> @enderror
                     <label for="">Lampirkan File</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -52,7 +46,6 @@
                             <label class="custom-file-label" for="inputGroupFile01">{{ $fileimport ? $fileimport->getClientOriginalName() : "Pilih Dokumen" }}</label>
                         </div>
                     </div>
-                    @error('fileimport') <span class="error">{{ $message }}</span> @enderror
                 </div>
                 <div class="card-footer">
                     <div class="btn-actions-pane-right">

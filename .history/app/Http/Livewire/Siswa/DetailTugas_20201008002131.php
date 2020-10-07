@@ -70,10 +70,11 @@ class DetailTugas extends Component
 
         if ($this->fileimport) {
             $namafile = strtolower(date("Y-m-d_H-i-s", time()) . "_" . $this->mapel . "." . $this->fileimport->extension());
-            $fullpath = 'storage/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/" . $namafile;
+            $fullpath = 'public/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/" . $namafile;
             $this->fileimport->storeAs('public/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/", $namafile);
-            $data['file'] = $fullpath;
         }
+
+
 
         ResponTugas::updateOrCreate([
             'tugas_id' => $this->tugasid,

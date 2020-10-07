@@ -27,29 +27,16 @@ class UsersACLRepository implements ACLRepository
     public function getRules(): array
     {
 
-        if (Auth::user()->hasRole('guru')) {
+        if(Auth::user()->hasRole('guru')){
             $username = auth()->user()->name;
-            if (!Storage::disk('public')->exists('kelasonline/' . $username)) {
-                Storage::disk('public')->makeDirectory('kelasonline/' . $username, 0775, true);
+            if(!Storage::disk('public')->exists('kelasonline/'.$username)){
+                Storage::disk('public')->makeDirectory('kelasonline/'.$username, 0775, true);
             }
             return [
                 ['disk' => 'public', 'path' => '/', 'access' => 1],
                 ['disk' => 'public', 'path' => 'kelasonline', 'access' => 1],
-                ['disk' => 'public', 'path' => 'kelasonline/' . $username, 'access' => 1],
-                ['disk' => 'public', 'path' => 'kelasonline/' . $username . '/*', 'access' => 2]
-            ];
-        }
-
-        if (Auth::user()->hasRole('siswa')) {
-            $username = auth()->user()->email;
-            if (!Storage::disk('public')->exists('kelasonline/' . $username)) {
-                Storage::disk('public')->makeDirectory('kelasonline/' . $username, 0775, true);
-            }
-            return [
-                ['disk' => 'public', 'path' => '/', 'access' => 1],
-                ['disk' => 'public', 'path' => 'kelasonline', 'access' => 1],
-                ['disk' => 'public', 'path' => 'kelasonline/' . $username, 'access' => 1],
-                ['disk' => 'public', 'path' => 'kelasonline/' . $username . '/*', 'access' => 2]
+                ['disk' => 'public', 'path' => 'kelasonline/'.$username, 'access' => 1],
+                ['disk' => 'public', 'path' => 'kelasonline/'.$username.'/*', 'access' => 2]
             ];
         }
         // if (Auth::id() === 1) {

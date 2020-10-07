@@ -30,11 +30,9 @@
                     Respon Tugas
                 </div>
                 <div class="card-body">
-                    @if (($respon->count() > 0))
-                        {!! $respon->first()->jawaban !!}
-                        <a href="/{{ $respon->first()->file }}">Download</a>
-                    @endif
-                    <hr>
+                    @if ($respon->count() > 0)
+
+                    @else
                     <div class="form-group">
                         <label for="">Isi Respon Tugas</label>
                         <div wire:ignore>
@@ -53,6 +51,8 @@
                         </div>
                     </div>
                     @error('fileimport') <span class="error">{{ $message }}</span> @enderror
+                    @endif
+
                 </div>
                 <div class="card-footer">
                     <div class="btn-actions-pane-right">

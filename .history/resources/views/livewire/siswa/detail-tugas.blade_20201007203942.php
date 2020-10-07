@@ -30,33 +30,24 @@
                     Respon Tugas
                 </div>
                 <div class="card-body">
-                    @if (($respon->count() > 0))
-                        {!! $respon->first()->jawaban !!}
-                        <a href="/{{ $respon->first()->file }}">Download</a>
-                    @endif
-                    <hr>
                     <div class="form-group">
-                        <label for="">Isi Respon Tugas</label>
-                        <div wire:ignore>
-                            <textarea class="form-control" id="jawaban" name="jawaban" wire:model.lazy="jawaban" rows="3"></textarea>
-                        </div>
+                      <label for="">Isi Respon Tugas</label>
+                      <textarea wire:ignore.self class="form-control" id="respontugas" name="respontugas" wire:model.lazy="respontugas" rows="3"></textarea>
                     </div>
-                    @error('jawaban') <span class="error">{{ $message }}</span> @enderror
                     <label for="">Lampirkan File</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" wire:model="fileimport" class="custom-file-input">
-                            <label class="custom-file-label" for="inputGroupFile01">{{ $fileimport ? $fileimport->getClientOriginalName() : "Pilih Dokumen" }}</label>
+                            <input type="file" wire:model="dokumen" class="custom-file-input">
+                            <label class="custom-file-label" for="inputGroupFile01">{{ $dokumen ? $dokumen->getClientOriginalName() : "Pilih Dokumen" }}</label>
                         </div>
                     </div>
-                    @error('fileimport') <span class="error">{{ $message }}</span> @enderror
                 </div>
                 <div class="card-footer">
                     <div class="btn-actions-pane-right">
-                        <button class="btn btn-success" wire:click="$emit('triggerSimpan')">Simpan</button>
+                        <button class="btn btn-success">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -66,15 +57,6 @@
 </div>
 @section('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('triggerSimpan', () => {
-        var jawaban = CKEDITOR.instances['jawaban'].getData();
-        @this.set('jawaban', jawaban);
-        @this.call('simpan');
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-});
-CKEDITOR.replace('jawaban');
+CKEDITOR.replace('respontugas');
 </script>
 @endsection

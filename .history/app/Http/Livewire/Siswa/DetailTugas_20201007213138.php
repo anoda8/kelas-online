@@ -8,15 +8,11 @@ use App\Models\Siswa;
 use App\Models\Tugas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 
 class DetailTugas extends Component
 {
-    use WithFileUploads;
-
     public $tugasid, $dokumen, $jawaban;
     public $mapel;
-    public $fileimport = null;
 
     public $heading;
     public function heading()
@@ -42,51 +38,34 @@ class DetailTugas extends Component
         $this->mapel = $tugas->mapel->nama;
         $this->heading['judul'] = $tugas->judul;
         $this->heading['keterangan'] = $tugas->mapel->nama . " (" . $tugas->author->name . ")";
-
-        $respon = ResponTugas::where(['author_id' => Auth::id(), 'tugas_id' => $this->tugasid])->get();
-
-        if ($respon->count() > 0) {
-            $this->jawaban = $respon->first()->jawaban;
-        }
-
         return view('livewire.siswa.detail-tugas', [
-            'tugas' => $tugas, 'respon' => $respon
+            'tugas' => $tugas
         ]);
     }
 
     public function simpan()
     {
         $this->validate([
-            'fileimport' => 'nullable|mimes:jpg,jpeg,png,xlsx,xls,doc,docx,ppt,pptx,pdf|max:5000',
+            'dokumen' => 'required|mimes:jpg,jpeg,png,xlsx,xls,doc,docx,ppt,pptx,pdf|max:5000',
             'jawaban' => 'required'
         ]);
 
-        $data = [
+        $namafile = Auth::user()->name . "_" . date("Y-m-d H:i:s") . "_" . $this->mapel . $this->fileimport->extension();
+        $this->fileimport->storeAs('public/kelasonline/' . Auth::user()->email . "/", $namafile);
+
+        ResponTugas::createOrUpdate([
             'tugas_id' => $this->tugasid,
             'author_id' => Auth::id(),
             'jawaban' => $this->jawaban,
-            'videopath' => ''
-        ];
-
-        if ($this->fileimport) {
-            $namafile = strtolower(date("Y-m-d_H-i-s", time()) . "_" . $this->mapel . "." . $this->fileimport->extension());
-            $fullpath = 'storage/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/" . $namafile;
-            $this->fileimport->storeAs('public/kelasonline/' . Auth::user()->email . "/" . $this->mapel . "/", $namafile);
-            $data['file'] = $fullpath;
-        }
-
-        ResponTugas::updateOrCreate([
-            'tugas_id' => $this->tugasid,
-            'author_id' => Auth::id(),
-        ], $data);
+            'videopath' => '',
+        ]);
 
         $this->clearForm();
-        $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => 'Berhasil menyimpan respon']);
+        $this->emit('closeAddForm');
+        $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => 'Berhasil menambahkan kelas online']);
     }
 
     public function clearForm()
     {
-        $this->fileimport = null;
-        $this->jawaban = '';
     }
 }

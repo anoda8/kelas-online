@@ -30,6 +30,7 @@
                     Respon Tugas
                 </div>
                 <div class="card-body">
+                    {{ $modeEdit }}
                     @if (($respon->count() > 0))
                         {!! $respon->first()->jawaban !!}
                         <a href="/{{ $respon->first()->file }}">Download</a>
