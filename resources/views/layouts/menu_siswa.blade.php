@@ -57,7 +57,6 @@
                             Tugas
                         </a>
                     </li>
-                    <li class="app-sidebar__heading">BANK SOAL</li>
                 </ul>
             </div>
         </div>

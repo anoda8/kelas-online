@@ -16,7 +16,7 @@
             <div class="mb-2 card">
                 <div class="card-header-tab card-header">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                        Tambah {{ $this->heading['judul'] }}
+                        {{ $this->heading['judul'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
                         <button class="btn btn-primary" wire:click="$emit('toggleAddForm')"><i class="fas fa-plus"></i> Tambah</button>

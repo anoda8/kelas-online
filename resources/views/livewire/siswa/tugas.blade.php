@@ -13,16 +13,50 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <form class="form-inline">
+                        <div class="form-group mr-2">
+                            <div wire:ignore>
+                            <select class="form-control form-control-sm pilih-mapel" wire:model.lazy="katakunciMapel">
+                                <option>== Pilih Mapel ==</option>
+                                @foreach ($pembelajaran as $pembl)
+                                    <option value="{{ $pembl->mapel_id }}">{{ $pembl->mapel->nama }} - {{ $pembl->mapel->guru->nama }}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" placeholder="Cari materi" class="form-control form-control-sm" wire:model="katakunciTgl">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary btn-sm ml-2" wire:click="today()">Tugas Hari Ini</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary btn-sm ml-2" wire:click="clearSearch()"><i class="fas fa-sync"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            {{ $tugase->links('layouts.pagination-links-simple') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             @foreach ($tugase as $tugas)
             <div class="mb-2 card">
-                <div class="card-header bg-info text-white" style="cursor:pointer;">
-                    <a href="/guru/tugas/detail/{{ $tugas->id }}" style="text-decoration: none;color:#000;">[{{ $tugas->mapel->nama }}]&nbsp;{{ $tugas->judul }}</a>
+                <div class="card-header bg-info text-white font-size-lg text-capitalize" style="cursor:pointer;" wire:click.prevent="$emit('linkDetail', {{ $tugas->id }})">
+                    [{{ $tugas->mapel->nama }}]&nbsp;{{ $tugas->judul }}
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
-                            Dilihat Oleh <br>
-                            <span class="font-weight-bold">30 Anak</span>
+                            Dibuat Tanggal <br>
+                            <span class="font-weight-bold">{{ date("d/m/Y H:i:s", strtotime($tugas->created_at)) }}</span>
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Respon <br>
@@ -33,19 +67,32 @@
                 <div class="card-footer">
                     <span class="font-weight-bold text-danger">{{ $tugas->kelas->nama }}</span>
                     <div class="btn-actions-pane-right">
-                        <div class="form-inline">
-                            <button class="btn btn-danger ml-2" wire:click="$emit('triggerHapus', {{ $tugas->id }})"><i class="fas fa-trash"></i> Hapus</button>
-                            <button class="btn btn-warning ml-2" wire:click="$emit('triggerSalin', {{ $tugas->id }})"><i class="fas fa-copy"></i> Salin</button>
-                            <button class="btn btn-info ml-2" wire:click="$emit('triggerEdit', {{ $tugas->id }})"><i class="fas fa-pencil-alt"></i> Edit</button>
-                        </div>
+                        Guru : <b>{{ $tugas->author->name }}</b>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            {{ $tugase->links('layouts.pagination-links-simple') }}
+        </div>
+    </div>
     @include('layouts.footer')
 </div>
 @section('scripts')
-
+<script>
+$(document).ready(function () {
+    $(".pilih-mapel").select2();
+    $(".pilih-mapel").on('change', function(e){
+        @this.set('katakunciMapel', e.target.value);
+    })
+});
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('linkDetail', kelonId => {
+        window.location.href = '/siswa/tugas/detail/'+ kelonId;
+    });
+});
+</script>
 @endsection

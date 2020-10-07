@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="date" placeholder="Cari materi" class="form-control form-control-sm" >
+                            <input type="date" placeholder="Cari materi" class="form-control form-control-sm" wire:model="katakunciTgl">
                         </div>
                         <div class="form-group">
                             <button type="button" class="btn btn-primary btn-sm ml-2" wire:click="today()">Kelas Hari Ini</button>
@@ -35,7 +35,6 @@
                         <div class="form-group">
                             <button type="button" class="btn btn-primary btn-sm ml-2" wire:click="clearSearch()"><i class="fas fa-sync"></i></button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -50,7 +49,7 @@
         <div class="col-md-12">
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
-                <div class="card-header text-capitalize bg-warning text-dark">
+                <div class="card-header font-size-lg text-capitalize bg-warning text-dark">
                     [{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}
                 </div>
                 <div class="card-body pt-0">

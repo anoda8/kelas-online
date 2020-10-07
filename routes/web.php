@@ -65,8 +65,9 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['role:siswa']], function () 
     Route::get('/pengumuman', App\Http\Livewire\Siswa\Pengumuman::class)->name('siswa.pengumuman');
     Route::get('/pengumuman/detail/{pengId}', App\Http\Livewire\Siswa\DetailPengumuman::class);
     Route::get('/kelasonline', App\Http\Livewire\Siswa\KelasOnline::class)->name('siswa.kelasonline');
-    Route::get('/kelasonline/detail/{kelonId}', App\Http\Livewire\Siswa\DetailKelasOnline::class);
+    Route::get('/kelasonline/detail/{kelonid}', App\Http\Livewire\Siswa\DetailKelasOnline::class);
     Route::get('/tugas', App\Http\Livewire\Siswa\Tugas::class)->name('siswa.tugas');
+    Route::get('/tugas/detail/{tugasid}', App\Http\Livewire\Siswa\DetailTugas::class);
 });
 
 Route::group(['prefix' => 'ortu', 'middleware' => ['role:ortu']], function () {
