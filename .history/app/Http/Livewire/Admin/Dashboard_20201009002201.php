@@ -22,8 +22,7 @@ class Dashboard extends Component
         $jumlah_guru = Guru::count();
         return view('livewire.admin.dashboard', [
             'jumlah' => [
-                'siswa' => $jumlah_siswa,
-                'guru' => $jumlah_guru
+                'siswa' => $jumlah_siswa, 'guru' => $jumlah_guru
             ]
         ]);
     }

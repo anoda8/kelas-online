@@ -75,17 +75,12 @@
                 <div class="card-footer">
                     <span class="font-weight-bold text-danger">{{ $kelon->kelas->nama }}</span>
                     <div class="btn-actions-pane-right">
-                        @if ($kelasaktif->count() > 0)
-                            @if ($kelasaktif->first()->kelon_id == $kelon->id)
-                                <div class="form-inline">
-                                    <button class="btn btn-primary" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
-                                </div>
-                            @endif
-                        @else
-                            <div class="form-inline">
-                                <button class="btn btn-primary" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
-                            </div>
+                        @if ($kelasaktif->kelon_id == $kelon->id)
+                        <div class="form-inline">
+                            <button class="btn btn-light" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
+                        </div>
                         @endif
+
                     </div>
                 </div>
             </div>

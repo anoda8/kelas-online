@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Siswa;
 
 use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
-use App\Models\LogKelasOnline;
 use App\Models\Pembelajaran;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
@@ -50,10 +49,10 @@ class KelasOnline extends Component
                 ->where('mapel_id', $this->katakunciMapel)
                 ->with(['kelas', 'mapel', 'author'])->latest('wkt_masuk')->paginate($this->perpage);
         }
-        $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get();
+        $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get()->first();
         $pembelajaran = Pembelajaran::where('kelas_id', $this->kelas->id)->with(['mapel.guru'])->get();
         return view('livewire.siswa.kelas-online', [
-            'kelons' => $kelon, 'pembelajaran' => $pembelajaran, 'kelasaktif' => $kelasaktif
+            'kelons' => $kelon, 'pembelajaran' => $pembelajaran
         ]);
     }
 

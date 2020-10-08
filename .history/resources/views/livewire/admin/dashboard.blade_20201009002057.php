@@ -75,7 +75,7 @@
                         <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{ $jumlah['siswa'] }}</span></div>
+                        <div class="widget-numbers text-white"><span>{{ $jumlah_siswa }}</span></div>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                         <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{ $jumlah['guru'] }}</span></div>
+                        <div class="widget-numbers text-white"><span>{{ $jumlah_siswa }}</span></div>
                     </div>
                 </div>
             </div>

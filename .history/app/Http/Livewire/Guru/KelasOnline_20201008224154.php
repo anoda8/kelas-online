@@ -68,10 +68,10 @@ class KelasOnline extends Component
             $kelons = ModelsKelasOnline::where('author_id', Auth::id())->whereDate('wkt_masuk', $this->kataKunciTgl)
                 ->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
         }
-
+        $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get()->first();
         $cariKelas = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->kataKunciMapel)->with(['kelas'])->get();
         return view('livewire.guru.kelas-online', [
-            'mapels' => $mapel, 'pembelajaran' => $pembl, 'kelons' => $kelons, 'cariKelas' => $cariKelas
+            'mapels' => $mapel, 'pembelajaran' => $pembl, 'kelons' => $kelons, 'cariKelas' => $cariKelas, 'kelasaktif' => $kelasaktif
         ]);
     }
 

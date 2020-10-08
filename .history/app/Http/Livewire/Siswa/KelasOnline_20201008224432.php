@@ -50,7 +50,7 @@ class KelasOnline extends Component
                 ->where('mapel_id', $this->katakunciMapel)
                 ->with(['kelas', 'mapel', 'author'])->latest('wkt_masuk')->paginate($this->perpage);
         }
-        $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get();
+        $kelasaktif = LogKelasOnlinenline::where('user_id', Auth::id())->where('status', true)->get()->first();
         $pembelajaran = Pembelajaran::where('kelas_id', $this->kelas->id)->with(['mapel.guru'])->get();
         return view('livewire.siswa.kelas-online', [
             'kelons' => $kelon, 'pembelajaran' => $pembelajaran, 'kelasaktif' => $kelasaktif

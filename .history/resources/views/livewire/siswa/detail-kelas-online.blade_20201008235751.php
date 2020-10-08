@@ -150,22 +150,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
         });
     });
 });
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('tanyaKeluar', () => {
-        Swal.fire({
-            title: 'Peringatan !',
-            text: 'Apakah anda yakin akan keluar kelas ?',
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Ya !'
-        }).then((index) => {
-            if(index.value){
-                @this.call('keluar');
-            }
-        });
-    });
-});
 </script>
 @endsection

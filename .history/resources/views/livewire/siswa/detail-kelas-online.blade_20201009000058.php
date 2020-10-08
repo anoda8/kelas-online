@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             showCancelButton: true,
             confirmButtonColor: 'var(--success)',
             cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Ya !'
+            confirmButtonText: 'Hapus !'
         }).then((index) => {
             if(index.value){
                 @this.call('keluar');

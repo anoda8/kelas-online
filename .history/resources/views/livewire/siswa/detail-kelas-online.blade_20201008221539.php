@@ -21,7 +21,7 @@
                     <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
                         @if (session('_openClass') == session('_token'))
                             <div class="text-right">
-                                <button class="btn btn-danger" wire:click="$emit('tanyaKeluar')">Keluar Kelas</button>
+                                <button class="btn btn-danger" wire:click="keluar()">Keluar Kelas</button>
                             </div>
                         @else
                             <div class="text-right">
@@ -120,13 +120,6 @@
 
                     </div>
                 </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        @foreach ($listonline as $useron)
-                            <li class="list-group-item bg-light text-capitalize">{{ $useron->user->name }}</li>
-                        @endforeach
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -135,37 +128,6 @@
 </div>
 @section('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('dilarangMasuk', () => {
-        Swal.fire({
-            title: 'Peringatan !',
-            text: 'Anda sedang aktif di kelas lain, silahkan keluar dulu !',
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Hapus !'
-        }).then(() => {
-            window.location.href="/siswa/kelasonline";
-        });
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('tanyaKeluar', () => {
-        Swal.fire({
-            title: 'Peringatan !',
-            text: 'Apakah anda yakin akan keluar kelas ?',
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Ya !'
-        }).then((index) => {
-            if(index.value){
-                @this.call('keluar');
-            }
-        });
-    });
-});
+
 </script>
 @endsection

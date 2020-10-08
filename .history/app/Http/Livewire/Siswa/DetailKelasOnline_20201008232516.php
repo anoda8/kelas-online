@@ -30,12 +30,9 @@ class DetailKelasOnline extends Component
         $this->heading = $this->heading();
         $this->kelonid = $kelonid;
         $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get();
-        if ($kelasaktif->count() > 0) {
-            if ($kelasaktif->first()->kelon_id != $this->kelonid) {
-                redirect('/siswa/kelasonline');
-            }
+        if ($kelasaktif->first()->kelon_id != $this->kelonid) {
+            redirect('/siswa/kelasonline');
         }
-
         $this->siswa = Siswa::where('user_id', Auth::id())->get()->first();
         $this->kelas = Kelas::where('id', $this->siswa->kelas_id)->get()->first();
     }
@@ -98,7 +95,7 @@ class DetailKelasOnline extends Component
 
     public function listOnline()
     {
-        $listonline = LogKelasOnline::where('kelon_id', $this->kelonid)->where('status', true)->with(['user'])->latest()->get();
+        $listonline = LogKelasOnline::where('kelon_id', $this->kelonid)->latest()->get();
         return $listonline;
     }
 }

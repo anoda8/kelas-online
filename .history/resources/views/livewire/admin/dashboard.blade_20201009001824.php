@@ -75,20 +75,7 @@
                         <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{ $jumlah['siswa'] }}</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-4">
-            <div class="card mb-3 widget-content bg-plum-plate">
-                <div class="widget-content-wrapper text-white">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Jumlah Guru</div>
-                        <div class="widget-subheading">People Interested</div>
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{ $jumlah['guru'] }}</span></div>
+                        <div class="widget-numbers text-white"><span>700</span></div>
                     </div>
                 </div>
             </div>

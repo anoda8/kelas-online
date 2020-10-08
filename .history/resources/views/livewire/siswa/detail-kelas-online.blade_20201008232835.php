@@ -21,7 +21,7 @@
                     <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
                         @if (session('_openClass') == session('_token'))
                             <div class="text-right">
-                                <button class="btn btn-danger" wire:click="$emit('tanyaKeluar')">Keluar Kelas</button>
+                                <button class="btn btn-danger" wire:click="keluar()">Keluar Kelas</button>
                             </div>
                         @else
                             <div class="text-right">
@@ -147,23 +147,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
             confirmButtonText: 'Hapus !'
         }).then(() => {
             window.location.href="/siswa/kelasonline";
-        });
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('tanyaKeluar', () => {
-        Swal.fire({
-            title: 'Peringatan !',
-            text: 'Apakah anda yakin akan keluar kelas ?',
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Ya !'
-        }).then((index) => {
-            if(index.value){
-                @this.call('keluar');
-            }
         });
     });
 });

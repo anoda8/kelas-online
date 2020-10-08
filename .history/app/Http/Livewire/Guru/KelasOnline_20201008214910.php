@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Guru;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
-use App\Models\LogKelasOnline;
 use App\Models\Mapel;
 use App\Models\Pembelajaran;
 use Illuminate\Support\Facades\Auth;

@@ -1,49 +1,56 @@
 <div>
     @include('layouts.header')
-    @include('layouts.menu_siswa')
+    @include('layouts.menu_guru')
     <div class="app-page-title">
         <div class="page-title-wrapper">
             @include('livewire.templates.title', $heading)
             <div class="page-title-actions">
-                {{-- <a href="{{ route('siswa.pengumuman') }}" data-toggle="tooltip" title="Kembali" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
-                    <i class="fa fa-arrow-left"></i>
-                </a> --}}
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                    <i class="fa fa-star"></i>
+                </button>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card mb-2">
-                <div class="card-header">
-                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                        {{ $kelas->materi }}
+            <div class="mb-2 card">
+                <div class="card-header-tab card-header">
+                    <div class="col-md-8 col-sm-12 text-capitalize font-size-lg">
+                        {{ $heading['keterangan'] }}
                     </div>
-                    <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
-                        @if (session('_openClass') == session('_token'))
-                            <div class="text-right">
-                                <button class="btn btn-danger" wire:click="$emit('tanyaKeluar')">Keluar Kelas</button>
-                            </div>
-                        @else
-                            <div class="text-right">
-                                <button class="btn btn-primary mr-3" wire:click="masuk()">Masuk Kelas</button>
-                                <a class="btn btn-dark" href="{{ route('siswa.kelasonline') }}" data-toggle="tooltip" data-placement="top" title="Kembali"><i class="fas fa-arrow-left"></i></a>
-                            </div>
-                        @endif
+                    <div class="col-md-4 col-sm-12 text-right">
+                        <a class="btn btn-primary mt-1" href="{{ route('guru.kelasonline') }}"><i class="fas fa-arrow-left"></i> Kembali</a>
+                    </div>
+                </div>
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        Tanggal : {{ date("d/m/Y", strtotime($kelons->wkt_masuk)) }} => Pukul {{ date("H:i", strtotime($kelons->wkt_masuk)) }} s/d {{ date("H:i", strtotime($kelons->wkt_selesai)) }}
                     </div>
                 </div>
                 <div class="card-body">
-                    @if (session('_openClass') == session('_token'))
-                        {!! $kelas->isi_materi !!}
+                    {!! $kelons->isi_materi !!}
+                    <hr>
+                    <div class="video-container">
+                        {!! $kelons->video_path !!}
+                    </div>
+                    <hr>
+                    @if ($kelons->file != null)
+                        <ul class="list-group">
+                            <a href="/{{ $kelons->file }}">
+                                <li class="list-group-item bg-light">
+                                    @php
+                                        $linkfile = explode('/', $kelons->file);
+                                        echo end($linkfile);
+                                    @endphp
+                                </li>
+                            </a>
+                        </ul>
                     @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+
                 </div>
             </div>
         </div>
     </div>
-    @if (session('_openClass') == session('_token'))
     <div class="row">
         <div class="col-md-7">
             <div class="card-hover-shadow-2x mb-3 card">
@@ -120,52 +127,7 @@
 
                     </div>
                 </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        @foreach ($listonline as $useron)
-                            <li class="list-group-item bg-light text-capitalize">{{ $useron->user->name }}</li>
-                        @endforeach
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
-    @endif
-    @include('layouts.footer')
 </div>
-@section('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('dilarangMasuk', () => {
-        Swal.fire({
-            title: 'Peringatan !',
-            text: 'Anda sedang aktif di kelas lain, silahkan keluar dulu !',
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Hapus !'
-        }).then(() => {
-            window.location.href="/siswa/kelasonline";
-        });
-    });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('tanyaKeluar', () => {
-        Swal.fire({
-            title: 'Peringatan !',
-            text: 'Apakah anda yakin akan keluar kelas ?',
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'var(--success)',
-            cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Ya !'
-        }).then((index) => {
-            if(index.value){
-                @this.call('keluar');
-            }
-        });
-    });
-});
-</script>
-@endsection

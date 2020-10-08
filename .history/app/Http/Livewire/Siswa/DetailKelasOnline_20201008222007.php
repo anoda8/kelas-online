@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class DetailKelasOnline extends Component
 {
-    public $kelonid, $inputChat;
+    public $kelonid;
 
     public $heading;
     public function heading()
@@ -29,23 +29,22 @@ class DetailKelasOnline extends Component
         $this->level = request()->segment(3);
         $this->heading = $this->heading();
         $this->kelonid = $kelonid;
-        $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get();
-        if ($kelasaktif->count() > 0) {
-            if ($kelasaktif->first()->kelon_id != $this->kelonid) {
-                redirect('/siswa/kelasonline');
-            }
-        }
-
         $this->siswa = Siswa::where('user_id', Auth::id())->get()->first();
         $this->kelas = Kelas::where('id', $this->siswa->kelas_id)->get()->first();
     }
 
     public function render()
     {
+        $kelasaktif = LogKelasOnline::where('user_id', Auth::id())->where('status', true)->get();
+        dd($kelasaktif->first());
+        if ($kelasaktif->first()->kelon_id != $this->kelonid) {
+            $this->emit('dilarangMasuk');
+        }
+
         $kelas = KelasOnline::find($this->kelonid);
         $komentare = Komentar::where('kelon_id', $this->kelonid)->orderBy('created_at', 'ASC')->get();
         return view('livewire.siswa.detail-kelas-online', [
-            'kelas' => $kelas, 'komentare' => $komentare, 'listonline' => $this->listOnline()
+            'kelas' => $kelas, 'komentare' => $komentare
         ]);
     }
 
@@ -81,24 +80,5 @@ class DetailKelasOnline extends Component
     public function keluar(Request $request)
     {
         $request->session()->forget('_openClass');
-        $request->session()->forget('_classId');
-    }
-
-    public function simpanKomen()
-    {
-        if ($this->inputChat != null) {
-            Komentar::create([
-                'kelon_id' => $this->kelonid,
-                'author_id' => Auth::id(),
-                'komentar' => $this->inputChat
-            ]);
-            $this->inputChat = null;
-        }
-    }
-
-    public function listOnline()
-    {
-        $listonline = LogKelasOnline::where('kelon_id', $this->kelonid)->where('status', true)->with(['user'])->latest()->get();
-        return $listonline;
     }
 }
