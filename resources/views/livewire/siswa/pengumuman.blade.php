@@ -12,6 +12,11 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            {{ $pengumuman->links('layouts.pagination-links-simple') }}
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             @foreach ($pengumuman as $peng)
             <div class="mb-2 card">

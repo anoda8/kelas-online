@@ -80,8 +80,14 @@
                                 </div>
                                 @error('isimateri') <span class="text-danger error">{{ $message }}</span>@enderror
                                 <div class="form-group">
-                                    <label for="">Link Youtube</label>
+                                    <label for="">Embed / Kode Semat Youtube</label>
                                     <input type="text" class="form-control" wire:model.lazy="videopath">
+                                    <br>
+                                    @if ($videopath)
+                                        <div class="text-center video-container">
+                                            {!! $videopath !!}
+                                        </div>
+                                    @endif
                                 </div>
                                 <label for="">Lampirkan File</label>
                                 <div class="input-group">
@@ -89,11 +95,25 @@
                                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" wire:model="dokumen" class="custom-file-input">
-                                        <label class="custom-file-label" for="inputGroupFile01">{{ $dokumen ? $dokumen->getClientOriginalName() : "Pilih Dokumen" }}</label>
+                                        <input type="file" wire:model="fileimport" class="custom-file-input">
+                                        <label class="custom-file-label" for="inputGroupFile01">{{ $fileimport ? $fileimport->getClientOriginalName() : "Pilih Dokumen" }}</label>
                                     </div>
                                 </div>
+                                @error('fileimport') <span class="text-danger error">{{ $message }}</span>@enderror
                                 <small id="helpId" class="form-text text-muted">(PDF, Excel, Word, PowerPoint)</small>
+                                <br>
+                                @if($namafileUpload != null)
+                                    <ul class="list-group">
+                                        <a href="/{{ $namafileUpload }}">
+                                            <li class="list-group-item bg-light">
+                                                @php
+                                                    $linkfile = explode('/', $namafileUpload );
+                                                    echo end($linkfile);
+                                                @endphp
+                                            </li>
+                                        </a>
+                                    </ul>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -137,7 +157,7 @@
         <div class="col-md-12">
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
-                <div class="card-header bg-warning text-white" style="cursor:pointer;" wire:click="$emit('openDetail', {{ $kelon->id }})">
+                <div class="card-header bg-warning font-size-lg text-white text-capitalize" style="cursor:pointer;" wire:click="$emit('openDetail', {{ $kelon->id }})">
                     <span style="text-decoration: none;color:#000;">[{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}</span>
                 </div>
                 <div class="card-body pt-0">

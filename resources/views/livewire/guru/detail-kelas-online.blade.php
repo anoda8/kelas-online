@@ -31,8 +31,7 @@
                     {!! $kelons->isi_materi !!}
                     <hr>
                     <div class="video-container">
-                        {{ $kelons->video_path }}
-                        <iframe width="748" height="421" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {!! $kelons->video_path !!}
                     </div>
                     <hr>
                     <ul class="list-group">

@@ -16,6 +16,9 @@
             <div class="card mb-2">
                 <div class="card-header text-capitalize">
                     [{{ $tugas->mapel->nama }}] {{ $tugas->judul }}
+                    <div class="btn-actions-pane-right">
+                        <a class="btn btn-primary" href="{{ route('siswa.tugas') }}" title="Kembali"><i class="fas fa-arrow-left"></i> Kembali</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     {!! $tugas->deskripsi !!}
@@ -41,7 +44,7 @@
                             <textarea class="form-control" id="jawaban" name="jawaban" wire:model.lazy="jawaban" rows="3"></textarea>
                         </div>
                     </div>
-                    @error('jawaban') <span class="error">{{ $message }}</span> @enderror
+                    @error('jawaban') <span class="error text-danger">{{ $message }}</span> @enderror <br>
                     <label for="">Lampirkan File</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -52,7 +55,7 @@
                             <label class="custom-file-label" for="inputGroupFile01">{{ $fileimport ? $fileimport->getClientOriginalName() : "Pilih Dokumen" }}</label>
                         </div>
                     </div>
-                    @error('fileimport') <span class="error">{{ $message }}</span> @enderror
+                    @error('fileimport') <span class="error text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="card-footer">
                     <div class="btn-actions-pane-right">

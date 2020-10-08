@@ -3,16 +3,19 @@
 namespace App\Http\Livewire\Guru;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
 use App\Models\Mapel;
 use App\Models\Pembelajaran;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class KelasOnline extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     public $mapelid, $kelasid, $materi, $isimateri, $wktmulai, $wktselesai, $tgl_kelon, $videopath;
     public $guruid;
@@ -21,6 +24,8 @@ class KelasOnline extends Component
     public $editId = null;
     public $kataKunciMateri = null, $kataKunciMapel, $kataKunciKelas = null, $kataKunciTgl = null;
     public $perpage = 10;
+    public $fileimport = null;
+    public $namafileUpload = null;
 
     public $heading;
     public function heading()
@@ -77,6 +82,7 @@ class KelasOnline extends Component
     public function simpan()
     {
         $this->emitUp('postCkEditor');
+
         $this->validate([
             'tgl_kelon' => 'required',
             'mapelid' => 'required',
@@ -85,35 +91,38 @@ class KelasOnline extends Component
             'isimateri' => 'required',
             'wktmulai' => 'required',
             'wktselesai' => 'required',
-            'dokumen' => '',
-            'videopath' => '',
+            'fileimport' => 'nullable|mimes:jpg,jpeg,png,xlsx,xls,doc,docx,ppt,pptx,pdf|max:10000',
         ]);
 
         // dd($this->tgl_kelon." ".$this->wktmulai.":00");
+        $data = [
+            'kelas_id' => $this->kelasid,
+            'mapel_id' => $this->mapelid,
+            'author_id' => Auth::id(),
+            'materi' => $this->materi,
+            'isi_materi' => $this->isimateri,
+            'video_path' => $this->videopath
+        ];
 
-        if ($this->editId != null) {
-            ModelsKelasOnline::where('id', $this->editId)->update([
-                'kelas_id' => $this->kelasid,
-                'mapel_id' => $this->mapelid,
-                'author_id' => Auth::id(),
-                'materi' => $this->materi,
-                'isi_materi' => $this->isimateri,
-                'wkt_masuk' => $this->tgl_kelon . " " . $this->wktmulai,
-                'wkt_selesai' => $this->tgl_kelon . " " . $this->wktselesai,
-            ]);
-            $this->editId = null;
-        } else {
-            ModelsKelasOnline::create([
-                'kelas_id' => $this->kelasid,
-                'mapel_id' => $this->mapelid,
-                'author_id' => Auth::id(),
-                'materi' => $this->materi,
-                'isi_materi' => $this->isimateri,
-                'wkt_masuk' => $this->tgl_kelon . " " . $this->wktmulai . ":00",
-                'wkt_selesai' => $this->tgl_kelon . " " . $this->wktselesai . ":00",
-            ]);
+        if ($this->fileimport != null) {
+            $mapel = Mapel::find($this->mapelid)->nama;
+            $kelas = Kelas::find($this->kelasid)->nama;
+            $namafile = strtolower(date("Y-m-d", time()) . "_" . $this->mapelid."_".$this->kelasid."_".$this->materi.".". $this->fileimport->extension());
+            $fullpath = 'storage/kelasonline/' . Auth::user()->name . "/" . $mapel."/".$kelas . "/" . $namafile;
+            $this->fileimport->storeAs('public/kelasonline/' . Auth::user()->name . "/" . $mapel."/".$kelas. "/", $namafile);
+            $data['file'] = $fullpath;
         }
 
+        if ($this->editId != null) {
+            $data['wkt_masuk']      = $this->tgl_kelon . " " . $this->wktmulai;
+            $data['wkt_selesai']    = $this->tgl_kelon . " " . $this->wktselesai;
+            ModelsKelasOnline::where('id', $this->editId)->update($data);
+            $this->editId = null;
+        } else {
+            $data['wkt_masuk']      = $this->tgl_kelon . " " . $this->wktmulai . ":00";
+            $data['wkt_selesai']    = $this->tgl_kelon . " " . $this->wktselesai . ":00";
+            ModelsKelasOnline::create($data);
+        }
 
         $this->clearForm();
         $this->emit('closeAddForm');
@@ -128,6 +137,8 @@ class KelasOnline extends Component
         $this->mapelid = $kelon->mapel_id;
         $this->kelasid = $kelon->kelas_id;
         $this->materi = $kelon->materi;
+        $this->videopath = $kelon->video_path;
+        $this->namafileUpload = $kelon->file;
         $this->emit('isiMateri', $kelon->isi_materi);
         // $this->isimateri = $kelon->isi_materi;
         $this->wktmulai = date("H:i:s", strtotime($kelon->wkt_masuk));
@@ -143,6 +154,8 @@ class KelasOnline extends Component
         $this->mapelid = $kelon->mapel_id;
         $this->kelasid = $kelon->kelas_id;
         $this->materi = $kelon->materi;
+        $this->videopath = $kelon->video_path;
+        $this->namafileUpload = $kelon->file;
         $this->emit('isiMateri', $kelon->isi_materi);
         // $this->isimateri = $kelon->isi_materi;
         $this->wktmulai = date("H:i", strtotime($kelon->wkt_masuk));
@@ -153,6 +166,10 @@ class KelasOnline extends Component
     {
         $kelon = ModelsKelasOnline::find($id);
         $kelon->delete();
+        if($kelon->file != null){
+            $file = str_replace('storage/', '', $kelon->file);
+            Storage::disk('public')->delete($file);
+        }
         $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => 'Berhasil menghapus ' . $kelon->materi]);
     }
 
@@ -165,6 +182,8 @@ class KelasOnline extends Component
         $this->isimateri = '';
         $this->wktmulai = '';
         $this->wktselesai = '';
+        $this->namafileUpload = null;
+        $this->videopath = null;
         $this->editId = null;
     }
 }
