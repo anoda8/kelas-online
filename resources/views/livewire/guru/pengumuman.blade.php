@@ -99,8 +99,8 @@
         <div class="col-md-12">
             @foreach ($pengumumans as $peng)
             <div class="mb-2 card">
-                <div class="card-header card-header bg-light">
-                    <div class="card-header-title font-weight-normal text-justify">
+                <div class="card-header card-header bg-midnight-bloom text-white">
+                    <div class="card-header-title font-weight-normal font-size-lg text-capitalize text-justify">
                         <b>{{ $peng->judul }}</b>
                     </div>
                 </div>
@@ -108,8 +108,6 @@
                     <div class="isipengumuman mt-3">
                         {!! $peng->isi_pengumuman !!}
                     </div>
-                    <hr>
-                    <span>Author : <b>{{ $peng->author->name }}</b></span><br>
                 </div>
                 <div class="card-footer">
                     <div class="btn-actions-pane-left text-capitalize">
@@ -129,7 +127,7 @@
                                 @endswitch
                             @endif
                             @if ($peng->kelas_id != null)
-                                {{ $peng->kelas->nama }}
+                                <b>{{ $peng->kelas->nama }}</b>
                             @endif
                         </span>
                         <span>[{{ $peng->published_at }}]</span>

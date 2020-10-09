@@ -118,7 +118,7 @@
         <div class="col-md-12">
             @foreach ($tugase as $tugas)
             <div class="mb-2 card">
-                <div class="card-header bg-info font-size-lg text-white text-capitalize" style="cursor:pointer;" wire:click="$emit('linkDetail', {{ $tugas->id }})">
+                <div class="card-header bg-arielle-smile font-size-lg text-white text-capitalize" style="cursor:pointer;" wire:click="$emit('linkDetail', {{ $tugas->id }})">
                     <span style="text-decoration: none;color:#000;">[{{ $tugas->mapel->nama }}]&nbsp;{{ $tugas->judul }}</span>
                 </div>
                 <div class="card-body pt-0">

@@ -141,12 +141,10 @@
                                 <a href="#">
                                     <i class="metismenu-icon fas fa-tasks"></i>
                                     Tugas
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <a href="#">
                                     <i class="metismenu-icon fas fa-pen-alt"></i>
-                                    Ulangan
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    Presensi
                                 </a>
                             </li>
                         </ul>

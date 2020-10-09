@@ -157,8 +157,8 @@
         <div class="col-md-12">
             @foreach ($kelons as $kelon)
             <div class="mb-2 card">
-                <div class="card-header bg-warning font-size-lg text-white text-capitalize" style="cursor:pointer;" wire:click="$emit('openDetail', {{ $kelon->id }})">
-                    <span style="text-decoration: none;color:#000;">[{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}</span>
+                <div class="card-header bg-asteroid font-size-lg text-white text-capitalize" style="cursor:pointer;" wire:click="$emit('openDetail', {{ $kelon->id }})">
+                    [{{ $kelon->mapel->nama }}]&nbsp;{{ $kelon->materi }}
                 </div>
                 <div class="card-body pt-0">
                     <div class="row">
