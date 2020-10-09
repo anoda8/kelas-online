@@ -136,7 +136,7 @@
                                 </a>
                                 <a href="#">
                                     <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
-                                    Pembelajaran
+                                    Kelas Online
                                 </a>
                                 <a href="#">
                                     <i class="metismenu-icon fas fa-tasks"></i>

@@ -15,6 +15,8 @@ class KelasOnline extends Model
         'kelas_id', 'mapel_id', 'materi', 'isi_materi', 'video_path', 'wkt_masuk', 'wkt_selesai', 'author_id', 'status'
     ];
 
+    protected $dates = ['wkt_masuk', 'wkt_selesai'];
+
     public function kelas()
     {
         return $this->belongsTo('App\Models\Kelas');
