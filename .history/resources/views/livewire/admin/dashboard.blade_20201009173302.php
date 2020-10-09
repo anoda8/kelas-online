@@ -125,7 +125,7 @@
             <div class="card mb-3">
                 <div class="card-header-tab card-header">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-bold"><i
-                            class="header-icon fas fa-bullhorn mr-3 text-muted opacity-6"> </i>Pengumuman
+                            class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Pengumuman
                     </div>
                     <div class="btn-actions-pane-right actions-icon-btn">
                         <div class="btn-group dropdown">
@@ -167,7 +167,8 @@
         <div class="col-lg-12">
             <div class="card mb-3">
                 <div class="card-header-tab card-header">
-                    <div class="card-header-title font-size-lg text-capitalize font-weight-bold"><i class="header-icon fas fa-chalkboard-teacher mr-3 text-muted opacity-6"> </i>Kelas Online Hari Ini {{ date("d/m/Y") }}
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-bold"><i
+                            class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Kelas Online Hari Ini {{ date("d/m/Y") }}
                     </div>
                     <div class="btn-actions-pane-right actions-icon-btn">
                         <div class="btn-group dropdown">

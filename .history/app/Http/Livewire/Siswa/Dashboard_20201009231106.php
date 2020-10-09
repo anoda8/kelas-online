@@ -46,8 +46,7 @@ class Dashboard extends Component
             ],
             'data' => [
                 'pengumuman' => $pengumuman,
-                'kelon' => $kelon,
-                'tugas' => $tugas
+                'kelon' => $kelon
             ]
         ]);
     }

@@ -13,7 +13,7 @@
         </div>
         </div>
         <div class="loader">
-            <div class="ball-scale-multiple" wire:loading style="display:none;position:fixed; z-index:999999;top:calc(20% - 10px);right:calc(50% - 10px);">
+            <div class="ball-scale-multiple"  style="position:fixed; z-index:999999;top:calc(20% - 40px);right:calc(50% - 25px);">
                 <div></div>
                 <div></div>
             </div>

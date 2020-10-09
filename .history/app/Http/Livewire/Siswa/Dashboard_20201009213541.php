@@ -9,10 +9,14 @@ use App\Models\Siswa;
 use App\Models\Tugas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Dashboard extends Component
 {
+    use WithPagination;
+
     public $kelas, $siswa;
+    public $kelon_perpage = 10;
 
     public $heading;
     public function heading()
@@ -36,9 +40,7 @@ class Dashboard extends Component
         $jumlah_kelon = KelasOnline::where('kelas_id', $this->kelas->id)->count();
         $jumlah_tugas = Tugas::where('kelas_id', $this->kelas->id)->count();
         $pengumuman = Pengumuman::where('kelas_id', $this->kelas->id)->with(['author', 'komentar'])->latest()->take(3)->get();
-        $tugas = Tugas::where('kelas_id', $this->kelas->id)->with(['author', 'mapel'])->latest()->take(3)->get();
-        $kelon = KelasOnline::where('kelas_id', $this->kelas->id)->whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author'])->get();
-
+        $kelon = KelasOnline::whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author'])->paginate($this->kelon_perpage);
         return view('livewire.siswa.dashboard', [
             'jumlah' => [
                 'kelon' => $jumlah_kelon,
@@ -46,8 +48,7 @@ class Dashboard extends Component
             ],
             'data' => [
                 'pengumuman' => $pengumuman,
-                'kelon' => $kelon,
-                'tugas' => $tugas
+                'kelon' => $kelon
             ]
         ]);
     }
