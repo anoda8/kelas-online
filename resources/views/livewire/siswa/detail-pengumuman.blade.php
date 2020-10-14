@@ -17,7 +17,7 @@
                 <div class="card-body">
                     {!! $peng->isi_pengumuman !!}
                     <hr>
-                    Oleh : {{ $peng->author->name }}
+                    Oleh : <b>{{ $peng->author->name }}</b>
                 </div>
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
                     <div class="card-hover-shadow-2x mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                                <i class="header-icon lnr-printer icon-gradient bg-ripe-malin"> </i>Percakapan
+                                Percakapan
                             </div>
                             <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
 
@@ -36,9 +36,9 @@
                                 <div class="chat-wrapper p-1">
                                     @foreach ($komentare as $komentar)
                                         @if ($komentar->author_id == auth()->id())
-                                        <div class="p-1 mb-2 bg-info text-white rounded clearfix">
+                                        <div class="p-1 mb-2 bg-primary text-white rounded clearfix">
                                             <div class="row">
-                                                <div class="col-lg-11 col-md-10 col-sm-7 text-right mb-3">
+                                                <div class="col-md-11 col-lg-11 col-sm-5 text-right mb-3">
                                                     <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
                                                     <small class="opacity-6">
                                                         <i class="fa fa-calendar-alt mr-1"></i>
@@ -46,7 +46,7 @@
                                                     </small><br>
                                                     <span class="komentar">{{ $komentar->komentar }}</span>
                                                 </div>
-                                                <div class="col-lg-1 col-md-2 col-sm-5">
+                                                <div class="col-md-1 col-lg-1 col-sm-3">
                                                     <div class="avatar-icon avatar-icon-sm rounded pull-right">
                                                         <img src="{{ asset('images/avatars/1.jpg') }}" alt="">
                                                     </div>
@@ -56,12 +56,12 @@
                                         @else
                                         <div class="p-3 mb-2 bg-light text-dark rounded clearfix">
                                             <div class="row">
-                                                <div class="col-md-1 col-sm-3">
+                                                <div class="col-md-1 mr-2 col-sm-3">
                                                     <div class="avatar-icon avatar-icon-sm rounded pull-left mb-2">
                                                         <img src="{{ asset('images/avatars/1.jpg') }}" alt=""><br>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-11 col-sm-5 text-justify pull-left ">
+                                                <div class="col-md-9 col-sm-5 text-justify">
                                                     <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
                                                     <small class="opacity-6">
                                                         <i class="fa fa-calendar-alt mr-1"></i>

@@ -19,6 +19,8 @@
                         {{ $heading['keterangan'] }}
                     </div>
                     <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
+                        <a href="/guru/kelasonline/presensi/{{ $kelons->id }}" class="btn btn-warning mt-1" target="_blank"><i class="fas fa-print"></i>&nbsp;&nbsp;Presensi</a>
+                        {{-- <a href="/guru/kelasonline/cetak/{{ $kelons->id }}" class="btn btn-info mt-1"><i class="fas fa-print"></i>&nbsp;&nbsp;Detail Laporan</a> --}}
                         <a href="/guru/kelasonline/cetak/{{ $kelons->id }}" class="btn btn-info mt-1"><i class="fas fa-print"></i>&nbsp;&nbsp;Unduh Laporan</a>
                         <a class="btn btn-primary mt-1" href="{{ route('guru.kelasonline') }}"><i class="fas fa-arrow-left"></i> Kembali</a>
                     </div>
@@ -37,7 +39,7 @@
                     <hr>
                     @if ($kelons->file != null)
                         <ul class="list-group">
-                            <a href="/{{ $kelons->file }}">
+                            <a href="/{{ $kelons->file }}" target="_blank">
                                 <li class="list-group-item bg-light">
                                     @php
                                         $linkfile = explode('/', $kelons->file);

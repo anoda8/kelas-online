@@ -59,11 +59,14 @@ class KelasOnline extends Component
 
     public function masukKelas($kelonId)
     {
+        $siswaid = Siswa::where('user_id', Auth::id())->get()->first()->id;
+
         LogKelasOnline::updateOrCreate([
             'kelon_id' => $kelonId,
             'user_id' => Auth::id()
         ], [
             'kelon_id' => $kelonId,
+            'siswa_id' => $siswaid,
             'user_id' => Auth::id(),
             'status' => true
         ]);

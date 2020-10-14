@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SMAGA SMART</title>
+    <title>Kelas Online</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     @livewireStyles

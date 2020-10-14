@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Guru;
 
 use App\Events\KelonChatEvent;
 use App\Events\KelonPesanEvent;
+use App\Models\Kelas;
 use App\Models\KelasOnline;
 use App\Models\Komentar;
 use App\Models\User;
@@ -94,8 +95,24 @@ class DetailKelasOnline extends Component
 
     public function cetak($kelonid)
     {
-        $pdf = PDFDom::loadview('cetak.detailKelasOnline');
+        $kelon = KelasOnline::where('id', $kelonid)->with(['kelas', 'mapel', 'author', 'log.siswa'])->get()->first();
+        $kelas = Kelas::where('id', $kelon->kelas_id)->with('siswa')->get()->first();
+
+        $data = ['kelon' => $kelon, 'kelas' => $kelas];
+        view()->share('data', $data);
+        $pdf = PDFDom::setOptions(['defaultPaperSize' => 'a4'])->loadView('cetak.detailKelasOnline', $data);
         return $pdf->download('detailkelas.pdf');
+    }
+
+    public function presensi($kelonid)
+    {
+        $kelon = KelasOnline::where('id', $kelonid)->with(['kelas', 'mapel', 'author', 'log.user'])->get()->first();
+        $kelas = Kelas::where('id', $kelon->kelas_id)->with('siswa')->get()->first();
+
+        $data = ['kelon' => $kelon, 'kelas' => $kelas];
+        view()->share('data', $data);
+        $pdf = PDFDom::setOptions(['defaultPaperSize' => 'a4'])->loadView('cetak.presensiKelasOnline', $data);
+        return $pdf->download('presensiKelas.pdf');
     }
 
     public function pesanMasuk($data)

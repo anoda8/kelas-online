@@ -48,25 +48,25 @@ class KelasOnline extends Component
     {
         $mapel = Mapel::where('thajaran', session('thajaran'))->where('guru_id', $this->guruid)->with(['guru'])->get();
         $pembl = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->mapelid)->with(['kelas'])->get();
-        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
+        $kelons = ModelsKelasOnline::where('author_id', Auth::id())->with(['kelas', 'mapel', 'author', 'log'])->latest()->paginate($this->perpage);
 
         if ($this->kataKunciMateri != null) {
             $this->kataKunciKelas = null;
             $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('materi', 'like', '%' . $this->kataKunciMateri . '%')
-                ->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
+                ->with(['kelas', 'mapel', 'author', 'log'])->latest()->paginate($this->perpage);
         }
 
         if ($this->kataKunciKelas != null) {
             $this->kataKunciMateri = null;
             $kelons = ModelsKelasOnline::where('author_id', Auth::id())->where('kelas_id', $this->kataKunciKelas)
-                ->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
+                ->with(['kelas', 'mapel', 'author', 'log'])->latest()->paginate($this->perpage);
         }
 
         if ($this->kataKunciTgl != null) {
             $this->kataKunciKelas = null;
             $this->kataKunciMateri = null;
             $kelons = ModelsKelasOnline::where('author_id', Auth::id())->whereDate('wkt_masuk', $this->kataKunciTgl)
-                ->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
+                ->with(['kelas', 'mapel', 'author', 'log'])->latest()->paginate($this->perpage);
         }
 
         $cariKelas = Pembelajaran::where('thajaran', session('thajaran'))->where('mapel_id', $this->kataKunciMapel)->with(['kelas'])->get();
@@ -108,7 +108,7 @@ class KelasOnline extends Component
         if ($this->fileimport != null) {
             $mapel = Mapel::find($this->mapelid)->nama;
             $kelas = Kelas::find($this->kelasid)->nama;
-            $namafile = strtolower(date("Y-m-d", time()) . "_" . $this->mapelid . "_" . $this->kelasid . "_" . $this->materi . "." . $this->fileimport->extension());
+            $namafile = strtolower(date("Y-m-d", time()) . "_" . $this->mapelid . "_" . $this->kelasid . "_" . $this->materi . $this->fileimport->extension());
             $fullpath = 'storage/kelasonline/' . Auth::user()->name . "/" . $mapel . "/" . $kelas . "/" . $namafile;
             $this->fileimport->storeAs('public/kelasonline/' . Auth::user()->name . "/" . $mapel . "/" . $kelas . "/", $namafile);
             $data['file'] = $fullpath;

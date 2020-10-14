@@ -5,9 +5,9 @@
         <div class="page-title-wrapper">
             @include('livewire.templates.title', $heading)
             <div class="page-title-actions">
-                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                     <i class="fa fa-star"></i>
-                </button>
+                </button> --}}
             </div>
         </div>
     </div>
@@ -172,7 +172,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Hadir <br>
-                            <span class="font-weight-bold">30 Anak</span>
+                            <span class="font-weight-bold">{{ $kelon->log->count() }} Anak</span>
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Tidak Masuk <br>

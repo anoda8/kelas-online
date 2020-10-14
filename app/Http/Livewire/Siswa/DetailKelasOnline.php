@@ -53,7 +53,7 @@ class DetailKelasOnline extends Component
 
     public function keluarKelas()
     {
-        LogKelasOnline::where('kelon_id', $this->kelonid)->update(['status' => false]);
+        LogKelasOnline::where('kelon_id', $this->kelonid)->where('user_id', Auth::id())->update(['status' => false, 'wkt_keluar' => date("Y-m-d H:i:s")]);
         redirect('/siswa/kelasonline');
     }
 
