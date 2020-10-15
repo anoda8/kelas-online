@@ -24,5 +24,36 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            {{ $pengumuman->links('layouts.pagination-links-simple') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @foreach ($pengumuman as $peng)
+            <div class="mb-2 card">
+                <div class="card-header card-header bg-light" wire:click="$emit('linkDetail', {{ $peng->id }})" style="cursor: pointer;">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-bold">
+                        {{ $peng->judul }}
+                    </div>
+                    <div class="btn-actions-pane-right text-capitalize">
+                    </div>
+                </div>
+                <div class="pt-3 card-body">
+                    {!! $peng->isi_pengumuman !!}
+                </div>
+                <div class="card-footer">
+                    Oleh :&nbsp; <b>{{ $peng->author->name }}</b> &nbsp; || Komentar : {{ $peng->komentar->count() }} || {{ $peng->published_at }}
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
     @include('layouts.footer')
 </div>
+@section('scripts')
+<script>
+
+</script>
+@endsection

@@ -134,7 +134,7 @@
                                     <i class="metismenu-icon fas fa-bullhorn"></i>
                                     Pengumuman
                                 </a>
-                                <a href="#">
+                                <a href="{{ route('admin.kelasonline') }}">
                                     <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
                                     Kelas Online
                                 </a>

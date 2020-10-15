@@ -2,20 +2,19 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Pengumuman as ModelsPengumuman;
+use App\Models\KelasOnline as ModelsKelasOnline;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Pengumuman extends Component
+class KelasOnline extends Component
 {
     use WithPagination;
-    public $perpage = 5;
-
+    public $perpage = 50;
     public $heading;
     public function heading()
     {
         return [
-            'judul' => "Pengumuman",
+            'judul' => "Kelas Online",
             'keterangan' => ""
         ];
     }
@@ -28,9 +27,9 @@ class Pengumuman extends Component
 
     public function render()
     {
-        $pengumuman = ModelsPengumuman::with(['author', 'komentar'])->latest()->paginate($this->perpage);
-        return view('livewire.admin.pengumuman',[
-            'pengumuman' => $pengumuman
+        $kelon = ModelsKelasOnline::with(['kelas', 'mapel', 'author', 'komen', 'log'])->latest();
+        return view('livewire.admin.kelas-online',[
+            'kelons' => $kelon
         ]);
     }
 }
