@@ -4,11 +4,9 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Tugas as ModelsTugas;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Tugas extends Component
 {
-    use WithPagination;
     public $perpage = 50;
 
     public $heading;

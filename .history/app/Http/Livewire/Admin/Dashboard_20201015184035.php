@@ -29,7 +29,7 @@ class Dashboard extends Component
         $jumlah_guru = Guru::count();
         $jumlah_kelon = KelasOnline::whereDate('wkt_masuk', date("Y-m-d"))->count();
         $jumlah_aktif = LogKelasOnline::where('status', true)->count();
-        $kelon = KelasOnline::whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author', 'log'])->paginate($this->kelon_perpage);
+        $kelon = KelasOnline::whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author'])->paginate($this->kelon_perpage);
         $pengumuman = Pengumuman::where('tujuan', 'all')->with(['author', 'komentar'])->latest()->take(3)->get();
 
 
@@ -37,8 +37,7 @@ class Dashboard extends Component
             'jumlah' => [
                 'siswa' => $jumlah_siswa,
                 'guru' => $jumlah_guru,
-                'kelon' => $jumlah_kelon,
-                'siswaAktif' => $jumlah_aktif
+                'kelon' => $jumlah_kelon
             ],
             'data' => [
                 'kelon' => $kelon,

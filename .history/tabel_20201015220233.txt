@@ -6,5 +6,4 @@ tabel guru
 
 Keaktifan
 - user ID
-- tipe (login, tugas, kelon)
 - poin

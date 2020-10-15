@@ -72,7 +72,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Jumlah Siswa</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['siswa'] }}</span></div>
@@ -85,7 +85,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Jumlah Guru</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['guru'] }}</span></div>
@@ -98,7 +98,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Kelas Online Hari Ini</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['kelon'] }}</span></div>
@@ -111,7 +111,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Siswa Aktif Saat Ini</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['siswaAktif'] }}</span></div>

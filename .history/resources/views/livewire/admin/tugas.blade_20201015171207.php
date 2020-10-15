@@ -41,7 +41,7 @@
                             <tbody>
                                 @foreach ($tugase->paginate($perpage) as $index => $tugas)
                                 <tr title="{{ $tugas->judul }}">
-                                    <td class="text-center">{{ ($index + 1) + (($tugas->paginate($perpage)->currentPage() - 1) * $tugas->paginate($perpage)->perPage()) }}</td>
+                                    <td>{{ ($index + 1) + (($kelons->paginate($perpage)->currentPage() - 1) * $kelons->paginate($perpage)->perPage()) }}</td>
                                     <td>{{ $tugas->author->name }}</td>
                                     <td>{{ $tugas->mapel->nama }}</td>
                                     <td>{{ $tugas->kelas->nama }}</td>

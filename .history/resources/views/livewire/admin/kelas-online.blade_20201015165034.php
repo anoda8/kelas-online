@@ -16,7 +16,7 @@
             <div class="mb-2 card">
                 <div class="card-header">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                        {{ $heading['judul'] }} ({{ $tugase->count() }})
+                        {{ $heading['judul'] }} ({{ $kelons->count() }})
                     </div>
                     <div class="btn-actions-pane-right text-capitalize">
                     </div>
@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center;">
-                            {{ $tugase->paginate($perpage)->links('layouts.pagination-links-simple') }}
+                            {{ $kelons->paginate($perpage)->links('layouts.pagination-links-simple') }}
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -35,17 +35,19 @@
                                     <th class="text-center">Nama Guru</th>
                                     <th class="text-center">Mapel</th>
                                     <th class="text-center">Kelas</th>
-                                    <th class="text-center">Jumlah Respon</th>
+                                    <th class="text-center">Waktu</th>
+                                    <th class="text-center">Jumlah Siswa Hadir</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tugase->paginate($perpage) as $index => $tugas)
-                                <tr title="{{ $tugas->judul }}">
-                                    <td class="text-center">{{ ($index + 1) + (($tugas->paginate($perpage)->currentPage() - 1) * $tugas->paginate($perpage)->perPage()) }}</td>
-                                    <td>{{ $tugas->author->name }}</td>
-                                    <td>{{ $tugas->mapel->nama }}</td>
-                                    <td>{{ $tugas->kelas->nama }}</td>
-                                    <td class="text-center">{{ $tugas->respon->count() }}</td>
+                                @foreach ($kelons->paginate($perpage) as $index => $kelon)
+                                <tr>
+                                    <td>{{ ($index + 1) + (($kelons->paginate($perpage)->currentPage() - 1) * $kelons->paginate($perpage)->perPage()) }}</td>
+                                    <td>{{ $kelon->author->name }}</td>
+                                    <td>{{ $kelon->mapel->nama }}</td>
+                                    <td style="width:100px;">{{ $kelon->kelas->nama }}</td>
+                                    <td class="text-center">{{ $kelon->wkt_masuk->format("d-m-Y") }}&nbsp;{{ $kelon->wkt_masuk->format("H:i") }} s/d {{ $kelon->wkt_selesai->format("H:i") }}</td>
+                                    <td class="text-center">{{ $kelon->log->count() }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

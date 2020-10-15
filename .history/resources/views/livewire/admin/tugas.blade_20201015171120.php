@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center;">
-                            {{ $tugase->paginate($perpage)->links('layouts.pagination-links-simple') }}
+                            {{ $kelons->paginate($perpage)->links('layouts.pagination-links-simple') }}
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -39,9 +39,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tugase->paginate($perpage) as $index => $tugas)
+                                @foreach ($tugase->paginate($perpage) as $tugas)
                                 <tr title="{{ $tugas->judul }}">
-                                    <td class="text-center">{{ ($index + 1) + (($tugas->paginate($perpage)->currentPage() - 1) * $tugas->paginate($perpage)->perPage()) }}</td>
+                                    <td></td>
                                     <td>{{ $tugas->author->name }}</td>
                                     <td>{{ $tugas->mapel->nama }}</td>
                                     <td>{{ $tugas->kelas->nama }}</td>

@@ -14,11 +14,11 @@
                 </div>
             </div>
             <div class="page-title-actions">
-                {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                     <i class="fa fa-star"></i>
-                </button> --}}
+                </button>
                 <div class="d-inline-block dropdown">
-                    {{-- <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-business-time fa-w-20"></i>
                         </span>
@@ -61,7 +61,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Jumlah Siswa</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['siswa'] }}</span></div>
@@ -85,7 +85,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Jumlah Guru</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['guru'] }}</span></div>
@@ -98,7 +98,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Kelas Online Hari Ini</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['kelon'] }}</span></div>
@@ -111,7 +111,7 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Siswa Aktif Saat Ini</div>
-                        <div class="widget-subheading"></div>
+                        <div class="widget-subheading">People Interested</div>
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{ $jumlah['siswaAktif'] }}</span></div>
@@ -128,7 +128,7 @@
                             class="header-icon fas fa-bullhorn mr-3 text-muted opacity-6"> </i>Pengumuman
                     </div>
                     <div class="btn-actions-pane-right actions-icon-btn">
-                        {{-- <div class="btn-group dropdown">
+                        <div class="btn-group dropdown">
                             <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 class="btn-icon btn-icon-only btn btn-link">
                                 <i class="pe-7s-menu btn-icon-wrapper"></i>
@@ -150,7 +150,7 @@
                                     <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">

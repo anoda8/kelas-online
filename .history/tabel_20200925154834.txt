@@ -1,0 +1,5 @@
+tabel guru
+- User ID
+- Nama Lengkap
+- NIK
+- NIP

@@ -6,7 +6,7 @@
 
                     </div>
                     <div class="app-footer-right">
-                        <b>Copyright &copy; 2020 Anodaweb <br> KelasOnline Versi 1.1</b>
+                        <b>Copyright &copy; 2020 Anodaweb <br> Version 1.1</b>
                     </div>
                 </div>
             </div>
