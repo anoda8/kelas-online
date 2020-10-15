@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () 
 
     Route::get('/pengumuman', App\Http\Livewire\Admin\Pengumuman::class)->name('admin.pengumuman');
     Route::get('/kelasonline', App\Http\Livewire\Admin\KelasOnline::class)->name('admin.kelasonline');
+    Route::get('/tugas', App\Http\Livewire\Admin\Tugas::class)->name('admin.tugas');
 });
 
 Route::group(['prefix' => 'taus', 'middleware' => ['role:taus']], function () {

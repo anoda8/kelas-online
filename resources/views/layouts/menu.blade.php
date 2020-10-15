@@ -138,7 +138,7 @@
                                     <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
                                     Kelas Online
                                 </a>
-                                <a href="#">
+                                <a href="{{ route('admin.tugas') }}">
                                     <i class="metismenu-icon fas fa-tasks"></i>
                                     Tugas
                                 </a>

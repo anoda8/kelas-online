@@ -14,7 +14,7 @@ class KelasOnline extends Component
     public function heading()
     {
         return [
-            'judul' => "Kelas Online",
+            'judul' => "Monitoring Kelas Online",
             'keterangan' => ""
         ];
     }
