@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
     Route::get('/', App\Http\Livewire\Admin\Dashboard::class)->name('admin.beranda');

@@ -10184,9 +10184,10 @@ button,
     transition: width 0.2s;
 }
 .app-header__logo .logo-src {
-    height: 23px;
-    width: 97px;
+    height: 52px;
+    width: 52px;
     background: url(assets/images/logo-inverse.png);
+background-repeat:no-repeat;
 }
 .app-header__menu,
 .app-header__mobile-menu {

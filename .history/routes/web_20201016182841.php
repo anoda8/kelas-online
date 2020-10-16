@@ -19,6 +19,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
     Route::get('/', App\Http\Livewire\Admin\Dashboard::class)->name('admin.beranda');
     Route::get('/setting', App\Http\Livewire\Admin\Setting::class)->name('admin.setting');

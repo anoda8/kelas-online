@@ -35,5 +35,6 @@ class HomeController extends Controller
         if (Auth::user()->hasRole('siswa')) {
             return redirect('/siswa');
         }
+        // return view('home');
     }
 }

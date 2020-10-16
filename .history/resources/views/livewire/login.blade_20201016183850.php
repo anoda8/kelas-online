@@ -41,12 +41,10 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-right">
                 <button class="btn text-white btn-success" wire:click.prevent="login">Masuk</button>
             </div><br>
-            <div class="col-md-12 text-center">
-                <small>Copyright &copy; 2020 Anoda.web.id</small>
-            </div><br>
+            <div class="text-center"><small>Copyright &copy; 2020 Anodaweb</small></div>
         </div>
     </form>
 </div>
