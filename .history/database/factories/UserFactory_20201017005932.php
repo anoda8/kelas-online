@@ -37,7 +37,7 @@ class UserFactory extends Factory
     {
         $username = $this->faker->unique()->numerify("2020##############");
         return [
-            'name' => "Guru " . $this->faker->name,
+            'name' => "GuruA " . $this->faker->name,
             'email' => $username,
             'email_verified_at' => now(),
             'password' => Hash::make($username),

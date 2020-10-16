@@ -33,6 +33,8 @@ class Dashboard extends Component
         $kelon = KelasOnline::whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author', 'log'])->paginate($this->kelon_perpage);
         $pengumuman = Pengumuman::where('tujuan', 'all')->with(['author', 'komentar'])->latest()->take(3)->get();
 
+        $userid = User::where('name', 'like%', 'Guru')->get()->first()->id;
+        dd($userid);
         return view('livewire.admin.dashboard', [
             'jumlah' => [
                 'siswa' => $jumlah_siswa,

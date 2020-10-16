@@ -35,7 +35,7 @@ class UserFactory extends Factory
     //User Guru
     public function definition()
     {
-        $username = $this->faker->unique()->numerify("2020##############");
+        $username = $this->faker->unique()->numerify("##################");
         return [
             'name' => "Guru " . $this->faker->name,
             'email' => $username,

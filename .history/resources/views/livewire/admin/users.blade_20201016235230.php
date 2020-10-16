@@ -5,9 +5,9 @@
         <div class="page-title-wrapper">
             @include('livewire.templates.title', $heading)
             <div class="page-title-actions">
-                {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                     <i class="fa fa-star"></i>
-                </button> --}}
+                </button>
             </div>
         </div>
     </div>
@@ -70,9 +70,9 @@
                                 </td>
                                 <td class="text-center">
                                     @if (auth()->user()->id == 1)
-                                        <button class="btn btn-danger btn-sm" disabled wire:click.prevent="$emit('userTriggerDelete', {{ $user->id }})"><i class="fas fa-trash fa-sm"></i></button>
+                                        <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('userTriggerDelete', {{ $user->id }})"><i class="fas fa-trash fa-sm"></i></a>
                                     @else
-                                        <a href="#" class="btn btn-danger btn-sm" disabled wire:click.prevent="$emit('userTriggerDelete', {{ $user->id }})"><i class="fas fa-trash fa-sm"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm disabled" wire:click.prevent="$emit('userTriggerDelete', {{ $user->id }})"><i class="fas fa-trash fa-sm"></i></a>
                                     @endif
                                 </td>
                             </tr>

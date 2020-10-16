@@ -77,7 +77,6 @@
             </div>
         </div>
     </div>
-    @include('layouts.footer')
     <!-- Modal -->
     <div class="modal fade" wire:ignore.self id="modal-guru" tabindex="-1" role="dialog" aria-labelledby="modalGuru" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -141,6 +140,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.footer')
 </div>
 @section('scripts')
 <script>

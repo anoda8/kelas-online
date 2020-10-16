@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -35,7 +34,7 @@ class UserFactory extends Factory
     //User Guru
     public function definition()
     {
-        $username = $this->faker->unique()->numerify("2020##############");
+        $username = $this->faker->unique()->randomNumber(18);
         return [
             'name' => "Guru " . $this->faker->name,
             'email' => $username,

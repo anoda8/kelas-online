@@ -70,7 +70,7 @@
                                     @if (auth()->user()->foto_profil != null)
                                         <img width="42" class="rounded-circle" src="{{ url(auth()->user()->foto_profil) }}" alt="">
                                     @else
-                                        <img width="42" class="rounded-circle" src="{{ asset('images/nopict.png') }}" alt="">
+                                        <img width="42" class="rounded-circle" src="{{ asset('images/avatars/1.jpg') }}" alt="">
                                     @endif
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
