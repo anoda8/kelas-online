@@ -22,11 +22,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if (auth()->user()->id == 1)
-                        <div class="alert alert-warning" role="alert">
-                            <strong>Peringatan !</strong> ini adalah sampel, anda tidak bisa mengubah profil Admin.
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
@@ -40,12 +35,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Password</label>
-                                <input type="password" class="form-control" {{ (auth()->user()->id == 1) ? "disabled" : "" }} placeholder="" wire:model.lazy="pass">
+                                <input type="password" class="form-control" placeholder="" wire:model.lazy="pass">
                                 @error('pass') <span class="text-danger error">{{ $message }}</span>@enderror
                             </div>
                             <div class="form-group">
                                 <label for="">Ulangi Password</label>
-                                <input type="password" class="form-control" {{ (auth()->user()->id == 1) ? "disabled" : "" }} placeholder="" wire:model.lazy="repass">
+                                <input type="password" class="form-control" placeholder="" wire:model.lazy="repass">
                                 @error('repass') <span class="text-danger error">{{ $message }}</span>@enderror
                             </div>
                         </div>

@@ -58,9 +58,7 @@ class Profil extends Component
 
         $user = User::find(Auth::id());
         $user->name = $this->nama;
-        if ($this->pass != "") {
-            $user->password = Hash::make($this->pass);
-        }
+        $user->password = Hash::make($this->pass);
         $user->foto_profil = $fullpath;
         $user->save();
 

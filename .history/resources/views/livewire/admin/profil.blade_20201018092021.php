@@ -22,11 +22,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if (auth()->user()->id == 1)
-                        <div class="alert alert-warning" role="alert">
-                            <strong>Peringatan !</strong> ini adalah sampel, anda tidak bisa mengubah profil Admin.
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
