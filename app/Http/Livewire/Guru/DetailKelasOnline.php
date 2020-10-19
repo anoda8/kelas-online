@@ -55,7 +55,8 @@ class DetailKelasOnline extends Component
                 'author_id' => Auth::id(),
                 'komentar' => $this->inputChat
             ]);
-            event(new KelonPesanEvent(Auth::user(), $komentar));
+            // event(new KelonPesanEvent(Auth::user(), $komentar));
+            $this->inputChat = null;
         }
     }
 
