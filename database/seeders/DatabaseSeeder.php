@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(ThAjaranSeeder::class);
         // $this->call(UserRoleSeeder::class);
         // $this->call(GuruSeeder::class);
-        $this->call(SiswaSeeder::class);
+        // $this->call(SiswaSeeder::class);
+        $this->call(LogKelasOnlineSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

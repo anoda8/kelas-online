@@ -76,12 +76,14 @@
                     <span class="font-weight-bold text-danger">{{ $kelon->kelas->nama }}</span>
                     <div class="btn-actions-pane-right">
                         <div class="form-inline">
-                            @if ($kelasAktif->count() > 0)
-                                @if ($kelasAktif->first()->kelon_id == $kelon->id)
+                            @if ((strtotime(now()) > strtotime($kelon->wkt_masuk)) && (strtotime(now()) < strtotime($kelon->wkt_selesai)))
+                                @if ($kelasAktif->count() > 0)
+                                    @if ($kelasAktif->first()->kelon_id == $kelon->id)
+                                        <button class="btn btn-primary" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
+                                    @endif
+                                @else
                                     <button class="btn btn-primary" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
                                 @endif
-                            @else
-                                <button class="btn btn-primary" wire:click="$emit('linkDetail', {{ $kelon->id }})">Masuk Kelas</button>
                             @endif
                         </div>
                         {{-- @if ($kelasaktif->count() > 0)
