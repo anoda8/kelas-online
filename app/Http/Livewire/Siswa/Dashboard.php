@@ -37,7 +37,9 @@ class Dashboard extends Component
         $jumlah_tugas = Tugas::where('kelas_id', $this->kelas->id)->count();
         $pengumuman = Pengumuman::where('kelas_id', $this->kelas->id)->with(['author', 'komentar'])->latest()->take(3)->get();
         $tugas = Tugas::where('kelas_id', $this->kelas->id)->with(['author', 'mapel'])->latest()->take(3)->get();
-        $kelon = KelasOnline::where('kelas_id', $this->kelas->id)->whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author'])->get();
+        $kelon = KelasOnline::where('kelas_id', $this->kelas->id)->whereDate('wkt_masuk', date("Y-m-d"))->with(['kelas', 'mapel', 'author', 'log' => function($query){
+            $query->where('user_id', Auth::id());
+        }])->get();
 
         return view('livewire.siswa.dashboard', [
             'jumlah' => [
