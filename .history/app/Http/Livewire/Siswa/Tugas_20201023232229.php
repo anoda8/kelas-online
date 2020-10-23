@@ -58,7 +58,6 @@ class Tugas extends Component
     public function today()
     {
         $now = date("Y-m-d", time());
-        $this->resetPage();
         $this->katakunciTgl = $now;
     }
 

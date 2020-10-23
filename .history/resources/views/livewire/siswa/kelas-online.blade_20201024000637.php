@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Hadir <br>
-                            <span class="font-weight-bold">{{ $kelon->log->count() }} Anak</span>
+                            <span class="font-weight-bold">30 Anak</span>
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Guru <br>

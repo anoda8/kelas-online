@@ -8,13 +8,11 @@ use App\Models\Pengumuman;
 use App\Models\Siswa;
 use App\Models\Tugas;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Dashboard extends Component
 {
     public $kelas, $siswa;
-    public $saranGantiPassword = true;
 
     public $heading;
     public function heading()
@@ -43,7 +41,6 @@ class Dashboard extends Component
             $query->where('user_id', Auth::id());
         }])->get();
 
-        $this->saranGantiPassword = $this->checkPassword();
         return view('livewire.siswa.dashboard', [
             'jumlah' => [
                 'kelon' => $jumlah_kelon,
@@ -55,10 +52,5 @@ class Dashboard extends Component
                 'tugas' => $tugas
             ]
         ]);
-    }
-
-    private function checkPassword()
-    {
-        return Hash::check(Auth::user()->email, Auth::user()->password) ? true : false;
     }
 }

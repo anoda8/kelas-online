@@ -38,15 +38,13 @@ class KelasOnline extends Component
 
     public function render()
     {
-        $kelon = ModelsKelasOnline::where('kelas_id', $this->kelas->id)->with(['kelas', 'mapel', 'author', 'log'])->latest('wkt_masuk')->paginate($this->perpage);
+        $kelon = ModelsKelasOnline::where('kelas_id', $this->kelas->id)->with(['kelas', 'mapel', 'author'])->latest('wkt_masuk')->paginate($this->perpage);
         if ($this->katakunciTgl != null) {
-            $this->resetPage();
             $this->katakunciMapel = null;
-            $kelon = ModelsKelasOnline::where('kelas_id', $this->kelas->id)->whereDate('wkt_masuk', $this->katakunciTgl)->with(['kelas', 'mapel', 'author', 'log'])->latest('wkt_masuk')->paginate($this->perpage);
+            $kelon = ModelsKelasOnline::where('kelas_id', $this->kelas->id)->whereDate('wkt_masuk', $this->katakunciTgl)->with(['kelas', 'mapel', 'author'])->latest('wkt_masuk')->paginate($this->perpage);
         }
 
         if ($this->katakunciMapel != null) {
-            $this->resetPage();
             $this->katakunciTgl = null;
             $kelon = ModelsKelasOnline::where('kelas_id', $this->kelas->id)
                 ->where('mapel_id', $this->katakunciMapel)
@@ -79,7 +77,6 @@ class KelasOnline extends Component
     public function today()
     {
         $now = date("Y-m-d", time());
-        $this->resetPage();
         $this->katakunciTgl = $now;
     }
 

@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\RoleUser');
     }
+
+    public function resetAktif()
+    {
+        return Hash::check($this->email, $this->password);
+    }
 }

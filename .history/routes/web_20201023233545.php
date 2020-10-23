@@ -75,5 +75,5 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['role:siswa']], function () 
     Route::get('/kelasonline/detail/{kelonid}', App\Http\Livewire\Siswa\DetailKelasOnline::class);
     Route::get('/tugas', App\Http\Livewire\Siswa\Tugas::class)->name('siswa.tugas');
     Route::get('/tugas/detail/{tugasid}', App\Http\Livewire\Siswa\DetailTugas::class);
-    Route::get('/profil', App\Http\Livewire\Siswa\Profil::class)->name('siswa.profil');
+    Route::get('/profil', App\Http\Livewire\Siswa\Profil::class);
 });

@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             showCancelButton: true,
             confirmButtonColor: 'var(--success)',
             cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Reset !'
+            confirmButtonText: 'Hapus !'
         }).then((result) => {
             if(result.value){
                 @this.call('userDelete', orderId);

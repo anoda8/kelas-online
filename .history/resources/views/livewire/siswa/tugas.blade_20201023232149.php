@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12 text-center" style="border-bottom:solid 1px;">
                             Respon <br>
-                            <span class="font-weight-bold">{{ $tugas->respon->count() }} Anak</span>
+                            <span class="font-weight-bold">6 Anak</span>
                         </div>
                     </div>
                 </div>

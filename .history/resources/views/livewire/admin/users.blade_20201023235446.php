@@ -158,6 +158,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('userTriggerReset', orderId => {
+        @this.call('userReset', orderId);
+        $('#modal-user').modal('toggle');
+    });
+});
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('userTriggerReset', orderId => {
         Swal.fire({
             title: 'Konfirmasi Hapus',
             text: 'Apakah anda yakin akan mengembalikan passwordnya ?',
@@ -176,13 +182,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('userTriggerDelete', orderId => {
         Swal.fire({
-            title: 'Konfirmasi Reset Password',
+            title: 'Konfirmasi Hapus',
             text: 'Apakah anda yakin akan menghapusnya ?',
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: 'var(--success)',
             cancelButtonColor: 'var(--primary)',
-            confirmButtonText: 'Reset !'
+            confirmButtonText: 'Hapus !'
         }).then((result) => {
             if(result.value){
                 @this.call('userDelete', orderId);

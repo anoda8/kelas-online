@@ -11,12 +11,9 @@
             </div>
         </div>
     </div>
-    @if ($saranGantiPassword)
     <div class="alert alert-warning">
         <strong>Peringatan ! </strong> Anda belum mengganti password bawaan, segera ganti password untuk keamanan !
-        <a href="{{ route('siswa.profil') }}">Ganti Password</a>
     </div>
-    @endif
     <div class="row">
         <div class="col-md-6 col-xl-3">
             <div class="card mb-3 widget-content bg-grow-early" style="cursor:pointer;" wire:click="$emit('dataKelon')">

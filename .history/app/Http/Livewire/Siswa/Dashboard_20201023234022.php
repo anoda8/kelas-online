@@ -59,6 +59,6 @@ class Dashboard extends Component
 
     private function checkPassword()
     {
-        return Hash::check(Auth::user()->email, Auth::user()->password) ? true : false;
+        return Auth::user()->password == Hash::make(Auth::user()->email) ? true : false;
     }
 }

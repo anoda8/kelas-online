@@ -44,6 +44,7 @@ class Dashboard extends Component
         }])->get();
 
         $this->saranGantiPassword = $this->checkPassword();
+
         return view('livewire.siswa.dashboard', [
             'jumlah' => [
                 'kelon' => $jumlah_kelon,
@@ -57,8 +58,8 @@ class Dashboard extends Component
         ]);
     }
 
-    private function checkPassword()
-    {
-        return Hash::check(Auth::user()->email, Auth::user()->password) ? true : false;
-    }
+    // private function checkPassword()
+    // {
+    //     return Auth::user()->password == Hash::make(Auth::user()->email) ? true : false;
+    // }
 }

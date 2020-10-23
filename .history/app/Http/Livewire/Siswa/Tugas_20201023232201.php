@@ -38,16 +38,16 @@ class Tugas extends Component
     public function render()
     {
         $pembelajaran = Pembelajaran::where('kelas_id', $this->kelas->id)->with(['mapel.guru'])->get();
-        $tugase = ModelsTugas::where('kelas_id', $this->kelas->id)->with(['kelas', 'mapel', 'author', 'respon'])->latest()->paginate($this->perpage);
+        $tugase = ModelsTugas::where('kelas_id', $this->kelas->id)->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
 
-        if ($this->katakunciMapel != null) {
+        if($this->katakunciMapel != null){
             $this->katakunciTgl = null;
-            $tugase = ModelsTugas::where('kelas_id', $this->kelas->id)->where('mapel_id', $this->katakunciMapel)->with(['kelas', 'mapel', 'author', 'respon'])->latest()->paginate($this->perpage);
+            $tugase = ModelsTugas::where('kelas_id', $this->kelas->id)->where('mapel_id', $this->katakunciMapel)->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
         }
 
-        if ($this->katakunciTgl != null) {
+        if($this->katakunciTgl != null){
             $this->katakunciMapel = null;
-            $tugase = ModelsTugas::where('kelas_id', $this->kelas->id)->whereDate('created_at', $this->katakunciTgl)->with(['kelas', 'mapel', 'author', 'respon'])->latest()->paginate($this->perpage);
+            $tugase = ModelsTugas::where('kelas_id', $this->kelas->id)->whereDate('created_at', $this->katakunciTgl)->with(['kelas', 'mapel', 'author'])->latest()->paginate($this->perpage);
         }
 
         return view('livewire.siswa.tugas', [
@@ -58,7 +58,6 @@ class Tugas extends Component
     public function today()
     {
         $now = date("Y-m-d", time());
-        $this->resetPage();
         $this->katakunciTgl = $now;
     }
 

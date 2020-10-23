@@ -171,18 +171,36 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 @this.call('userReset', orderId);
             }
         });
+        @this.call('userReset', orderId);
     });
 });
 document.addEventListener('DOMContentLoaded', ()=>{
-    @this.on('userTriggerDelete', orderId => {
+    @this.on('userTriggerReset', orderId => {
         Swal.fire({
-            title: 'Konfirmasi Reset Password',
-            text: 'Apakah anda yakin akan menghapusnya ?',
+            title: 'Konfirmasi Hapus',
+            text: 'Apakah anda yakin akan mengembalikan passwordnya ?',
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: 'var(--success)',
             cancelButtonColor: 'var(--primary)',
             confirmButtonText: 'Reset !'
+        }).then((result) => {
+            if(result.value){
+                @this.call('userReset', orderId);
+            }
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('userTriggerDelete', orderId => {
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Apakah anda yakin akan menghapusnya ?',
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: 'var(--success)',
+            cancelButtonColor: 'var(--primary)',
+            confirmButtonText: 'Hapus !'
         }).then((result) => {
             if(result.value){
                 @this.call('userDelete', orderId);
