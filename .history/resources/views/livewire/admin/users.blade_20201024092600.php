@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 document.addEventListener('DOMContentLoaded', ()=>{
     @this.on('userTriggerReset', orderId => {
         Swal.fire({
-            title: 'Konfirmasi Reset Password',
+            title: 'Konfirmasi Hapus',
             text: 'Apakah anda yakin akan mengembalikan passwordnya ?',
             type: "warning",
             showCancelButton: true,
