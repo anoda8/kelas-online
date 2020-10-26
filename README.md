@@ -32,11 +32,11 @@ perbaikan dan penambahan fitur masih terus dilakukan !
 
 *   Password dan guru sama dengan username
 
-### Framework
+### Framework & Layanan
 
 -   [Laravel](https://laravel.com)
 -   [Laravel - Livewire](https://laravel-livewire.com)
--   [Pusher](https://pusher.com)
+-   [Pusher](https://pusher.com) - chat kelas online
 
 ###### Kontak
 
