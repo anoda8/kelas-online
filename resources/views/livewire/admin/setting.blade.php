@@ -43,7 +43,7 @@
                                         <a href="#" style="cursor:pointer;" wire:click.prevent="thAjaranAktif({{ $thajaran->id }})">{{ $thajaran->keterangan }}</a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-danger btn-sm" wire:click.prevent="$emit('thAjaranTriggerDelete', {{ $thajaran->id }})"><i class="fas fa-trash fa-sm"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm disabled" wire:click.prevent="$emit('thAjaranTriggerDelete', {{ $thajaran->id }})"><i class="fas fa-trash fa-sm"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

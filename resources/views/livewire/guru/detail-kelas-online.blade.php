@@ -69,7 +69,21 @@
                         <div class="chat-wrapper p-1">
                             @foreach ($komentare as $komentar)
                                 @if ($komentar->author_id == auth()->id())
-                                <div class="p-1 mb-2 bg-primary text-white rounded clearfix">
+                                <div class="card mb-2 alert-primary">
+                                    <div class="card-body d-flex justify-content-between row">
+                                        <div class="col-md-3 col-sm-4">
+                                            <div class="avatar-icon avatar-icon-sm rounded">
+                                                <img src="{{ asset('images/avatars/1.jpg') }}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="user-info text-right col-md-9 col-sm-8">
+                                            <h6 class="card-subtitle mb-2 text-muted"><b>{{ $komentar->author->name }}</b></h6>
+                                            <small>{{ date("d-m-Y H:i", strtotime($komentar->created_at)) }} | {{ $komentar->created_at->diffForHumans() }}</small><br>
+                                            {{ $komentar->komentar }}
+                                        </div>
+                                    </div>
+                               </div>
+                                {{-- <div class="p-1 mb-2 bg-primary text-white rounded clearfix">
                                     <div class="row">
                                         <div class="col-md-11 col-lg-11 col-sm-5 text-right mb-3">
                                             <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
@@ -85,9 +99,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @else
-                                <div class="p-3 mb-2 bg-light text-dark rounded clearfix">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted text-left"></h6>
+                                        <p class="card-text float-left">Hi ~</p>
+                                    </div>
+                                </div>
+                                {{-- <div class="p-3 mb-2 bg-light text-dark rounded clearfix">
                                     <div class="row">
                                         <div class="col-md-1 mr-2 col-sm-3">
                                             <div class="avatar-icon avatar-icon-sm rounded pull-left mb-2">
@@ -103,7 +123,7 @@
                                             <span class="komentar">{{ $komentar->komentar }}</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @endif
                             @endforeach
                         </div>
