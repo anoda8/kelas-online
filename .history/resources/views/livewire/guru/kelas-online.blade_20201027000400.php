@@ -319,7 +319,7 @@ $(document).ready(function () {
         @this.set('wktselesai', e.date.format('HH:mm'));
     });
     $('#tanggal-kelon').on('change.datetimepicker', function(e){
-        @this.set('tgl_kelon', e.date.format('YYYY-MM-DD'));
+        @this.set('wktselesai', e.date.format('HH:mm'));
     });
 });
 </script>

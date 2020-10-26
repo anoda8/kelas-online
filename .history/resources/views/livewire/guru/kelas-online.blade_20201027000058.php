@@ -302,6 +302,9 @@ $(document).ready(function () {
         pickSeconds: false,
         pick12HourFormat: false
     });
+    $('#wktMulai').on('change.datetimepicker', function(e){
+        @this.set('wktmulai', e.date.format('HH:mm'));
+    });
     $('#wktSelesai').datetimepicker({
         format: 'HH:mm',
         pickDate: false,
@@ -310,16 +313,6 @@ $(document).ready(function () {
     });
     $('#tanggal-kelon').datetimepicker({
         format: 'L'
-    });
-
-    $('#wktMulai').on('change.datetimepicker', function(e){
-        @this.set('wktmulai', e.date.format('HH:mm'));
-    });
-    $('#wktSelesai').on('change.datetimepicker', function(e){
-        @this.set('wktselesai', e.date.format('HH:mm'));
-    });
-    $('#tanggal-kelon').on('change.datetimepicker', function(e){
-        @this.set('tgl_kelon', e.date.format('YYYY-MM-DD'));
     });
 });
 </script>

@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Guru;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\KelasOnline as ModelsKelasOnline;
-use App\Models\LogKelasOnline;
 use App\Models\Mapel;
 use App\Models\Pembelajaran;
 use Illuminate\Support\Facades\Auth;
@@ -142,8 +141,8 @@ class KelasOnline extends Component
         $this->namafileUpload = $kelon->file;
         $this->emit('isiMateri', $kelon->isi_materi);
         // $this->isimateri = $kelon->isi_materi;
-        $this->wktmulai = $kelon->wkt_masuk->format("H:i");
-        $this->wktselesai = $kelon->wkt_selesai->format("H:i");
+        $this->wktmulai = date("H:i:s", strtotime($kelon->wkt_masuk->format("H:i")));
+        $this->wktselesai = date("H:i:s", strtotime($kelon->wkt_selesai->format("H:i")));
         $this->editId = $kelon->id;
     }
 
@@ -159,8 +158,8 @@ class KelasOnline extends Component
         $this->namafileUpload = $kelon->file;
         $this->emit('isiMateri', $kelon->isi_materi);
         // $this->isimateri = $kelon->isi_materi;
-        $this->wktmulai = $kelon->wkt_masuk->format("H:i");
-        $this->wktselesai = $kelon->wkt_selesai->format("H:i");
+        $this->wktmulai = date("H:i", strtotime($kelon->wkt_masuk->format("H:i")));
+        $this->wktselesai = date("H:i", strtotime($kelon->wkt_selesai->format("H:i")));
     }
 
     public function hapus($id)

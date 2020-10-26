@@ -28,14 +28,9 @@
                             <div class="col-md-5 col-lg-5 col-sm-12">
                                 <div class="form-group">
                                     <label for="">Tanggal Pembelajaran</label>
-                                    <div class="input-group date" id="tanggal-kelon" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" wire:model.lazy="tgl_kelon" data-target="#tanggal-kelon"/>
-                                        <div class="input-group-append" data-target="#tanggal-kelon" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
+                                    <input type="date" class="form-control" wire:model.lazy="tgl_kelon">
+                                    @error('tgl_kelon') <span class="text-danger error">{{ $message }}</span>@enderror
                                 </div>
-                                @error('tgl_kelon') <span class="text-danger error">{{ $message }}</span>@enderror
                                 <div class="form-group">
                                     <label for="">Mata Pelajaran</label>
                                     <select class="form-control" wire:model="mapelid">
@@ -58,24 +53,22 @@
                                 </div>
                             </div>
                             <div class="col-md-5 col-lg-5 col-sm-12">
-                                <div class="form-group" wire:ignore>
-                                    <label for="">Waktu Mulai</label>
-                                    <div class="input-group date" id="wktMulai" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" wire:model.lazy="wktmulai" data-target="#wktMulai"/>
-                                        <div class="input-group-append" data-target="#wktMulai" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fas fa-clock"></i></div>
+                                <div class="form-group">
+                                    <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
+                                        <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Waktu Mulai</label>
+                                    <input type="time" class="form-control" wire:model="wktmulai">
+                                </div>
                                 @error('wktmulai') <span class="text-danger error">{{ $message }}</span>@enderror
-                                <div class="form-group" wire:ignore>
+                                <div class="form-group">
                                     <label for="">Waktu Selesai</label>
-                                    <div class="input-group date" id="wktSelesai" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" wire:model.lazy="wktselesai" data-target="#wktSelesai"/>
-                                        <div class="input-group-append" data-target="#wktSelesai" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fas fa-clock"></i></div>
-                                        </div>
-                                    </div>
+                                    <input type="time" class="form-control" wire:model="wktselesai">
                                 </div>
                                 @error('wktselesai') <span class="text-danger error">{{ $message }}</span>@enderror
                             </div>
@@ -295,31 +288,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
 });
 CKEDITOR.replace( 'isimateri' );
-$(document).ready(function () {
-    $('#wktMulai').datetimepicker({
-        format: 'HH:mm',
-        pickDate: false,
-        pickSeconds: false,
+$(function () {
+    $('#datetimepicker3').datetimepicker({
+        format: 'HH:mm A',
         pick12HourFormat: false
-    });
-    $('#wktSelesai').datetimepicker({
-        format: 'HH:mm',
-        pickDate: false,
-        pickSeconds: false,
-        pick12HourFormat: false
-    });
-    $('#tanggal-kelon').datetimepicker({
-        format: 'L'
-    });
-
-    $('#wktMulai').on('change.datetimepicker', function(e){
-        @this.set('wktmulai', e.date.format('HH:mm'));
-    });
-    $('#wktSelesai').on('change.datetimepicker', function(e){
-        @this.set('wktselesai', e.date.format('HH:mm'));
-    });
-    $('#tanggal-kelon').on('change.datetimepicker', function(e){
-        @this.set('tgl_kelon', e.date.format('YYYY-MM-DD'));
     });
 });
 </script>

@@ -61,7 +61,7 @@
                                 <div class="form-group" wire:ignore>
                                     <label for="">Waktu Mulai</label>
                                     <div class="input-group date" id="wktMulai" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" wire:model.lazy="wktmulai" data-target="#wktMulai"/>
+                                        <input type="text" class="form-control datetimepicker-input" wire:model="wktmulai" data-target="#wktMulai"/>
                                         <div class="input-group-append" data-target="#wktMulai" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fas fa-clock"></i></div>
                                         </div>
@@ -71,7 +71,7 @@
                                 <div class="form-group" wire:ignore>
                                     <label for="">Waktu Selesai</label>
                                     <div class="input-group date" id="wktSelesai" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" wire:model.lazy="wktselesai" data-target="#wktSelesai"/>
+                                        <input type="text" class="form-control datetimepicker-input" wire:model="wktselesai" data-target="#wktSelesai"/>
                                         <div class="input-group-append" data-target="#wktSelesai" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fas fa-clock"></i></div>
                                         </div>
@@ -295,12 +295,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
 });
 CKEDITOR.replace( 'isimateri' );
-$(document).ready(function () {
+$(function () {
     $('#wktMulai').datetimepicker({
         format: 'HH:mm',
         pickDate: false,
         pickSeconds: false,
         pick12HourFormat: false
+    });
+    $('#wktMulai').on('dp.change', function(e){
+        console.log(e);
     });
     $('#wktSelesai').datetimepicker({
         format: 'HH:mm',
@@ -310,16 +313,6 @@ $(document).ready(function () {
     });
     $('#tanggal-kelon').datetimepicker({
         format: 'L'
-    });
-
-    $('#wktMulai').on('change.datetimepicker', function(e){
-        @this.set('wktmulai', e.date.format('HH:mm'));
-    });
-    $('#wktSelesai').on('change.datetimepicker', function(e){
-        @this.set('wktselesai', e.date.format('HH:mm'));
-    });
-    $('#tanggal-kelon').on('change.datetimepicker', function(e){
-        @this.set('tgl_kelon', e.date.format('YYYY-MM-DD'));
     });
 });
 </script>
