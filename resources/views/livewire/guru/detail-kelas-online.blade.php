@@ -64,7 +64,7 @@
 
                     </div>
                 </div>
-                <div class="scroll-area-lg">
+                <div class="scroll-area-lg" id="scrollChat">
                     <div class="p-2">
                         <div class="chat-wrapper p-1">
                             @foreach ($komentare as $komentar)
@@ -82,48 +82,22 @@
                                             {{ $komentar->komentar }}
                                         </div>
                                     </div>
-                               </div>
-                                {{-- <div class="p-1 mb-2 bg-primary text-white rounded clearfix">
-                                    <div class="row">
-                                        <div class="col-md-11 col-lg-11 col-sm-5 text-right mb-3">
-                                            <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
-                                            <small class="opacity-6">
-                                                <i class="fa fa-calendar-alt mr-1"></i>
-                                                {{ date("d-m-Y H:i", strtotime($komentar->created_at)) }} | {{ $komentar->created_at->diffForHumans() }}
-                                            </small><br>
-                                            <span class="komentar">{{ $komentar->komentar }}</span>
+                                </div>
+                                @else
+                                <div class="card mb-2 alert-default">
+                                    <div class="card-body d-flex justify-content-between row">
+                                        <div class="user-info text-left col-md-9 col-sm-8">
+                                            <h6 class="card-subtitle mb-2 text-muted"><b>{{ $komentar->author->name }}</b></h6>
+                                            <small>{{ date("d-m-Y H:i", strtotime($komentar->created_at)) }} | {{ $komentar->created_at->diffForHumans() }}</small><br>
+                                            {{ $komentar->komentar }}
                                         </div>
-                                        <div class="col-md-1 col-lg-1 col-sm-3">
+                                        <div class="col-md-3 col-sm-4">
                                             <div class="avatar-icon avatar-icon-sm rounded pull-right">
                                                 <img src="{{ asset('images/avatars/1.jpg') }}" alt="">
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
-                                @else
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="card-subtitle mb-2 text-muted text-left"></h6>
-                                        <p class="card-text float-left">Hi ~</p>
-                                    </div>
                                 </div>
-                                {{-- <div class="p-3 mb-2 bg-light text-dark rounded clearfix">
-                                    <div class="row">
-                                        <div class="col-md-1 mr-2 col-sm-3">
-                                            <div class="avatar-icon avatar-icon-sm rounded pull-left mb-2">
-                                                <img src="{{ asset('images/avatars/1.jpg') }}" alt=""><br>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9 col-sm-5 text-justify">
-                                            <small class="font-weight-bold">{{ $komentar->author->name }}</small><br>
-                                            <small class="opacity-6">
-                                                <i class="fa fa-calendar-alt mr-1"></i>
-                                                11:01 AM | Yesterday
-                                            </small><br>
-                                            <span class="komentar">{{ $komentar->komentar }}</span>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 @endif
                             @endforeach
                         </div>
@@ -131,9 +105,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="input-group">
-                        <input placeholder="Tulis komentar.."  wire:model.lazy="inputChat" wire:keydown.enter="simpanKomen()" type="text" class="form-control-sm form-control">
+                        <input placeholder="Tulis komentar.."  wire:model.lazy="inputChat" wire:keydown.enter="$emit('triggerSimpanKomen')" type="text" class="form-control-sm form-control">
                         <div class="input-group-append ml-3">
-                            <button class="btn btn-primary btn-sm" wire:click="reloadChat"><i class="fas fa-sync"></i></button>
+                            <button class="btn btn-primary btn-sm" wire:click="$emit('triggerReloadChat')"><i class="fas fa-sync"></i></button>
                         </div>
                     </div>
                 </div>
@@ -163,12 +137,19 @@
 </div>
 @section('scripts')
 <script>
-// const KELON_ID = "{{ $kelonid }}";
-// var channelname = 'kelonChat'+KELON_ID;
-// window.Echo.join(channelname)
-// .listen('.KelonPesanEvent', (e) => {
-//     // console.log(e);
-//     @this.call('pesanMasuk', e)
-// });
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('triggerSimpanKomen', () => {
+        @this.call('simpanKomen');
+        var objDiv = document.getElementById("scrollChat");
+        objDiv.scrollTop = objDiv.scrollHeight + 50;
+    });
+});
+document.addEventListener('DOMContentLoaded', ()=>{
+    @this.on('triggerReloadChat', () => {
+        @this.call('reloadChat');
+        var objDiv = document.getElementById("scrollChat");
+        objDiv.scrollTop = objDiv.scrollHeight + 50;
+    });
+});
 </script>
 @endsection
