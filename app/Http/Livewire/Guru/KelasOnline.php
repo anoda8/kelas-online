@@ -142,8 +142,8 @@ class KelasOnline extends Component
         $this->namafileUpload = $kelon->file;
         $this->emit('isiMateri', $kelon->isi_materi);
         // $this->isimateri = $kelon->isi_materi;
-        $this->wktmulai = date("H:i:s", strtotime($kelon->wkt_masuk));
-        $this->wktselesai = date("H:i:s", strtotime($kelon->wkt_selesai));
+        $this->wktmulai = date("H:i:s", strtotime($kelon->wkt_masuk->format("H:i")));
+        $this->wktselesai = date("H:i:s", strtotime($kelon->wkt_selesai->format("H:i")));
         $this->editId = $kelon->id;
     }
 
@@ -159,8 +159,8 @@ class KelasOnline extends Component
         $this->namafileUpload = $kelon->file;
         $this->emit('isiMateri', $kelon->isi_materi);
         // $this->isimateri = $kelon->isi_materi;
-        $this->wktmulai = date("H:i", strtotime($kelon->wkt_masuk));
-        $this->wktselesai = date("H:i", strtotime($kelon->wkt_selesai));
+        $this->wktmulai = date("H:i", strtotime($kelon->wkt_masuk->format("H:i")));
+        $this->wktselesai = date("H:i", strtotime($kelon->wkt_selesai->format("H:i")));
     }
 
     public function hapus($id)
