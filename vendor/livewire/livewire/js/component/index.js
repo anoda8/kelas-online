@@ -12,6 +12,7 @@ import MethodAction from '@/action/method'
 import ModelAction from '@/action/model'
 import DeferredModelAction from '@/action/deferred-model'
 import MessageBus from '../MessageBus'
+import { alpinifyElementsForMorphdom } from './SupportAlpine'
 
 export default class Component {
     constructor(el, connection) {
@@ -78,6 +79,14 @@ export default class Component {
         return name
             .split('.')
             .reduce((carry, segment) => carry[segment], this.data)
+    }
+
+    getPropertyValueIncludingDefers(name) {
+        let action = this.deferredActions[name]
+
+        if (! action) return this.get(name)
+
+        return action.payload.value
     }
 
     updateServerMemoFromResponseAndMergeBackIntoResponse(message) {
@@ -250,16 +259,16 @@ export default class Component {
     handleResponse(message) {
         let response = message.response
 
-        this.updateServerMemoFromResponseAndMergeBackIntoResponse(message)
-
-        store.callHook('message.received', message, this)
-
         // This means "$this->redirect()" was called in the component. let's just bail and redirect.
         if (response.effects.redirect) {
             this.redirect(response.effects.redirect)
 
             return
         }
+
+        this.updateServerMemoFromResponseAndMergeBackIntoResponse(message)
+
+        store.callHook('message.received', message, this)
 
         if (response.effects.html) {
             // If we get HTML from the server, store it for the next time we might not.
@@ -334,6 +343,8 @@ export default class Component {
             const modelValue = directives.get('model').value
 
             if (DOM.hasFocus(el) && ! dirtyInputs.includes(modelValue)) return
+
+            if (el.wasRecentlyAutofilled) return
 
             DOM.setInputValueFromModel(el, this)
         })
@@ -417,19 +428,6 @@ export default class Component {
                     to.selectedIndex = -1
                 }
 
-                // If the element is x-show.transition.
-                if (
-                    Array.from(from.attributes)
-                        .map(attr => attr.name)
-                        .some(
-                            name =>
-                                /x-show.transition/.test(name) ||
-                                /x-transition/.test(name)
-                        )
-                ) {
-                    from.__livewire_transition = true
-                }
-
                 let fromDirectives = wireDirectives(from)
 
                 // Honor the "wire:ignore" attribute or the .__livewire_ignore element property.
@@ -453,18 +451,14 @@ export default class Component {
                 }
 
                 // Children will update themselves.
-                if (
-                    DOM.isComponentRootEl(from) &&
-                    from.getAttribute('wire:id') !== this.id
-                )
-                    return false
+                if (DOM.isComponentRootEl(from) && from.getAttribute('wire:id') !== this.id) return false
 
-                // If the element we are updating is an Alpine component...
-                if (from.__x) {
-                    // Then temporarily clone it (with it's data) to the "to" element.
-                    // This should simulate backend Livewire being aware of Alpine changes.
-                    window.Alpine.clone(from.__x, to)
-                }
+                // Give the root Livewire "to" element, the same object reference as the "from"
+                // element. This ensures new Alpine magics like $wire and @entangle can
+                // initialize in the context of a real Livewire component object.
+                if (DOM.isComponentRootEl(from)) to.__livewire = this
+
+                alpinifyElementsForMorphdom(from, to)
             },
 
             onElUpdated: node => {
@@ -491,6 +485,8 @@ export default class Component {
                 this.morphChanges.added.push(node)
             },
         })
+
+        window.skipShow = false
     }
 
     walk(callback, callbackWhenNewComponentIsEncountered = el => { }) {
@@ -645,7 +641,7 @@ export default class Component {
                 if (property === '__instance') return component
 
                 // Forward "emits" to base Livewire object.
-                if (property.match(/^emit.*/)) return function (...args) {
+                if (typeof property === 'string' && property.match(/^emit.*/)) return function (...args) {
                     if (property === 'emitSelf') return store.emitSelf(component.id, ...args)
 
                     return store[property].apply(component, args)

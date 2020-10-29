@@ -4,7 +4,6 @@ namespace Livewire\Testing\Concerns;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Support\MessageBag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Testing\Constraints\SeeInOrder;
 use PHPUnit\Framework\Assert as PHPUnit;
@@ -13,7 +12,7 @@ trait MakesAssertions
 {
     public function assertSet($name, $value)
     {
-        if (is_callable($value)) {
+        if (! is_string($value) && is_callable($value)) {
             PHPUnit::assertTrue($value($this->get($name)));
         } else {
             PHPUnit::assertEquals($value, $this->get($name));
@@ -139,15 +138,15 @@ trait MakesAssertions
         $assertionSuffix = '.';
 
         if (empty($params)) {
-            $test = collect($this->payload['effects']['emits'])->contains('event', '=', $value);
+            $test = collect(data_get($this->payload, 'effects.emits'))->contains('event', '=', $value);
         } elseif (is_callable($params[0])) {
-            $event = collect($this->payload['effects']['emits'])->first(function ($item) use ($value) {
+            $event = collect(data_get($this->payload, 'effects.emits'))->first(function ($item) use ($value) {
                 return $item['event'] === $value;
             });
 
             $test = $event && $params[0]($event['event'], $event['params']);
         } else {
-            $test = (bool) collect($this->payload['effects']['emits'])->first(function ($item) use ($value, $params) {
+            $test = (bool) collect(data_get($this->payload, 'effects.emits'))->first(function ($item) use ($value, $params) {
                 return $item['event'] === $value
                     && $item['params'] === $params;
             });
@@ -189,7 +188,7 @@ trait MakesAssertions
 
     public function assertHasErrors($keys = [])
     {
-        $errors = new MessageBag($this->payload['serverMemo']['errors'] ?: []);
+        $errors = $this->lastErrorBag;
 
         PHPUnit::assertTrue($errors->isNotEmpty(), 'Component has no errors.');
 
@@ -213,7 +212,7 @@ trait MakesAssertions
 
     public function assertHasNoErrors($keys = [])
     {
-        $errors = new MessageBag($this->payload['serverMemo']['errors'] ?? []);
+        $errors = $this->lastErrorBag;
 
         if (empty($keys)) {
             PHPUnit::assertTrue($errors->isEmpty(), 'Component has errors: "' . implode('", "', $errors->keys()) . '"');
@@ -241,14 +240,22 @@ trait MakesAssertions
 
     public function assertRedirect($uri = null)
     {
-        PHPUnit::assertIsString(
-            $this->payload['effects']['redirect'],
+        PHPUnit::assertArrayHasKey(
+            'redirect',
+            $this->payload['effects'],
             'Component did not perform a redirect.'
         );
 
         if (! is_null($uri)) {
             PHPUnit::assertSame(url($uri), url($this->payload['effects']['redirect']));
         }
+
+        return $this;
+    }
+
+    public function assertViewIs($name)
+    {
+        PHPUnit::assertEquals($name, $this->lastRenderedView->getName());
 
         return $this;
     }
