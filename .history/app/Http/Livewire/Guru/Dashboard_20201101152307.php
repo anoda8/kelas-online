@@ -7,7 +7,6 @@ use App\Models\Pengumuman;
 use App\Models\Tugas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Dashboard extends Component
 {
@@ -21,8 +20,7 @@ class Dashboard extends Component
         ];
     }
 
-    public function mount()
-    {
+    public function mount(){
         $this->level = request()->segment(3);
         $this->heading = $this->heading();
     }
@@ -31,10 +29,10 @@ class Dashboard extends Component
     {
         $jumlah_kelon = KelasOnline::where('author_id', Auth::id())->count();
         $jumlah_tugas = Tugas::where('author_id', Auth::id())->count();
-        $kelon = KelasOnline::where('author_id', Auth::id())->whereDate('wkt_masuk', '=', date('Y-m-d'))->get();
+        $kelon = KelasOnline::where('author_id', Auth::id())->where('wkt_masuk', date('Y-m-d'))->get();
         $peng = Pengumuman::orWhere('tujuan', 'guru')->orWhere('tujuan', 'all')->orWhere('author_id', Auth::id())->take(2)->get();
 
-        return view('livewire.guru.dashboard', [
+        return view('livewire.guru.dashboard',[
             'jumlah' => [
                 'kelon' => $jumlah_tugas,
                 'tugas' => $jumlah_kelon

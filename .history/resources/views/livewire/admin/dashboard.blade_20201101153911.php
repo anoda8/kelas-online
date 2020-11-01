@@ -79,7 +79,7 @@
             <div class="card mb-3">
                 <div class="card-header-tab card-header">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-bold"><i
-                            class="header-icon fas fa-bullhorn mr-3 text-muted opacity-6"> </i>Pengumuman Hari Ini {{ date("d/m/Y") }}
+                            class="header-icon fas fa-bullhorn mr-3 text-muted opacity-6"> </i>Pengumuman Hari Ini
                     </div>
                     <div class="btn-actions-pane-right actions-icon-btn">
 

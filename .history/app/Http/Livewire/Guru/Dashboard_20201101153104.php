@@ -31,7 +31,7 @@ class Dashboard extends Component
     {
         $jumlah_kelon = KelasOnline::where('author_id', Auth::id())->count();
         $jumlah_tugas = Tugas::where('author_id', Auth::id())->count();
-        $kelon = KelasOnline::where('author_id', Auth::id())->whereDate('wkt_masuk', '=', date('Y-m-d'))->get();
+        $kelon = KelasOnline::where('author_id', Auth::id())->whereDate('wkt_masuk', '<', date('Y-m-d'))->get();
         $peng = Pengumuman::orWhere('tujuan', 'guru')->orWhere('tujuan', 'all')->orWhere('author_id', Auth::id())->take(2)->get();
 
         return view('livewire.guru.dashboard', [

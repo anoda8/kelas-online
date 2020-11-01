@@ -138,7 +138,7 @@
                                     <td>{{ $kelon->author->name }}</td>
                                     <td>{{ $kelon->mapel->nama }}</td>
                                     <td>{{ $kelon->kelas->nama }}</td>
-                                    <td>{{ $kelon->wkt_masuk->format("Y-m-d") }}</td>
+                                    <td>{{ $kelon->wkt_masuk }}</td>
                                     <td class="text-center">{{ $kelon->wkt_masuk->format('H:i') }} - {{ $kelon->wkt_selesai->format('H:i') }}</td>
                                     <td></td>
                                 </tr>

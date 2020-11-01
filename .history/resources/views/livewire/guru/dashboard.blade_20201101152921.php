@@ -126,7 +126,6 @@
                                     <th class="text-center">Nama Guru</th>
                                     <th class="text-center">Mata Pelajaran</th>
                                     <th class="text-center">Kelas</th>
-                                    <th class="text-center">Tanggal</th>
                                     <th class="text-center">Waktu</th>
                                     <th class="text-center">Siswa Hadir</th>
                                 </tr>
@@ -138,7 +137,6 @@
                                     <td>{{ $kelon->author->name }}</td>
                                     <td>{{ $kelon->mapel->nama }}</td>
                                     <td>{{ $kelon->kelas->nama }}</td>
-                                    <td>{{ $kelon->wkt_masuk->format("Y-m-d") }}</td>
                                     <td class="text-center">{{ $kelon->wkt_masuk->format('H:i') }} - {{ $kelon->wkt_selesai->format('H:i') }}</td>
                                     <td></td>
                                 </tr>
