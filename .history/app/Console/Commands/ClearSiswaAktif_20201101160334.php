@@ -45,6 +45,6 @@ class ClearSiswaAktif extends Command
         foreach ($siswaaktif as $log) {
             LogKelasOnline::where('id', $log->id)->update(['status' => false]);
         }
-        $this->info("Log kelas online telah dibersihakn, ada " . $siswaaktif->count() . " siswa aktif");
+        $this->info("log kelas online telah dibersihakn !");
     }
 }

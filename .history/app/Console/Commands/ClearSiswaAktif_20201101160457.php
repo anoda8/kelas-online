@@ -38,13 +38,11 @@ class ClearSiswaAktif extends Command
      */
     public function handle()
     {
-        $siswaaktif = LogKelasOnline::where('status', true)->whereHas('kelon', function ($query) {
-            $query->whereDate('wkt_selesai', '<', date("Y-m-d H:i:s"));
-        })->get();
+        $siswaaktif = LogKelasOnline::where('status', true)->get();
 
         foreach ($siswaaktif as $log) {
-            LogKelasOnline::where('id', $log->id)->update(['status' => false]);
+            // LogKelasOnline::where('id', $log->id)->update(['status' => false]);
         }
-        $this->info("Log kelas online telah dibersihakn, ada " . $siswaaktif->count() . " siswa aktif");
+        $this->info("log kelas online telah dibersihakn !" . $siswaaktif->count());
     }
 }
