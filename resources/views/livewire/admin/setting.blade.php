@@ -11,6 +11,32 @@
             </div>
         </div>
     </div>
+    {{-- <div class="row">
+        <div class="col-md-12">
+            <div class="mb-3 card">
+                <div class="card-header">Pengaturan Umum</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nama Sekolah</label>
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Alamat</label>
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Nama Kepala Sekolah</label>
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     <div class="row">
         <div class="col-sm-12 col-md-5 col-lg-6">
             <div class="mb-3 card">
@@ -100,6 +126,7 @@
             </div>
         </div>
     </div>
+
     @include('layouts.footer')
     @section('scripts')
     <script type="text/javascript">
