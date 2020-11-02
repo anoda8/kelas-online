@@ -25,7 +25,7 @@ perbaikan dan penambahan fitur masih terus dilakukan !
 
 ### Demo
 
-[Kelas Online](https://kelas-online.anoda.web.id)
+[Kelas Online](https://kelas-online.anoda.web.id)\n
 [User Interface](https://drive.google.com/file/d/1_r31tUhVGqD7kvadOwc95CkWBkGxSf9r/view?usp=sharing)
 
 -   Username : admin
