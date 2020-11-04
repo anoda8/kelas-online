@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Settings;
 use App\Models\ThAjaran;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Setting extends Component
@@ -29,16 +28,12 @@ class Setting extends Component
     {
         $this->heading = $this->heading();
         $this->list_thajaran = ThAjaran::latest()->get();
-        $settings = Settings::get(['key', 'value'])->toArray();
-        foreach ($settings as $setting) {
-            $this->settings[$setting['key']] = $setting['value'];
-        }
     }
 
     public function render()
     {
         $data['list_thajaran'] = $this->list_thajaran;
-
+        $data['settings'] = Settings::all();
         return view('livewire.admin.setting', $data);
     }
 
@@ -98,7 +93,7 @@ class Setting extends Component
     {
         foreach ($this->settings as $key => $value) {
             Settings::updateOrCreate(['key' => $key], [
-                'value' => $value, 'user_id' => Auth::id()
+                'value' => $value
             ]);
         }
         $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => "Berhasil menyimpan pengaturan"]);

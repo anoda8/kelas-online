@@ -29,16 +29,15 @@ class Setting extends Component
     {
         $this->heading = $this->heading();
         $this->list_thajaran = ThAjaran::latest()->get();
-        $settings = Settings::get(['key', 'value'])->toArray();
-        foreach ($settings as $setting) {
-            $this->settings[$setting['key']] = $setting['value'];
-        }
     }
 
     public function render()
     {
         $data['list_thajaran'] = $this->list_thajaran;
-
+        $settings = Settings::get(['key', 'value'])->toArray();
+        foreach ($settings as $setting) {
+            $this->settings[$setting['key']] = $setting['value'];
+        }
         return view('livewire.admin.setting', $data);
     }
 

@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Settings;
 use App\Models\ThAjaran;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Setting extends Component
@@ -12,7 +10,7 @@ class Setting extends Component
     public $tambah_tahun, $tambah_semester, $tambah_status = 0;
     public $list_thajaran;
 
-    public $settings = [
+    public $$settings = [
         'NamaSekolah' => '', 'Alamat' => '', 'NamaKepsek' => '', 'NIPKepsek' => '', 'EmailKepsek' => ''
     ];
 
@@ -29,16 +27,11 @@ class Setting extends Component
     {
         $this->heading = $this->heading();
         $this->list_thajaran = ThAjaran::latest()->get();
-        $settings = Settings::get(['key', 'value'])->toArray();
-        foreach ($settings as $setting) {
-            $this->settings[$setting['key']] = $setting['value'];
-        }
     }
 
     public function render()
     {
         $data['list_thajaran'] = $this->list_thajaran;
-
         return view('livewire.admin.setting', $data);
     }
 
@@ -92,15 +85,5 @@ class Setting extends Component
         $thajaran->delete();
         $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => $keterangan . " dihapus !"]);
         $this->mount();
-    }
-
-    public function storeSettings()
-    {
-        foreach ($this->settings as $key => $value) {
-            Settings::updateOrCreate(['key' => $key], [
-                'value' => $value, 'user_id' => Auth::id()
-            ]);
-        }
-        $this->dispatchBrowserEvent('toast', ['icon' => 'success', 'title' => "Berhasil menyimpan pengaturan"]);
     }
 }

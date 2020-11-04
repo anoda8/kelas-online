@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="btn-actions-pane-right">
-                        <button type="button" wire:click="storeSettings()" class="btn btn-success btn-sm">Simpan</button>
+                        <button type="button" class="btn btn-success btn-sm">Simpan</button>
                     </div>
                 </div>
             </div>

@@ -20,32 +20,27 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Nama Sekolah</label>
-                                <input type="text" class="form-control" wire:model.lazy="settings.NamaSekolah" aria-describedby="helpId" placeholder="">
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="">Alamat</label>
-                                <input type="text" class="form-control" wire:model.lazy="settings.Alamat" aria-describedby="helpId" placeholder="">
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="">Nama Kepala Sekolah</label>
-                                <input type="text" class="form-control" wire:model.lazy="settings.NamaKepsek" aria-describedby="helpId" placeholder="">
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">NIP Kepala Sekolah</label>
-                                <input type="text" class="form-control" wire:model.lazy="settings.NIPKepsek" aria-describedby="helpId" placeholder="">
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="">Alamat Email Kepala Sekolah</label>
-                                <input type="text" class="form-control" wire:model.lazy="settings.EmailKepsek" aria-describedby="helpId" placeholder="">
+                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="btn-actions-pane-right">
-                        <button type="button" wire:click="storeSettings()" class="btn btn-success btn-sm">Simpan</button>
                     </div>
                 </div>
             </div>
