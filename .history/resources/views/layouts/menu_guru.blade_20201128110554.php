@@ -35,34 +35,52 @@
                 <ul class="vertical-nav-menu">
                     <li class="app-sidebar__heading">Teras</li>
                     <li>
-                        <a href="{{ route('admin.beranda') }}" class="{{ request()->path() == "admin" ? "mm-active" : ""}}">
+                        <a href="{{ route('guru.beranda') }}" class="{{ request()->path() == "guru" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-tachometer-alt"></i>
                             Beranda
                         </a>
-                        <a href="{{ route('admin.setting') }}" class="{{ request()->path() == "admin/setting" ? "mm-active" : ""}}">
-                            <i class="metismenu-icon fas fa-cog"></i>
-                            Pengaturan
-                        </a>
-                    </li>
-                    <li class="app-sidebar__heading">MONITORING</li>
-                    <li>
-                        <a href="#">
+                        <a href="{{ route('guru.pengumuman') }}" class="{{ request()->path() == "guru/pengumuman" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-bullhorn"></i>
                             Pengumuman
                         </a>
-                        <a href="#">
+                    </li>
+                    <li class="app-sidebar__heading">PEMBLAJARAN</li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
-                            Pembelajaran
+                            Kelas Online
                         </a>
-                        <a href="#">
+                    </li>
+                    <li>
+                        <a href="{{ route('guru.tugas') }}" class="{{ request()->path() == "guru/tugas" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-tasks"></i>
                             Tugas
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
-                        <a href="#">
-                            <i class="metismenu-icon fas fa-pen-alt"></i>
-                            Ulangan
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </li>
+                    <li class="app-sidebar__heading">BANKSOAL</li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Daftar Materi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Daftar Soal
+                        </a>
+                    </li>
+                    <li class="app-sidebar__heading">UJIAN</li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Kelas Ujian
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Daftar Ujian
                         </a>
                     </li>
                 </ul>

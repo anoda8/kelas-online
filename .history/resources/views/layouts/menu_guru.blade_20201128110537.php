@@ -52,12 +52,37 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('guru.kelasonline') }}" >
+                        <a href="{{ route('guru.tugas') }}" class="{{ request()->path() == "guru/tugas" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-tasks"></i>
                             Tugas
                         </a>
                     </li>
-                    <li class="app-sidebar__heading">BANK SOAL</li>
+                    <li class="app-sidebar__heading">BANKSOAL</li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Daftar Materi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Daftar Soal
+                        </a>
+                    </li>
+                    <li class="app-sidebar__heading">UJIAN</li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Kelas Ujian
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('guru.kelasonline') }}" class="{{ request()->path() == "guru/kelasonline" ? "mm-active" : ""}}">
+                            <i class="metismenu-icon fas fa-chalkboard-teacher"></i>
+                            Ujian
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

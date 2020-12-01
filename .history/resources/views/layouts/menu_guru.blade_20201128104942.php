@@ -39,7 +39,7 @@
                             <i class="metismenu-icon fas fa-tachometer-alt"></i>
                             Beranda
                         </a>
-                        <a href="#">
+                        <a href="{{ route('guru.pengumuman') }}" class="{{ request()->path() == "guru/pengumuman" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-bullhorn"></i>
                             Pengumuman
                         </a>
@@ -52,12 +52,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('guru.kelasonline') }}" >
+                        <a href="{{ route('guru.tugas') }}" class="{{ request()->path() == "guru/tugas" ? "mm-active" : ""}}">
                             <i class="metismenu-icon fas fa-tasks"></i>
                             Tugas
                         </a>
                     </li>
-                    <li class="app-sidebar__heading">BANK SOAL</li>
+                    <li class="app-sidebar__heading">BANKSOAL</li>
                 </ul>
             </div>
         </div>
